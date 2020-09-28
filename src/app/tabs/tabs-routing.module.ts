@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../studios-entry-form/studios-entry-form.module').then(m => m.StudiosEntryFormPageModule)
       },
       {
+        path: 'menu-other',
+        loadChildren: () => import('../menu-other/menu-other.module').then(m => m.MenuOtherPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/cds-info',
         pathMatch: 'full'

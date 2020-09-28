@@ -1,0 +1,10 @@
+@import "../../theme/variables";
+
+ion-item {
+  ion-icon {
+    margin-right: 15px;
+  }
+  ion-label {
+    color: var(--ion-color-step-400);
+  }
+}
