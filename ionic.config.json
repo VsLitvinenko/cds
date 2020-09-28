@@ -1,0 +1,7 @@
+{
+  "name": "cdsApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
