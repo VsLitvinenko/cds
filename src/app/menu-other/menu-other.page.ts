@@ -16,22 +16,22 @@ export class MenuOtherPage implements OnInit {
       {
         tittle: 'Карта',
         icon: 'navigate-outline',
-        color: '#412159'
+        color: '#6633CC'
       },
       {
         tittle: 'Мероприятия',
         icon: 'beer-outline',
-        color: '#412159'
+        color: '#CC3333'
       },
       {
         tittle: 'Уважение',
         icon: 'images-outline',
-        color: '#412159'
+        color: '#CC6600'
       },
       {
         tittle: 'Контакты',
         icon: 'people-outline',
-        color: '#412159'
+        color: '#666'
       },
     ]
   }

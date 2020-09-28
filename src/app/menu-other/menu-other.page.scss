@@ -1,10 +1,25 @@
 @import "../../theme/variables";
 
-ion-item {
-  ion-icon {
-    margin-right: 15px;
-  }
-  ion-label {
-    color: var(--ion-color-step-400);
+ion-list {
+  padding-top: 10px;
+
+  ion-item {
+    ion-icon {
+      margin-right: 15px;
+    }
+
+    ion-label {
+      color: var(--ion-color-step-400);
+    }
+
+    &:hover {
+      ion-icon {
+        //background-color: var(--ion-color-step-300);
+      }
+
+      ion-label {
+        color: var(--ion-color-step-700);
+      }
+    }
   }
 }
