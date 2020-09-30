@@ -6,10 +6,10 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item button=""
+    <ion-item
             *ngFor="let listItem of listItems"
-            lines="none"
-            click="()">
+            button (click)="navMenu(listItem)"
+            lines="none">
       <ion-icon
               [name]="listItem.icon"
               style="color:{{listItem.color}};">

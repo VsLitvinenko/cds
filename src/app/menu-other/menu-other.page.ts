@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ListItemInterface} from "./entities/interfaces/list-item.interface";
+import { Component, OnInit} from '@angular/core';
+import { ListItemInterface } from './entities/interfaces/list-item.interface';
 
 @Component({
   selector: 'app-menu-other',
@@ -33,6 +33,10 @@ export class MenuOtherPage implements OnInit {
         icon: 'people-outline',
         color: '#666'
       },
-    ]
+    ];
+  }
+
+  public navMenu(item: ListItemInterface): void {
+    console.log(item.tittle);
   }
 }

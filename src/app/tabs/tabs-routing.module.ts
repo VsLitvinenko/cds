@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'menu-other',
-        loadChildren: () => import('../menu-other/menu-other.module').then(m => m.MenuOtherPageModule)
+        loadChildren: () => import('../menu-other/menu-other-page.module').then(m => m.MenuOtherPageModule)
       },
       {
         path: '',
