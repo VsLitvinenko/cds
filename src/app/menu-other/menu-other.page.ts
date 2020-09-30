@@ -1,42 +1,14 @@
-import { Component, OnInit} from '@angular/core';
-import { ListItemInterface } from './entities/interfaces/list-item.interface';
+import { Component } from '@angular/core';
+import {NavigationPageComponent} from './entities/components/navigation-page/navigation-page.component';
 
 @Component({
   selector: 'app-menu-other',
   templateUrl: 'menu-other.page.html',
   styleUrls: ['menu-other.page.scss']
 })
-export class MenuOtherPage implements OnInit {
-  public listItems: ListItemInterface[];
+export class MenuOtherPage {
+  public currentRoot = NavigationPageComponent;
 
   constructor() {}
 
-  ngOnInit() {
-    this.listItems = [
-      {
-        tittle: 'Карта',
-        icon: 'navigate-outline',
-        color: '#6633CC'
-      },
-      {
-        tittle: 'Мероприятия',
-        icon: 'beer-outline',
-        color: '#CC3333'
-      },
-      {
-        tittle: 'Уважение',
-        icon: 'images-outline',
-        color: '#CC6600'
-      },
-      {
-        tittle: 'Контакты',
-        icon: 'people-outline',
-        color: '#666'
-      },
-    ];
-  }
-
-  public navMenu(item: ListItemInterface): void {
-    console.log(item.tittle);
-  }
 }
