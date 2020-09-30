@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {NavigationPageComponent} from './entities/components/navigation-page/navigation-page.component';
+import {TabService} from '../tabs/entities/services/tab.service';
+import { IonNav } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu-other',
@@ -7,8 +9,16 @@ import {NavigationPageComponent} from './entities/components/navigation-page/nav
   styleUrls: ['menu-other.page.scss']
 })
 export class MenuOtherPage {
-  public currentRoot = NavigationPageComponent;
+  @ViewChild('nav', {static: false}) nav: IonNav;
+  public navigationRoot = NavigationPageComponent;
 
-  constructor() {}
+  // tslint:disable-next-line:variable-name
+  constructor(private _tabService: TabService) {
+    this._tabService.currentTab$.subscribe((newTab: string) => {
+      if (this.nav) {
+        this.nav.popToRoot().then();
+      }
+    });
+  }
 
 }

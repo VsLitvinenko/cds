@@ -1,21 +1,25 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="cds-info">
+    <ion-tab-button tab="cds-info"
+                    (click)="changeTab('cds-info')">
       <ion-icon name="game-controller-outline" size="large"></ion-icon>
       <ion-label>ЦДС</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="studios-info">
+    <ion-tab-button tab="studios-info"
+                    (click)="changeTab('studios-info')">
       <ion-icon name="flame-outline" size="large"></ion-icon>
       <ion-label>Студии</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="studios-entry-form">
+    <ion-tab-button tab="studios-entry-form"
+                    (click)="changeTab('studios-entry-form')">
       <ion-icon name="duplicate-outline" size="large"></ion-icon>
       <ion-label>Запись в студию</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="menu-other">
+    <ion-tab-button tab="menu-other"
+                    (click)="changeTab('menu-other')">
       <ion-icon name="grid-outline" size="large"></ion-icon>
       <ion-label>Прочее</ion-label>
     </ion-tab-button>
