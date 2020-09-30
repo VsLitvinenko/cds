@@ -1,4 +1,4 @@
-<ion-header collapse="condense">
+<ion-header>
   <ion-toolbar>
     <ion-title size="medium">Прочее</ion-title>
   </ion-toolbar>
@@ -9,10 +9,10 @@
     <ion-nav-link
             *ngFor="let listItem of listItems"
             [component]="listItem.component">
-      <ion-item button
-                lines="none">
+      <ion-item button>
         <ion-icon
                 [name]="listItem.icon"
+                size="medium"
                 style="color:{{listItem.color}};">
         </ion-icon>
         <ion-label>{{listItem.tittle}}</ion-label>

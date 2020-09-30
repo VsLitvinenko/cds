@@ -19,25 +19,25 @@ export class NavigationPageComponent implements OnInit {
     this.listItems = [
       {
         tittle: 'Карта',
-        icon: 'navigate-outline',
+        icon: 'navigate',
         color: '#6633CC',
         component: MapComponent,
       },
       {
         tittle: 'Мероприятия',
-        icon: 'beer-outline',
+        icon: 'beer',
         color: '#CC3333',
         component: EventTableComponent,
       },
       {
         tittle: 'Уважение',
-        icon: 'images-outline',
+        icon: 'images',
         color: '#CC6600',
         component: RespectComponent,
       },
       {
         tittle: 'Контакты',
-        icon: 'people-outline',
+        icon: 'people',
         color: '#666',
         component: ContactsComponent,
       },
