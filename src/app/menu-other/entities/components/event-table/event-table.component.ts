@@ -9,7 +9,7 @@ import {IEvent} from 'ionic2-calendar/calendar';
 })
 export class EventTableComponent implements OnInit {
   public currentEvents: IEvent[] = [];
-  public calendarTittle: string;
+  public calendarTitle: string;
   public currentDate = new Date();
 
   @ViewChild(CalendarComponent) calendar: CalendarComponent;
@@ -18,8 +18,23 @@ export class EventTableComponent implements OnInit {
 
   ngOnInit() {}
 
-  public onViewTittleChanged(tittle): void {
-    this.calendarTittle = tittle;
+  public onViewTittleChanged(title): void {
+    const months = [
+      { en: 'January', ru: 'Январь' },
+      { en: 'February', ru: 'Февраль'},
+      { en: 'March', ru: 'Март'},
+      { en: 'April', ru: 'Апрель'},
+      { en: 'May', ru: 'Май'},
+      { en: 'June', ru: 'Июнь'},
+      { en: 'July', ru: 'Июль'},
+      { en: 'August', ru: 'Август'},
+      { en: 'September', ru: 'Сентябрь'},
+      { en: 'October', ru: 'Октябрь' },
+      { en: 'November', ru: 'Ноябрь' },
+      { en: 'December', ru: 'Декабрь' },
+    ];
+    const currentMonth = months.find(item => title.includes(item.en));
+    this.calendarTitle = title.replace(currentMonth.en, currentMonth.ru);
   }
   public nextMonth(): void {
     this.calendar.slideNext();
