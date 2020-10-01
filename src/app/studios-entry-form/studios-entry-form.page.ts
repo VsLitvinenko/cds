@@ -16,22 +16,24 @@ export class StudiosEntryFormPage implements OnInit, OnDestroy  {
     this.dynamicLabels = [
       {
         tittle: 'Фамилия:',
-        icon: 'dfdf',
         type: 'text'
       },
       {
         tittle: 'Имя:',
-        icon: 'dfdf',
         type: 'text'
       },
       {
         tittle: 'Отчество:',
-        icon: 'dfdf',
         type: 'text'
       },
       {
         tittle: 'Телефон:',
-        icon: 'dfdf',
+        icon: 'call',
+        type: 'tel'
+      },
+      {
+        tittle: 'Ссылка на страницу VK:',
+        icon: 'logo-vk',
         type: 'tel'
       },
     ];

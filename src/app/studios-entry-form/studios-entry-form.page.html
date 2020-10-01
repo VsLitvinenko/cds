@@ -22,6 +22,11 @@
     <ion-label position="floating">
       {{label.tittle}}
     </ion-label>
+    <ion-icon *ngIf="label.icon"
+              [name]="label.icon"
+              slot="end"
+              size="small">
+    </ion-icon>
     <ion-input type="{{label.type}}"></ion-input>
   </ion-item>
 
