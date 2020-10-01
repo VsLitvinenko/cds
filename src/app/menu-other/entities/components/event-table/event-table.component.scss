@@ -1,0 +1,32 @@
+@import "../../../../../theme/variables";
+
+.content {
+  margin: 10px 10px 0;
+  .head-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    ion-button {
+      width: 48%;
+    }
+  }
+
+  .tittle-calendar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  calendar {
+    ::ng-deep {
+      .monthview-selected {
+        background-color: var(--ion-color-primary);
+      }
+      .monthview-current {
+        background-color: var(--ion-color-step-400);
+      }
+    }
+  }
+}

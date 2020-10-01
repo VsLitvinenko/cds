@@ -1,11 +1,15 @@
 import { IonicModule } from '@ionic/angular';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {LOCALE_ID, NgModule} from '@angular/core';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MenuOtherPage } from './menu-other.page';
 import { MenuOtherPageRoutingModule } from './menu-other-routing.module';
 import {NavigationPageComponent} from './entities/components/navigation-page/navigation-page.component';
 import {MapComponent} from './entities/components/map/map.component';
+import {ContactsComponent} from './entities/components/contacts/contacts.component';
+import {EventTableComponent} from './entities/components/event-table/event-table.component';
+import {RespectComponent} from './entities/components/respect/respect.component';
+import {NgCalendarModule} from 'ionic2-calendar';
 
 @NgModule({
   imports: [
@@ -13,11 +17,15 @@ import {MapComponent} from './entities/components/map/map.component';
       CommonModule,
       FormsModule,
       MenuOtherPageRoutingModule,
+      NgCalendarModule
   ],
   declarations: [
       MenuOtherPage,
       NavigationPageComponent,
       MapComponent,
-  ]
+      ContactsComponent,
+      EventTableComponent,
+      RespectComponent
+  ],
 })
 export class MenuOtherPageModule {}

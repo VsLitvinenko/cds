@@ -8,5 +8,35 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="content">
+    <div class="head-buttons">
+      <ion-button fill="outline"
+                  (click)="createEvent()">
+        Добавить
+      </ion-button>
+      <ion-button fill="outline">
+        Посмотреть день
+      </ion-button>
+    </div>
 
+    <div class="tittle-calendar">
+      <ion-button fill="outline"
+                  (click)="prevMonth()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+
+      <h2>{{calendarTittle}}</h2>
+
+      <ion-button fill="outline"
+                  (click)="nextMonth()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </ion-button>
+    </div>
+    <calendar [eventSource]="currentEvents"
+              [currentDate]="currentDate"
+              calendarMode="month"
+              (onTitleChanged)="onViewTittleChanged($event)">
+
+    </calendar>
+  </div>
 </ion-content>
