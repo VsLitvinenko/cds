@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DynamicLabelInterface} from './entities/interfaces/dynamic-label.interface';
 import {FormGroup, FormControl, Validators, } from '@angular/forms';
+import {TabService} from '../tabs/entities/services/tab.service';
 
 @Component({
   selector: 'app-studios-entry-form',
@@ -19,9 +20,13 @@ export class StudiosEntryFormPage implements OnInit {
     userVk: new FormControl(),
 });
 
-  constructor() {}
+  // tslint:disable-next-line:variable-name
+  constructor(private _tabService: TabService) {}
 
   ngOnInit() {
+    this._tabService.currentTab$.subscribe((newTab: string) => {
+      this.currentFormGroup.reset();
+    });
     this.dynamicLabels = [
       {
         tittle: 'Фамилия:',
@@ -62,5 +67,6 @@ export class StudiosEntryFormPage implements OnInit {
 
   public submit(): void {
     console.log(this.currentFormGroup.value);
+    this.currentFormGroup.reset();
   }
 }
