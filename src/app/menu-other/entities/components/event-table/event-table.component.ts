@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {CalendarComponent} from 'ionic2-calendar';
 import {IEvent} from 'ionic2-calendar/calendar';
+import {AddEventComponent} from './entities/components/add-event/add-event.component';
 
 @Component({
   selector: 'app-event-table',
@@ -11,6 +12,8 @@ export class EventTableComponent implements OnInit {
   public currentEvents: IEvent[] = [];
   public calendarTitle: string;
   public currentDate = new Date();
+
+  public addEventPage = AddEventComponent;
 
   @ViewChild(CalendarComponent) calendar: CalendarComponent;
 

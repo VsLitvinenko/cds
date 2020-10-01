@@ -10,13 +10,19 @@
 <ion-content [fullscreen]="true">
   <div class="content">
     <div class="head-buttons">
-      <ion-button fill="outline"
-                  (click)="createEvent()">
-        Добавить
-      </ion-button>
-      <ion-button fill="outline">
-        Посмотреть день
-      </ion-button>
+      <ion-nav-link [component]="addEventPage">
+        <ion-button fill="outline"
+                    expand="block"
+                    (click)="createEvent()">
+          Добавить
+        </ion-button>
+      </ion-nav-link>
+      <ion-nav-link>
+        <ion-button fill="outline"
+                    expand="block">
+          Посмотреть день
+        </ion-button>
+      </ion-nav-link>
     </div>
 
     <div class="tittle-calendar">
@@ -37,7 +43,7 @@
               [currentDate]="currentDate"
               calendarMode="month"
               (onTitleChanged)="onViewTittleChanged($event)"
-              noEventsLabel="Нет мероприятий в этот день">
+              noEventsLabel="Нет мероприятий">
     </calendar>
   </div>
 </ion-content>
