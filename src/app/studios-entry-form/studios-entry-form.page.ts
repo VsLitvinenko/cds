@@ -16,7 +16,7 @@ export class StudiosEntryFormPage implements OnInit {
     userSurname: new FormControl(null, Validators.required),
     userName: new FormControl(null, Validators.required),
     userPatronymic: new FormControl(null, Validators.required),
-    userPhone: new FormControl(null, Validators.pattern('[0-9]{10}')),
+    userPhone: new FormControl(),
     userVk: new FormControl(),
 });
 

@@ -14,7 +14,7 @@ export class AddEventComponent implements OnInit {
     eventName: new FormControl(null, Validators.required),
     eventLocation: new FormControl(null, Validators.required),
     eventOrg: new FormControl(null, Validators.required),
-    eventPhone: new FormControl(null, Validators.pattern('[0-9]{10}')),
+    eventPhone: new FormControl(),
     eventStart: new FormControl(null, Validators.required),
     eventEnd: new FormControl(null, Validators.required),
     eventComments: new FormControl(),
