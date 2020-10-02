@@ -1,7 +1,14 @@
-ion-button {
-  position: fixed;
-  left: 3%;
-  bottom: 15px;
-  width: 94%;
-  font-size: 18px;
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+
+  form {
+    margin-bottom: 40px;
+  }
+
+  ion-button {
+    margin: 10px;
+  }
 }

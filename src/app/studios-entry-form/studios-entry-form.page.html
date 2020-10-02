@@ -5,34 +5,36 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="currentFormGroup">
-    <ion-item>
-      <ion-label position="floating">
-        Выберите студию:
-      </ion-label>
-      <ion-select interface="action-sheet"
-                  [interfaceOptions]="{header: 'Выберите студию:'}"
-                  cancelText="Отмена"
-                  formControlName="userStudio">
-        <ion-select-option *ngFor="let selectOption of studioSelectOptions">
-          {{selectOption}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+  <div class="content">
+    <form [formGroup]="currentFormGroup">
+      <ion-item>
+        <ion-label position="floating">
+          Выберите студию:
+        </ion-label>
+        <ion-select interface="action-sheet"
+                    [interfaceOptions]="{header: 'Выберите студию:'}"
+                    cancelText="Отмена"
+                    formControlName="userStudio">
+          <ion-select-option *ngFor="let selectOption of studioSelectOptions">
+            {{selectOption}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item *ngFor="let label of dynamicLabels">
-      <ion-label position="floating">
-        {{label.title}}
-      </ion-label>
-      <ion-icon *ngIf="label.icon"
-                [name]="label.icon"
-                slot="end"
-                size="small">
-      </ion-icon>
-      <ion-input type="{{label.type}}"
-                 formControlName="{{label.formControlName}}">
-      </ion-input>
-    </ion-item>
+      <ion-item *ngFor="let label of dynamicLabels">
+        <ion-label position="floating">
+          {{label.title}}
+        </ion-label>
+        <ion-icon *ngIf="label.icon"
+                  [name]="label.icon"
+                  slot="end"
+                  size="small">
+        </ion-icon>
+        <ion-input type="{{label.type}}"
+                   formControlName="{{label.formControlName}}">
+        </ion-input>
+      </ion-item>
+    </form>
     <ion-button fill="outline"
                 shape="round"
                 size="large"
@@ -40,5 +42,5 @@
                 [disabled]="currentFormGroup.invalid">
       Отправить заявку
     </ion-button>
-  </form>
+  </div>
 </ion-content>
