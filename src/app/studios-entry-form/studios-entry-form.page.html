@@ -22,7 +22,7 @@
 
     <ion-item *ngFor="let label of dynamicLabels">
       <ion-label position="floating">
-        {{label.tittle}}
+        {{label.title}}
       </ion-label>
       <ion-icon *ngIf="label.icon"
                 [name]="label.icon"
@@ -33,12 +33,12 @@
                  formControlName="{{label.formControlName}}">
       </ion-input>
     </ion-item>
+    <ion-button fill="outline"
+                shape="round"
+                size="large"
+                (click)="submit()"
+                [disabled]="currentFormGroup.invalid">
+      Отправить заявку
+    </ion-button>
   </form>
-  <ion-button fill="outline"
-              shape="round"
-              size="large"
-              (click)="submit()"
-              [disabled]="currentFormGroup.invalid">
-    Отправить заявку
-  </ion-button>
 </ion-content>

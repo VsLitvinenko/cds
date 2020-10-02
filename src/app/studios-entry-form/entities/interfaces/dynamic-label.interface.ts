@@ -1,5 +1,5 @@
 export interface DynamicLabelInterface {
-    tittle: string;
+    title: string;
     icon?: string;
     type: string;
     formControlName: string;

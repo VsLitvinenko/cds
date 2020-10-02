@@ -29,28 +29,28 @@ export class StudiosEntryFormPage implements OnInit {
     });
     this.dynamicLabels = [
       {
-        tittle: 'Фамилия:',
+        title: 'Фамилия:',
         type: 'text',
         formControlName: 'userSurname',
       },
       {
-        tittle: 'Имя:',
+        title: 'Имя:',
         type: 'text',
         formControlName: 'userName',
       },
       {
-        tittle: 'Отчество:',
+        title: 'Отчество:',
         type: 'text',
         formControlName: 'userPatronymic',
       },
       {
-        tittle: 'Телефон:',
+        title: 'Телефон:',
         icon: 'call',
         type: 'tel',
         formControlName: 'userPhone',
       },
       {
-        tittle: 'Ссылка на страницу VK:',
+        title: 'Ссылка на страницу VK:',
         icon: 'logo-vk',
         type: 'text',
         formControlName: 'userVk',

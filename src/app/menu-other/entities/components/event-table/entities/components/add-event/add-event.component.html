@@ -7,4 +7,72 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <form [formGroup]="currentFormGroup">
+    <ion-item>
+      <ion-label position="floating">
+        Выберите дату мероприятия:
+      </ion-label>
+      <ion-datetime max="2025"
+                    displayFormat="DDD. DD MMM , YYYY"
+                    [monthShortNames]="monthShortNames"
+                    [dayShortNames]="dayShortNames"
+                    cancelText="Отмена"
+                    done-text="Ок"
+                    formControlName="eventDate">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item *ngFor="let label of dynamicLabels">
+      <ion-label position="floating">
+        {{label.title}}
+      </ion-label>
+      <ion-icon *ngIf="label.icon"
+                [name]="label.icon"
+                slot="end"
+                size="small">
+      </ion-icon>
+      <ion-input type="{{label.type}}"
+                 formControlName="{{label.formControlName}}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        Время начала:
+      </ion-label>
+      <ion-datetime displayFormat="HH:mm"
+                    cancelText="Отмена"
+                    done-text="Ок"
+                    formControlName="eventStart">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        Время окончания:
+      </ion-label>
+      <ion-datetime displayFormat="HH:mm"
+                    cancelText="Отмена"
+                    done-text="Ок"
+                    formControlName="eventEnd">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        Комментарии:
+      </ion-label>
+      <ion-textarea formControlName="eventComments">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-button fill="outline"
+                shape="round"
+                size="large"
+                (click)="submit()"
+                [disabled]="currentFormGroup.invalid">
+      Добавить
+    </ion-button>
+  </form>
+</ion-content>
