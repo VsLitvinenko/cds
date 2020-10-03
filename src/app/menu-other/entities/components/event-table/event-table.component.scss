@@ -23,11 +23,28 @@
 
   calendar {
     ::ng-deep {
-      .monthview-selected {
-        background-color: var(--ion-color-primary);
+      .monthview-primary-with-event{
+        background-color: #CC6600;
       }
       .monthview-current {
         background-color: #717171;
+      }
+      .monthview-selected {
+        background-color: var(--ion-color-primary);
+      }
+
+      ion-list {
+        margin-top: 10px;
+        border: none;
+
+        ion-item {
+          color: var(--ion-color-step-850);
+          span {
+            padding: 0;
+            margin: 0;
+            font-weight: bold;
+          }
+        }
       }
     }
   }

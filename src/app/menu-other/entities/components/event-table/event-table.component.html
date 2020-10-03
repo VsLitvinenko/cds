@@ -12,15 +12,15 @@
     <div class="head-buttons">
       <ion-nav-link [component]="addEventPage">
         <ion-button fill="outline"
-                    expand="block"
-                    (click)="createEvent()">
+                    expand="block">
           Добавить
         </ion-button>
       </ion-nav-link>
       <ion-nav-link [component]="currentDateEventPage"
                     [componentProps]="{ currentDate: currentDate }">
         <ion-button fill="outline"
-                    expand="block">
+                    expand="block"
+                    [disabled]="!isCurrentDayButtonEnabled()">
           Посмотреть день
         </ion-button>
       </ion-nav-link>

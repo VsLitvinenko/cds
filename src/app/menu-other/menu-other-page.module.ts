@@ -12,6 +12,7 @@ import {RespectComponent} from './entities/components/respect/respect.component'
 import {NgCalendarModule} from 'ionic2-calendar';
 import {AddEventComponent} from './entities/components/event-table/entities/components/add-event/add-event.component';
 import {CurrentDateEventComponent} from './entities/components/event-table/entities/components/current-date-event/current-date-event.component';
+import {EventTableService} from './entities/components/event-table/entities/services/event-table.service';
 
 @NgModule({
     imports: [
@@ -32,5 +33,8 @@ import {CurrentDateEventComponent} from './entities/components/event-table/entit
       AddEventComponent,
       CurrentDateEventComponent,
   ],
+    providers: [
+        EventTableService,
+    ],
 })
 export class MenuOtherPageModule {}

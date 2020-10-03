@@ -3,6 +3,7 @@ import {CalendarComponent} from 'ionic2-calendar';
 import {IEvent} from 'ionic2-calendar/calendar';
 import {AddEventComponent} from './entities/components/add-event/add-event.component';
 import {CurrentDateEventComponent} from './entities/components/current-date-event/current-date-event.component';
+import {EventTableService} from './entities/services/event-table.service';
 
 @Component({
   selector: 'app-event-table',
@@ -19,9 +20,15 @@ export class EventTableComponent implements OnInit {
 
   @ViewChild(CalendarComponent) calendar: CalendarComponent;
 
-  constructor() { }
+  // tslint:disable-next-line:variable-name
+  constructor(private _eventTableService: EventTableService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._eventTableService.iEvents$.subscribe( (items: IEvent[]) => {
+      this.currentEvents = items;
+    });
+    this._eventTableService.getIEvents();
+  }
 
   public onViewTittleChanged(title): void {
     const months = [
@@ -48,22 +55,18 @@ export class EventTableComponent implements OnInit {
     this.calendar.slidePrev();
   }
 
-  public createEvent(): void {
-    const startTime = new Date();
-    const endTime = new Date();
-
-    this.currentEvents.push({
-      title: 'Мероприятие такое-то',
-      startTime,
-      endTime,
-      allDay: false
-    });
-  }
-
   public changeCurrentDate(): void {
     if (this.calendar) {
       this.currentDate = this.calendar.currentDate;
     }
+  }
+
+  public isCurrentDayButtonEnabled(): boolean {
+    return Boolean(this.currentEvents.find((item: IEvent) => {
+      return item.startTime.getDate() === this.currentDate.getDate()
+          && item.startTime.getMonth() === this.currentDate.getMonth()
+          && item.startTime.getFullYear() === this.currentDate.getFullYear();
+    }));
   }
 
 }
