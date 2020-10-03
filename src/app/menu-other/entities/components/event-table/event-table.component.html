@@ -17,7 +17,8 @@
           Добавить
         </ion-button>
       </ion-nav-link>
-      <ion-nav-link>
+      <ion-nav-link [component]="currentDateEventPage"
+                    [componentProps]="{ currentDate: currentDate }">
         <ion-button fill="outline"
                     expand="block">
           Посмотреть день
@@ -41,8 +42,9 @@
 
     <calendar [eventSource]="currentEvents"
               [currentDate]="currentDate"
-              calendarMode="month"
               (onTitleChanged)="onViewTittleChanged($event)"
+              (onCurrentDateChanged)="changeCurrentDate()"
+              calendarMode="month"
               noEventsLabel="Нет мероприятий">
     </calendar>
   </div>

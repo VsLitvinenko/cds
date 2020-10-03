@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {CalendarComponent} from 'ionic2-calendar';
 import {IEvent} from 'ionic2-calendar/calendar';
 import {AddEventComponent} from './entities/components/add-event/add-event.component';
+import {CurrentDateEventComponent} from './entities/components/current-date-event/current-date-event.component';
 
 @Component({
   selector: 'app-event-table',
@@ -14,6 +15,7 @@ export class EventTableComponent implements OnInit {
   public currentDate = new Date();
 
   public addEventPage = AddEventComponent;
+  public currentDateEventPage = CurrentDateEventComponent;
 
   @ViewChild(CalendarComponent) calendar: CalendarComponent;
 
@@ -56,6 +58,12 @@ export class EventTableComponent implements OnInit {
       endTime,
       allDay: false
     });
+  }
+
+  public changeCurrentDate(): void {
+    if (this.calendar) {
+      this.currentDate = this.calendar.currentDate;
+    }
   }
 
 }
