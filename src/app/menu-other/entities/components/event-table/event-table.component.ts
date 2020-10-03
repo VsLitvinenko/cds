@@ -4,6 +4,7 @@ import {IEvent} from 'ionic2-calendar/calendar';
 import {AddEventComponent} from './entities/components/add-event/add-event.component';
 import {CurrentDateEventComponent} from './entities/components/current-date-event/current-date-event.component';
 import {EventTableService} from './entities/services/event-table.service';
+import {IonNavLink} from '@ionic/angular';
 
 @Component({
   selector: 'app-event-table',
@@ -19,6 +20,7 @@ export class EventTableComponent implements OnInit {
   public currentDateEventPage = CurrentDateEventComponent;
 
   @ViewChild(CalendarComponent) calendar: CalendarComponent;
+  @ViewChild('curDatNavLink', {static: false}) curDatNavLink: IonNavLink;
 
   // tslint:disable-next-line:variable-name
   constructor(private _eventTableService: EventTableService) { }
@@ -62,11 +64,23 @@ export class EventTableComponent implements OnInit {
   }
 
   public isCurrentDayButtonEnabled(): boolean {
-    return Boolean(this.currentEvents.find((item: IEvent) => {
+    if (this.currentEvents.find((item: IEvent) => {
       return item.startTime.getDate() === this.currentDate.getDate()
           && item.startTime.getMonth() === this.currentDate.getMonth()
           && item.startTime.getFullYear() === this.currentDate.getFullYear();
-    }));
+    }))
+    {
+      if (this.curDatNavLink) {
+        this.curDatNavLink.component = this.currentDateEventPage;
+      }
+      return true;
+    }
+    else {
+      if (this.curDatNavLink) {
+        this.curDatNavLink.component = undefined;
+      }
+      return false;
+    }
   }
 
 }

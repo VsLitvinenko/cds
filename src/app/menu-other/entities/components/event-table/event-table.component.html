@@ -16,7 +16,7 @@
           Добавить
         </ion-button>
       </ion-nav-link>
-      <ion-nav-link [component]="currentDateEventPage"
+      <ion-nav-link #curDatNavLink
                     [componentProps]="{ currentDate: currentDate }">
         <ion-button fill="outline"
                     expand="block"

@@ -35,7 +35,6 @@ export class EventTableService {
                 allDay: false
             },
         ];
-        console.log(events);
         this._iEvents$$.next(events);
     }
 }
