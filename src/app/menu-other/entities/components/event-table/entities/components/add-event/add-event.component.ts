@@ -9,6 +9,7 @@ import {EventObjectInterface} from '../../interfaces/event-object.interface';
   styleUrls: ['./add-event.component.scss'],
 })
 export class AddEventComponent implements OnInit {
+  public subTitle: string = '';
   public dynamicLabels: DynamicLabelInterface[];
   public currentFormGroup: FormGroup = new FormGroup({
     eventDate: new FormControl(null, Validators.required),
@@ -23,9 +24,27 @@ export class AddEventComponent implements OnInit {
   public monthShortNames = ['янв', 'фев', 'мав', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
   public dayShortNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 
+  public editEventObject: EventObjectInterface;
+
   constructor() { }
 
   ngOnInit() {
+    if (this.editEventObject) {
+      this.subTitle = 'Обновить';
+      this.currentFormGroup.setValue({
+        eventDate: this.editEventObject.currentIEvent.startTime.toISOString(),
+        eventName: this.editEventObject.currentIEvent.title,
+        eventLocation: this.editEventObject.location,
+        eventOrg: this.editEventObject.organizer,
+        eventPhone: this.editEventObject.phone,
+        eventStart: this.editEventObject.currentIEvent.startTime.toISOString(),
+        eventEnd: this.editEventObject.currentIEvent.endTime.toISOString(),
+        eventNotes: this.editEventObject.notes,
+      });
+    }
+    else {
+      this.subTitle = 'Добавить';
+    }
     this.dynamicLabels = [
       {
         title: 'Название:',

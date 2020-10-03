@@ -20,10 +20,12 @@
         </ion-card-title>
       </div>
       <div class="event-buttons">
-        <ion-button fill="outline"
-                    style="margin-bottom: 10px">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-button>
+        <ion-nav-link [component]="addEventPage"
+                      [componentProps]="{ editEventObject:event }">
+          <ion-button fill="outline">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-nav-link>
         <ion-button fill="outline">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>

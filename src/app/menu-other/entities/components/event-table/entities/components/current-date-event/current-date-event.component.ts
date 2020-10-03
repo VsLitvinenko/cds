@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EventTableService} from '../../services/event-table.service';
 import {EventObjectInterface} from '../../interfaces/event-object.interface';
+import {AddEventComponent} from '../add-event/add-event.component';
 
 @Component({
   selector: 'app-current-date-event',
@@ -11,6 +12,7 @@ export class CurrentDateEventComponent implements OnInit {
   public currentDate: Date;
   public subTitle: string;
   public eventObjects: EventObjectInterface[];
+  public addEventPage = AddEventComponent;
 
   // tslint:disable-next-line:variable-name
   constructor(private _eventTableService: EventTableService) { }

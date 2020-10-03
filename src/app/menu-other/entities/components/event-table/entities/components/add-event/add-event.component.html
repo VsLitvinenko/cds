@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title size="medium">Добавить мероприятие</ion-title>
+    <ion-title size="medium">{{subTitle}} мероприятие</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -74,7 +74,7 @@
                 size="large"
                 (click)="submit()"
                 [disabled]="currentFormGroup.invalid">
-      Добавить
+      {{subTitle}}
     </ion-button>
   </div>
 </ion-content>
