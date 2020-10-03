@@ -1,3 +1,43 @@
 ion-content {
-  text-align: center;
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  ion-card {
+    ion-card-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .event-titles {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        ion-card-subtitle {
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        ion-card-title {
+          font-size: 24px;
+        }
+      }
+
+      .event-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        ion-button {
+          margin: 0;
+        }
+      }
+    }
+
+    ion-card-content {
+      font-size: 18px;
+    }
+  }
 }

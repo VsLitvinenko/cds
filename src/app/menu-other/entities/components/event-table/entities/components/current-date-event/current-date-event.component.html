@@ -9,4 +9,32 @@
 
 <ion-content>
   <h2> {{subTitle}} </h2>
+  <ion-card *ngFor="let event of eventObjects">
+    <ion-card-header>
+      <div class="event-titles">
+        <ion-card-subtitle>
+          {{getStartTimeFromEventObject(event)}} : {{getEndTimeFromEventObject(event)}}
+        </ion-card-subtitle>
+        <ion-card-title>
+          {{event.currentIEvent.title}}
+        </ion-card-title>
+      </div>
+      <div class="event-buttons">
+        <ion-button fill="outline"
+                    style="margin-bottom: 10px">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="outline">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      Локация: {{event.location}} <br>
+      Организатор: {{event.organizer}} <br>
+      (телефон: {{event.phone}}) <br> <br>
+      Комментарий: {{event.notes}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
