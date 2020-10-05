@@ -1,5 +1,6 @@
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
+<ion-tabs (window:resize)="onResize($event)">
+  <ion-tab-bar slot="bottom"
+               *ngIf="isTabsVisible">
     <ion-tab-button tab="cds-info"
                     (click)="changeTab('cds-info')">
       <ion-icon name="game-controller-outline" size="large"></ion-icon>
