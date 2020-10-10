@@ -7,7 +7,7 @@ import {TabService} from './entities/services/tab.service';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-  public isTabsVisible: boolean = true;
+  public isTabsVisible = true;
   private _defaultHeight: number;
 
   // tslint:disable-next-line:variable-name

@@ -1,6 +1,6 @@
 import { IonicModule } from '@ionic/angular';
-import {LOCALE_ID, NgModule} from '@angular/core';
-import {CommonModule, registerLocaleData} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MenuOtherPage } from './menu-other.page';
 import { MenuOtherPageRoutingModule } from './menu-other-routing.module';
@@ -13,6 +13,7 @@ import {NgCalendarModule} from 'ionic2-calendar';
 import {AddEventComponent} from './entities/components/event-table/entities/components/add-event/add-event.component';
 import {CurrentDateEventComponent} from './entities/components/event-table/entities/components/current-date-event/current-date-event.component';
 import {EventTableService} from './entities/components/event-table/entities/services/event-table.service';
+import {SettingsComponent} from './entities/components/settings/settings.component';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import {EventTableService} from './entities/components/event-table/entities/serv
       RespectComponent,
       AddEventComponent,
       CurrentDateEventComponent,
+      SettingsComponent,
   ],
     providers: [
         EventTableService,

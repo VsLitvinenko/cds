@@ -4,6 +4,7 @@ import {MapComponent} from '../map/map.component';
 import {EventTableComponent} from '../event-table/event-table.component';
 import {RespectComponent} from '../respect/respect.component';
 import {ContactsComponent} from '../contacts/contacts.component';
+import {SettingsComponent} from "../settings/settings.component";
 
 @Component({
   selector: 'app-navigation',
@@ -38,8 +39,14 @@ export class NavigationPageComponent implements OnInit {
       {
         tittle: 'Контакты',
         icon: 'people',
-        color: '#666',
+        color: '#755175',
         component: ContactsComponent,
+      },
+      {
+        tittle: 'Параметры',
+        icon: 'settings',
+        color: '#666666',
+        component: SettingsComponent,
       },
     ];
   }

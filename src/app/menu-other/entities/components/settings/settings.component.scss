@@ -1,0 +1,23 @@
+@import "../../../../../theme/variables";
+
+ion-list {
+
+  ion-item {
+    ion-icon {
+      margin-right: 15px;
+      color: #666;
+    }
+
+    ion-label {
+      font-size: 20px;
+      padding: 8px;
+      color: var(--ion-color-step-400);
+    }
+
+    &:hover {
+      ion-label {
+        color: var(--ion-color-step-700);
+      }
+    }
+  }
+}

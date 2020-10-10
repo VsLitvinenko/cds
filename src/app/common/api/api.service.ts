@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {catchError, finalize, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {Observable} from 'rxjs';
-import {CisHttpParams, LOCATION, SHARED_API_HOST} from './api.config';
+import {CisHttpParams, LOCATION} from './api.config';
 import { ApiResponse } from './api-responce.interface';
 
 
@@ -56,49 +56,6 @@ export class ApiService {
             );
     }
 
-    public getPdfResult<T>(
-        params: CisHttpParams,
-        usePreloader: boolean = true,
-        additionalParams?: CisHttpParams
-    ): Observable<T> | any {
-        return this.get(params, true, additionalParams);
-    }
-
-    public getSharedApiData<T>(
-        params: CisHttpParams,
-        usePreloader: boolean = true,
-        additionalParams?: CisHttpParams
-    ): Observable<ApiResponse<T> | any> {
-        if (usePreloader) {
-            // this.preloader.show();
-        }
-
-        return this.http.get(SHARED_API_HOST, {params, ...additionalParams})
-            .pipe(
-                this._catchAndReturnErrorReason.bind(this),
-                finalize<ApiResponse<T> | any>(() => {
-                    if (usePreloader) {
-                        // this.preloader.hide();
-                    }
-                })
-            );
-    }
-
-    /**
-     * Модификация GET запроса
-     * Извлечение поля результата
-     */
-    public getSharedApiResult<T>(
-        params: CisHttpParams,
-        usePreloader: boolean = true,
-        additionalParams?: CisHttpParams
-    ): Observable<T> | any {
-        return this.getSharedApiData(params, true, additionalParams)
-            .pipe(
-                map((r: ApiResponse<T>) => r.rows)
-            );
-    }
-
     /**
      * Модификация GET запроса
      * Преобразование в Promise
@@ -109,46 +66,6 @@ export class ApiService {
         additionalParams?: CisHttpParams
     ): Promise<ApiResponse<T> | any> {
         return this.get<T>(params, true, additionalParams)
-            .toPromise()
-            .catch(this._catchAndReturnNullSync.bind(this));
-    }
-
-    /**
-     * POST запрос
-     * Перехватывает ошибки
-     * Включает прелоадер (если есть флаг)
-     */
-    public postSharedApi<T>(
-        body: any,
-        params: CisHttpParams,
-        usePreloader: boolean = true,
-        additionalParams?: CisHttpParams
-    ): Observable<ApiResponse<T> | any> {
-        if (usePreloader) {
-            // this.preloader.show();
-        }
-
-        return this.http.post(SHARED_API_HOST, body, {params, ...additionalParams}).pipe(
-            this._catchAndReturnErrorReason.bind(this),
-            finalize<ApiResponse<T> | any>(() => {
-                if (usePreloader) {
-                    // this.preloader.hide();
-                }
-            })
-        );
-    }
-
-    /**
-     * Модификация POST запроса
-     * Преобразование в Promise
-     */
-    public postSharedApiPromise<T>(
-        body: any,
-        params: CisHttpParams,
-        usePreloader: boolean = true,
-        additionalParams?: CisHttpParams
-    ): Promise<ApiResponse<T> | any> {
-        return this.postSharedApi<T>(body, params, true, additionalParams)
             .toPromise()
             .catch(this._catchAndReturnNullSync.bind(this));
     }
