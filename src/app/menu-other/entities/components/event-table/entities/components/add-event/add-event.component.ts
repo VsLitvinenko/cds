@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DynamicLabelInterface} from '../../../../../../../studios-entry-form/entities/interfaces/dynamic-label.interface';
 import {EventObjectInterface} from '../../interfaces/event-object.interface';
+import {EventTableService} from '../../services/event-table.service';
 
 @Component({
   selector: 'app-add-event',
@@ -9,7 +10,7 @@ import {EventObjectInterface} from '../../interfaces/event-object.interface';
   styleUrls: ['./add-event.component.scss'],
 })
 export class AddEventComponent implements OnInit {
-  public subTitle: string = '';
+  public subTitle = '';
   public dynamicLabels: DynamicLabelInterface[];
   public currentFormGroup: FormGroup = new FormGroup({
     eventDate: new FormControl(null, Validators.required),
@@ -26,7 +27,8 @@ export class AddEventComponent implements OnInit {
 
   public editEventObject: EventObjectInterface;
 
-  constructor() { }
+  // tslint:disable-next-line:variable-name
+  constructor(private _eventService: EventTableService) { }
 
   ngOnInit() {
     if (this.editEventObject) {
@@ -70,7 +72,7 @@ export class AddEventComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this._createEventObject());
+    this._eventService.addEventObject(this._createEventObject());
   }
 
   private _createEventObject(): EventObjectInterface {

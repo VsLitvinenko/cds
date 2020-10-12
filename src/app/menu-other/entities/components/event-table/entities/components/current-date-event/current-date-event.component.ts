@@ -15,7 +15,8 @@ export class CurrentDateEventComponent implements OnInit {
   public addEventPage = AddEventComponent;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _eventTableService: EventTableService) { }
+  constructor(private _eventTableService: EventTableService) {
+  }
 
   ngOnInit() {
     const day = this.currentDate.getDate();

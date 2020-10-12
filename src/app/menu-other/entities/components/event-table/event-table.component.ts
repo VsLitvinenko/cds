@@ -27,7 +27,17 @@ export class EventTableComponent implements OnInit {
 
   ngOnInit() {
     this._eventTableService.iEvents$.subscribe( (items: IEvent[]) => {
-      this.currentEvents = items;
+      this.currentEvents = [];
+      if (items && items.length) {
+        items.forEach((item: IEvent) => {
+          this.currentEvents.push({
+            allDay: item.allDay,
+            title: item.title,
+            startTime: new Date(item.startTime),
+            endTime: new Date(item.endTime)
+          });
+        });
+      }
     });
     this._eventTableService.getIEvents();
   }

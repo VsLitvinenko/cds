@@ -14,6 +14,7 @@ import {AddEventComponent} from './entities/components/event-table/entities/comp
 import {CurrentDateEventComponent} from './entities/components/event-table/entities/components/current-date-event/current-date-event.component';
 import {EventTableService} from './entities/components/event-table/entities/services/event-table.service';
 import {SettingsComponent} from './entities/components/settings/settings.component';
+import {ApiService} from '../common/api/api.service';
 
 @NgModule({
     imports: [
@@ -37,6 +38,7 @@ import {SettingsComponent} from './entities/components/settings/settings.compone
   ],
     providers: [
         EventTableService,
+        ApiService,
     ],
 })
 export class MenuOtherPageModule {}
