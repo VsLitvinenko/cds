@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {IEvent} from 'ionic2-calendar/calendar';
 import {EventObjectInterface} from '../interfaces/event-object.interface';
 import {ApiService} from '../../../../../../common/api/api.service';
 import {ApiResponse} from '../../../../../../common/api/api-responce.interface';
+import {IEventInterface} from '../interfaces/ievent.interface';
+import {EventObjectAnswerInterface} from '../interfaces/event-object-answer.interface';
 
 @Injectable()
 export class EventTableService {
     // tslint:disable:variable-name
-    private _iEvents$$: BehaviorSubject<IEvent[]> = new BehaviorSubject(null);
-    public iEvents$: Observable<IEvent[]> = this._iEvents$$ as Observable<IEvent[]>;
+    private _iEvents$$: BehaviorSubject<IEventInterface[]> = new BehaviorSubject(null);
+    public iEvents$: Observable<IEventInterface[]> = this._iEvents$$ as Observable<IEventInterface[]>;
 
-    private _eventObjects$$: BehaviorSubject<EventObjectInterface[]> = new BehaviorSubject(null);
-    public eventObjects$: Observable<EventObjectInterface[]> = this._eventObjects$$ as Observable<EventObjectInterface[]>;
+    private _eventObjects$$: BehaviorSubject<EventObjectAnswerInterface[]> = new BehaviorSubject(null);
+    public eventObjects$: Observable<EventObjectAnswerInterface[]> = this._eventObjects$$ as Observable<EventObjectAnswerInterface[]>;
 
     constructor(private _api: ApiService) {
     }
@@ -25,8 +26,8 @@ export class EventTableService {
         });
     }
 
-    public getEventObjects(date: Date): void {
-        this._api.get(`LoadEventObjects?date=${Da}`).then( (answer: ApiResponse<any>) => {
+    public getEventObjects(date: string): void {
+        this._api.get(`LoadEventObjects?date=${date}`).then( (answer: ApiResponse<any>) => {
             if (!answer.success) {
                 return;
             }
@@ -36,6 +37,24 @@ export class EventTableService {
 
     public addEventObject(item: EventObjectInterface) {
         this._api.post( 'AddNewEventObjects', item).then( (answer: ApiResponse<any>) => {
+            if (!answer.success) {
+                return;
+            }
+            console.log(answer);
+        });
+    }
+
+    public updateEventObject(item: EventObjectInterface) {
+        this._api.put('UpdateEventObject', item).then( (answer: ApiResponse<any>) => {
+            if (!answer.success) {
+                return;
+            }
+            console.log(answer);
+        });
+    }
+
+    public deleteEventObject(id: number) {
+        this._api.delete(`DeleteEventObjects?id=${id}`).then( (answer: ApiResponse<any>) => {
             if (!answer.success) {
                 return;
             }

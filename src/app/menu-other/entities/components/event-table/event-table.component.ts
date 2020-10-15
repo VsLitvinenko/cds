@@ -5,6 +5,7 @@ import {AddEventComponent} from './entities/components/add-event/add-event.compo
 import {CurrentDateEventComponent} from './entities/components/current-date-event/current-date-event.component';
 import {EventTableService} from './entities/services/event-table.service';
 import {IonNavLink} from '@ionic/angular';
+import {IEventInterface} from './entities/interfaces/ievent.interface';
 
 @Component({
   selector: 'app-event-table',
@@ -26,15 +27,15 @@ export class EventTableComponent implements OnInit {
   constructor(private _eventTableService: EventTableService) { }
 
   ngOnInit() {
-    this._eventTableService.iEvents$.subscribe( (items: IEvent[]) => {
+    this._eventTableService.iEvents$.subscribe( (items: IEventInterface[]) => {
       this.currentEvents = [];
       if (items && items.length) {
-        items.forEach((item: IEvent) => {
+        items.forEach((item: IEventInterface) => {
           this.currentEvents.push({
-            allDay: item.allDay,
+            allDay: false,
             title: item.title,
-            startTime: new Date(item.startTime),
-            endTime: new Date(item.endTime)
+            startTime: new Date(item.date.year, item.date.month - 1, item.date.day, item.startTime.hours, item.startTime.minutes),
+            endTime: new Date(item.date.year, item.date.month - 1, item.date.day, item.endTime.hours, item.endTime.minutes)
           });
         });
       }

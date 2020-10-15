@@ -8,6 +8,7 @@ import {TabService} from './entities/services/tab.service';
 })
 export class TabsPage {
   public isTabsVisible = true;
+  // tslint:disable-next-line:variable-name
   private _defaultHeight: number;
 
   // tslint:disable-next-line:variable-name
@@ -20,7 +21,6 @@ export class TabsPage {
   }
 
   public onResize(event) {
-    console.log(event.target.innerHeight);
     if (event.target.innerHeight < this._defaultHeight) {
       this.isTabsVisible = false;
     }

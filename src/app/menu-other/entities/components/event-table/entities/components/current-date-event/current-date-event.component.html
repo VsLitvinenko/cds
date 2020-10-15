@@ -9,34 +9,34 @@
 
 <ion-content>
   <h2> {{subTitle}} </h2>
-  <ion-card *ngFor="let event of eventObjects">
+  <ion-card *ngFor="let eventObject of eventObjects">
     <ion-card-header>
       <div class="event-titles">
         <ion-card-subtitle>
-          {{getStartTimeFromEventObject(event)}} : {{getEndTimeFromEventObject(event)}}
+          {{getTimeFromEventObject(eventObject, true)}} : {{getTimeFromEventObject(eventObject, false)}}
         </ion-card-subtitle>
         <ion-card-title>
-          {{event.currentIEvent.title}}
+          {{eventObject.title}}
         </ion-card-title>
       </div>
       <div class="event-buttons">
         <ion-nav-link [component]="addEventPage"
-                      [componentProps]="{ editEventObject:event }">
+                      [componentProps]="{ editEventObject:eventObject }">
           <ion-button fill="outline">
             <ion-icon name="create-outline"></ion-icon>
           </ion-button>
         </ion-nav-link>
-        <ion-button fill="outline">
+        <ion-button fill="outline" (click)="deleteEventObject(eventObject.id)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
       </div>
     </ion-card-header>
 
     <ion-card-content>
-      Локация: {{event.location}} <br>
-      Организатор: {{event.organizer}} <br>
-      Телефон: {{event.phone}} <br> <br>
-      Комментарий: {{event.notes}}
+      Локация: {{eventObject.location}} <br>
+      Организатор: {{eventObject.organizer}} <br>
+      Телефон: {{eventObject.phone}} <br> <br>
+      Комментарий: {{eventObject.notes}}
     </ion-card-content>
   </ion-card>
 </ion-content>

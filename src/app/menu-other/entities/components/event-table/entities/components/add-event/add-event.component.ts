@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DynamicLabelInterface} from '../../../../../../../studios-entry-form/entities/interfaces/dynamic-label.interface';
 import {EventObjectInterface} from '../../interfaces/event-object.interface';
 import {EventTableService} from '../../services/event-table.service';
+import {EventObjectAnswerInterface} from '../../interfaces/event-object-answer.interface';
 
 @Component({
   selector: 'app-add-event',
@@ -25,7 +26,7 @@ export class AddEventComponent implements OnInit {
   public monthShortNames = ['янв', 'фев', 'мав', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
   public dayShortNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 
-  public editEventObject: EventObjectInterface;
+  public editEventObject: EventObjectAnswerInterface;
 
   // tslint:disable-next-line:variable-name
   constructor(private _eventService: EventTableService) { }
@@ -33,14 +34,23 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {
     if (this.editEventObject) {
       this.subTitle = 'Обновить';
+      const eventDate = new Date(this.editEventObject.date.year,
+          this.editEventObject.date.month - 1,
+          this.editEventObject.date.day).toISOString();
+      const eventStart = new Date(0, 0, 0,
+          this.editEventObject.startTime.hours,
+          this.editEventObject.startTime.minutes).toISOString();
+      const eventEnd = new Date(0, 0, 0,
+          this.editEventObject.endTime.hours,
+          this.editEventObject.endTime.minutes).toISOString();
       this.currentFormGroup.setValue({
-        eventDate: this.editEventObject.currentIEvent.startTime.toISOString(),
-        eventName: this.editEventObject.currentIEvent.title,
+        eventDate,
+        eventName: this.editEventObject.title,
         eventLocation: this.editEventObject.location,
         eventOrg: this.editEventObject.organizer,
         eventPhone: this.editEventObject.phone,
-        eventStart: this.editEventObject.currentIEvent.startTime.toISOString(),
-        eventEnd: this.editEventObject.currentIEvent.endTime.toISOString(),
+        eventStart,
+        eventEnd,
         eventNotes: this.editEventObject.notes,
       });
     }
@@ -72,27 +82,29 @@ export class AddEventComponent implements OnInit {
   }
 
   public submit(): void {
-    this._eventService.addEventObject(this._createEventObject());
+    if (this.editEventObject) {
+      this._eventService.updateEventObject(this._createEventObject(this.editEventObject.id));
+    }
+    else {
+      this._eventService.addEventObject(this._createEventObject());
+    }
   }
 
-  private _createEventObject(): EventObjectInterface {
+  private _createEventObject(id = null): EventObjectInterface {
     const e = this.currentFormGroup.value;
-    const startTime = new Date(e.eventDate);
-    const endTime = new Date(e.eventDate);
-    startTime.setHours(new Date(e.eventStart).getHours(), new Date(e.eventStart).getMinutes());
-    endTime.setHours(new Date(e.eventEnd).getHours(), new Date(e.eventEnd).getMinutes());
+    const currentDate = new Date(e.eventDate);
+    const currentStartTime = new Date(e.eventStart);
+    const currentEndTime = new Date(e.eventEnd);
     return {
-      id: null,
-      currentIEvent: {
-        title: e.eventName,
-        startTime,
-        endTime,
-        allDay: false,
-      },
+      id,
       location: e.eventLocation,
       organizer: e.eventOrg,
       phone: e.eventPhone,
       notes: e.eventNotes,
+      date: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`,
+      startTime: `${currentStartTime.getHours()}:${currentStartTime.getMinutes()}`,
+      endTime: `${currentEndTime.getHours()}:${currentEndTime.getMinutes()}`,
+      title: e.eventName,
     };
   }
 

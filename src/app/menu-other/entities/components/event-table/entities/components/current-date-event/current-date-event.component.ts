@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EventTableService} from '../../services/event-table.service';
-import {EventObjectInterface} from '../../interfaces/event-object.interface';
 import {AddEventComponent} from '../add-event/add-event.component';
+import {EventObjectAnswerInterface} from '../../interfaces/event-object-answer.interface';
 
 @Component({
   selector: 'app-current-date-event',
@@ -11,7 +11,7 @@ import {AddEventComponent} from '../add-event/add-event.component';
 export class CurrentDateEventComponent implements OnInit {
   public currentDate: Date;
   public subTitle: string;
-  public eventObjects: EventObjectInterface[];
+  public eventObjects: EventObjectAnswerInterface[];
   public addEventPage = AddEventComponent;
 
   // tslint:disable-next-line:variable-name
@@ -20,24 +20,31 @@ export class CurrentDateEventComponent implements OnInit {
 
   ngOnInit() {
     const day = this.currentDate.getDate();
-    const month = this.currentDate.getMonth();
+    const month = this.currentDate.getMonth() + 1;
     const year = this.currentDate.getFullYear();
-    this.subTitle = `Мероприятия ${day > 9 ? day : `0${day}`}.${month > 8 ? month + 1 : `0${month + 1}`}.${year}`;
+    this.subTitle = `Мероприятия ${day > 9 ? day : `0${day}`}.${month > 9 ? month : `0${month + 1}`}.${year}`;
 
-    this._eventTableService.eventObjects$.subscribe( (items: EventObjectInterface[]) => {
+    this._eventTableService.eventObjects$.subscribe( (items: EventObjectAnswerInterface[]) => {
       this.eventObjects = items;
     });
-    this._eventTableService.getEventObjects(new Date());
+    this._eventTableService.getEventObjects(`${year}-${month}-${day}`);
   }
 
-  public getStartTimeFromEventObject(e: EventObjectInterface): string {
-    const hours = e.currentIEvent.startTime.getHours();
-    const minutes = e.currentIEvent.startTime.getMinutes();
+  public getTimeFromEventObject(e: EventObjectAnswerInterface, isItStartTime: boolean): string {
+    let hours: number;
+    let minutes: number;
+    if (isItStartTime) {
+      hours = e.startTime.hours;
+      minutes = e.startTime.minutes;
+    }
+    else {
+      hours = e.endTime.hours;
+      minutes = e.endTime.minutes;
+    }
     return `${hours > 9 ? hours : `0${hours}`}:${minutes > 9 ? minutes : `0${minutes}`}`;
   }
-
-  public getEndTimeFromEventObject(e: EventObjectInterface): string {
-    return `${e.currentIEvent.endTime.getHours()}:${e.currentIEvent.endTime.getMinutes()}`;
+  
+  public deleteEventObject(id: number): void {
+    this._eventTableService.deleteEventObject(id);
   }
-
 }
