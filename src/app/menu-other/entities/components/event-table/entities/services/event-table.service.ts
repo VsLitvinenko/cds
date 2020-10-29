@@ -22,7 +22,6 @@ export class EventTableService {
             if (!answer.success) {
                 return;
             }
-            this._api.hideApiPreloader(true);
             this._iEvents$$.next(answer.data);
         });
     }
@@ -32,7 +31,6 @@ export class EventTableService {
             if (!answer.success) {
                 return;
             }
-            this._api.hideApiPreloader(true);
             this._eventObjects$$.next(answer.data);
         });
     }

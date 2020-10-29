@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {ApiService} from './common/api/api.service';
+import {PopoverService} from './common/api/popover.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import {ApiService} from './common/api/api.service';
     SplashScreen,
     HttpClient,
     ApiService,
+    PopoverService,
     { provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,  }
   ],
