@@ -24,14 +24,29 @@ export class ApiService {
     }
 
     public post<T>(url: string, body: any, head: any = {}): Promise<any> {
-        return this.http.post<ApiResponse<any>>(`${this.environment}${url}`, body, head).toPromise();
+        this.popover.showPreloader().then();
+        return this.http.post<ApiResponse<any>>(`${this.environment}${url}`, body, head)
+            .toPromise()
+            .catch(() => {
+                this.popover.hidePreloader(false).then();
+            });
     }
 
     public delete<T>(url: string, head: any = {}): Promise<any> {
-        return this.http.delete<ApiResponse<any>>(`${this.environment}${url}`, head).toPromise();
+        this.popover.showPreloader().then();
+        return this.http.delete<ApiResponse<any>>(`${this.environment}${url}`, head)
+            .toPromise()
+            .catch(() => {
+                this.popover.hidePreloader(false).then();
+            });
     }
 
     public put<T>(url: string, body: any): Promise<any> {
-        return this.http.put<ApiResponse<any>>(`${this.environment}${url}`, body).toPromise();
+        this.popover.showPreloader().then();
+        return this.http.put<ApiResponse<any>>(`${this.environment}${url}`, body)
+            .toPromise()
+            .catch(() => {
+                this.popover.hidePreloader(false).then();
+            });
     }
 }

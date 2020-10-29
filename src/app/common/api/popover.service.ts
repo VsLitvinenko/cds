@@ -19,14 +19,15 @@ export class PopoverService {
     private async createPreloader() {
         this._preloader = await this._loadingController.create({
             message: 'Загрузка...',
+            animated: true,
         });
     }
 
     private async createAlert() {
         this._alert = await this._alertController.create({
-            header: 'Alert',
-            subHeader: 'Subtitle',
-            message: 'This is an alert message.',
+            header: 'Ошибка',
+            // subHeader: 'Subtitle',
+            message: 'Нет соединения с сервером',
             buttons: ['OK']
         });
     }

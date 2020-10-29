@@ -5,6 +5,7 @@ import {ApiService} from '../../../../../../common/api/api.service';
 import {ApiResponse} from '../../../../../../common/api/api-responce.interface';
 import {IEventInterface} from '../interfaces/ievent.interface';
 import {EventObjectAnswerInterface} from '../interfaces/event-object-answer.interface';
+import {PopoverService} from '../../../../../../common/api/popover.service';
 
 @Injectable()
 export class EventTableService {
@@ -15,13 +16,15 @@ export class EventTableService {
     private _eventObjects$$: BehaviorSubject<EventObjectAnswerInterface[]> = new BehaviorSubject(null);
     public eventObjects$: Observable<EventObjectAnswerInterface[]> = this._eventObjects$$ as Observable<EventObjectAnswerInterface[]>;
 
-    constructor(private _api: ApiService) {
+    constructor(private _api: ApiService,
+                private _popover: PopoverService) {
     }
     public getIEvents(): void {
         this._api.get('LoadIEvents').then( (answer: ApiResponse<any>) => {
             if (!answer.success) {
                 return;
             }
+            this._popover.hidePreloader(true).then();
             this._iEvents$$.next(answer.data);
         });
     }
@@ -31,6 +34,7 @@ export class EventTableService {
             if (!answer.success) {
                 return;
             }
+            this._popover.hidePreloader(true).then();
             this._eventObjects$$.next(answer.data);
         });
     }
@@ -40,6 +44,7 @@ export class EventTableService {
             if (!answer.success) {
                 return;
             }
+            this._popover.hidePreloader(true).then();
             console.log(answer);
         });
     }
@@ -49,6 +54,7 @@ export class EventTableService {
             if (!answer.success) {
                 return;
             }
+            this._popover.hidePreloader(true).then();
             console.log(answer);
         });
     }
@@ -58,6 +64,7 @@ export class EventTableService {
             if (!answer.success) {
                 return;
             }
+            this._popover.hidePreloader(true).then();
             console.log(answer);
         });
     }
