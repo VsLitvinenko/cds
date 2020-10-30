@@ -19,7 +19,7 @@ export class ApiService {
         return this.http.get<ApiResponse<any>>(`${this.environment}${url}`, head)
             .toPromise()
             .catch(() => {
-            this.popover.hidePreloader(false).then();
+                this.popover.hidePreloader(false).then();
         });
     }
 

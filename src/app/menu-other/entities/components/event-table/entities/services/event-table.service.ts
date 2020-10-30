@@ -21,51 +21,71 @@ export class EventTableService {
     }
     public getIEvents(): void {
         this._api.get('LoadIEvents').then( (answer: ApiResponse<any>) => {
-            if (!answer.success) {
-                return;
+            if (answer) {
+                if (answer.success) {
+                    this._popover.hidePreloader(true).then();
+                    this._iEvents$$.next(answer.data);
+                }
+                else {
+                    this._popover.hidePreloader(false).then();
+                }
             }
-            this._popover.hidePreloader(true).then();
-            this._iEvents$$.next(answer.data);
         });
     }
 
     public getEventObjects(date: string): void {
         this._api.get(`LoadEventObjects?date=${date}`).then( (answer: ApiResponse<any>) => {
-            if (!answer.success) {
-                return;
+            if (answer) {
+                if (answer.success) {
+                    this._popover.hidePreloader(true).then();
+                    this._eventObjects$$.next(answer.data);
+                }
+                else {
+                    this._popover.hidePreloader(false).then();
+                }
             }
-            this._popover.hidePreloader(true).then();
-            this._eventObjects$$.next(answer.data);
         });
     }
 
     public addEventObject(item: EventObjectInterface) {
         this._api.post( 'AddNewEventObjects', item).then( (answer: ApiResponse<any>) => {
-            if (!answer.success) {
-                return;
+            if (answer) {
+                if (answer.success) {
+                    this._popover.hidePreloader(true).then();
+                    console.log(answer);
+                }
+                else {
+                    this._popover.hidePreloader(false).then();
+                }
             }
-            this._popover.hidePreloader(true).then();
-            console.log(answer);
         });
     }
 
     public updateEventObject(item: EventObjectInterface) {
         this._api.put('UpdateEventObject', item).then( (answer: ApiResponse<any>) => {
-            if (!answer.success) {
-                return;
+            if (answer) {
+                if (answer.success) {
+                    this._popover.hidePreloader(true).then();
+                    console.log(answer);
+                }
+                else {
+                    this._popover.hidePreloader(false).then();
+                }
             }
-            this._popover.hidePreloader(true).then();
-            console.log(answer);
         });
     }
 
     public deleteEventObject(id: number) {
         this._api.delete(`DeleteEventObjects?id=${id}`).then( (answer: ApiResponse<any>) => {
-            if (!answer.success) {
-                return;
+            if (answer) {
+                if (answer.success) {
+                    this._popover.hidePreloader(true).then();
+                    console.log(answer);
+                }
+                else {
+                    this._popover.hidePreloader(false).then();
+                }
             }
-            this._popover.hidePreloader(true).then();
-            console.log(answer);
         });
     }
 }

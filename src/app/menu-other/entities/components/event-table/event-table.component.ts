@@ -94,4 +94,9 @@ export class EventTableComponent implements OnInit {
     }
   }
 
+  public updateIEvents(event): void {
+    this._eventTableService.getIEvents();
+    event.target.complete();
+  }
+
 }

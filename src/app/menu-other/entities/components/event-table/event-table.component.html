@@ -26,26 +26,30 @@
       </ion-nav-link>
     </div>
 
-    <div class="tittle-calendar">
-      <ion-button fill="outline"
-                  (click)="prevMonth()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-button>
+    <ion-refresher slot="fixed" (ionRefresh)="updateIEvents($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
-      <h2>{{calendarTitle}}</h2>
+      <div class="tittle-calendar">
+        <ion-button fill="outline"
+                    (click)="prevMonth()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
 
-      <ion-button fill="outline"
-                  (click)="nextMonth()">
-        <ion-icon name="arrow-forward"></ion-icon>
-      </ion-button>
-    </div>
+        <h2>{{calendarTitle}}</h2>
 
-    <calendar [eventSource]="currentEvents"
-              [currentDate]="currentDate"
-              (onTitleChanged)="onViewTittleChanged($event)"
-              (onCurrentDateChanged)="changeCurrentDate()"
-              calendarMode="month"
-              noEventsLabel="Нет мероприятий">
-    </calendar>
+        <ion-button fill="outline"
+                    (click)="nextMonth()">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+
+      <calendar [eventSource]="currentEvents"
+                [currentDate]="currentDate"
+                (onTitleChanged)="onViewTittleChanged($event)"
+                (onCurrentDateChanged)="changeCurrentDate()"
+                calendarMode="month"
+                noEventsLabel="Нет мероприятий">
+      </calendar>
   </div>
 </ion-content>

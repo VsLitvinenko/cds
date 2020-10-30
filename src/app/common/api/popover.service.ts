@@ -41,10 +41,12 @@ export class PopoverService {
         if (!success) {
             this.showAlert().then();
         }
+        this.createPreloader().then();
     }
 
     public async showAlert() {
         await this._alert.present();
+        this.createAlert().then();
     }
 
 
