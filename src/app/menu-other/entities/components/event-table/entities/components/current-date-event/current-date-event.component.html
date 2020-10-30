@@ -19,17 +19,6 @@
           {{eventObject.title}}
         </ion-card-title>
       </div>
-      <div class="event-buttons">
-        <ion-nav-link [component]="addEventPage"
-                      [componentProps]="{ editEventObject:eventObject }">
-          <ion-button fill="outline">
-            <ion-icon name="create-outline"></ion-icon>
-          </ion-button>
-        </ion-nav-link>
-        <ion-button fill="outline" (click)="deleteEventObject(eventObject.id)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
-      </div>
     </ion-card-header>
 
     <ion-card-content>
@@ -38,5 +27,18 @@
       Телефон: {{eventObject.phone}} <br> <br>
       Комментарий: {{eventObject.notes}}
     </ion-card-content>
+
+    <div class="event-buttons">
+      <ion-button fill="clear" (click)="deleteEventObject(eventObject.id)">
+        <ion-icon name="trash-outline" size="large"></ion-icon>
+      </ion-button>
+
+      <ion-nav-link [component]="addEventPage"
+                    [componentProps]="{ editEventObject:eventObject }">
+        <ion-button fill="clear">
+          <ion-icon name="create-outline" size="large"></ion-icon>
+        </ion-button>
+      </ion-nav-link>
+    </div>
   </ion-card>
 </ion-content>
