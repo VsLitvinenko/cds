@@ -26,7 +26,7 @@ export class NavigationPageComponent implements OnInit {
       },
       {
         tittle: 'Мероприятия',
-        icon: 'beer',
+        icon: 'calendar',
         color: '#CC3333',
         component: EventTableComponent,
       },
