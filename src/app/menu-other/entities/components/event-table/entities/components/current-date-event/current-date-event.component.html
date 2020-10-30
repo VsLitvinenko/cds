@@ -9,6 +9,11 @@
 
 <ion-content>
   <h2> {{subTitle}} </h2>
+
+  <ion-refresher slot="fixed" (ionRefresh)="updateEventObject($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let eventObject of eventObjects">
     <ion-card-header>
       <div class="event-titles">

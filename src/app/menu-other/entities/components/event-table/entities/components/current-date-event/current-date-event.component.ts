@@ -13,6 +13,7 @@ export class CurrentDateEventComponent implements OnInit {
   public subTitle: string;
   public eventObjects: EventObjectAnswerInterface[];
   public addEventPage = AddEventComponent;
+  private dateString: string;
 
   // tslint:disable-next-line:variable-name
   constructor(private _eventTableService: EventTableService) {
@@ -27,7 +28,8 @@ export class CurrentDateEventComponent implements OnInit {
     this._eventTableService.eventObjects$.subscribe( (items: EventObjectAnswerInterface[]) => {
       this.eventObjects = items;
     });
-    this._eventTableService.getEventObjects(`${year}-${month}-${day}`);
+    this.dateString = `${year}-${month}-${day}`;
+    this._eventTableService.getEventObjects(this.dateString);
   }
 
   public getTimeFromEventObject(e: EventObjectAnswerInterface, isItStartTime: boolean): string {
@@ -46,5 +48,9 @@ export class CurrentDateEventComponent implements OnInit {
   
   public deleteEventObject(id: number): void {
     this._eventTableService.deleteEventObject(id);
+  }
+  public updateEventObject(event): void {
+    this._eventTableService.getEventObjects(this.dateString);
+    event.target.complete();
   }
 }

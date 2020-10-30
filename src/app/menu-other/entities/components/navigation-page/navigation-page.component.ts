@@ -39,7 +39,7 @@ export class NavigationPageComponent implements OnInit {
       {
         tittle: 'Контакты',
         icon: 'people',
-        color: '#755175',
+        color: '#6b3d6b',
         component: ContactsComponent,
       },
       {
