@@ -10,7 +10,8 @@
 <ion-content [fullscreen]="true">
   <div class="content">
     <div class="head-buttons">
-      <ion-nav-link [component]="addEventPage">
+      <ion-nav-link [component]="addEventPage"
+                    [componentProps]="{ currentDate: currentDate }">
         <ion-button fill="outline"
                     expand="block">
           Добавить

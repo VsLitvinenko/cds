@@ -27,6 +27,7 @@ export class AddEventComponent implements OnInit {
   public dayShortNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 
   public editEventObject: EventObjectAnswerInterface;
+  public currentDate: Date;
 
   // tslint:disable-next-line:variable-name
   constructor(private _eventService: EventTableService) { }
@@ -56,6 +57,16 @@ export class AddEventComponent implements OnInit {
     }
     else {
       this.subTitle = 'Добавить';
+      this.currentFormGroup.setValue({
+        eventDate: this.currentDate.toISOString(),
+        eventName: null,
+        eventLocation: null,
+        eventOrg: null,
+        eventPhone: null,
+        eventStart: null,
+        eventEnd: null,
+        eventNotes: null,
+      });
     }
     this.dynamicLabels = [
       {

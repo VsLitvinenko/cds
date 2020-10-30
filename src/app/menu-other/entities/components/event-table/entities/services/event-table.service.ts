@@ -6,6 +6,7 @@ import {ApiResponse} from '../../../../../../common/api/api-responce.interface';
 import {IEventInterface} from '../interfaces/ievent.interface';
 import {EventObjectAnswerInterface} from '../interfaces/event-object-answer.interface';
 import {PopoverService} from '../../../../../../common/api/popover.service';
+import {TabService} from '../../../../../../tabs/entities/services/tab.service';
 
 @Injectable()
 export class EventTableService {
@@ -17,6 +18,7 @@ export class EventTableService {
     public eventObjects$: Observable<EventObjectAnswerInterface[]> = this._eventObjects$$ as Observable<EventObjectAnswerInterface[]>;
 
     constructor(private _api: ApiService,
+                private _tab: TabService,
                 private _popover: PopoverService) {
     }
     public getIEvents(): void {
@@ -52,7 +54,8 @@ export class EventTableService {
             if (answer) {
                 if (answer.success) {
                     this._popover.hidePreloader(true).then();
-                    console.log(answer);
+                    this.getIEvents();
+                    this._tab.changeCurrentTab('back');
                 }
                 else {
                     this._popover.hidePreloader(false).then();
@@ -66,7 +69,9 @@ export class EventTableService {
             if (answer) {
                 if (answer.success) {
                     this._popover.hidePreloader(true).then();
-                    console.log(answer);
+                    this.getEventObjects(item.date);
+                    this.getIEvents();
+                    this._tab.changeCurrentTab('back');
                 }
                 else {
                     this._popover.hidePreloader(false).then();
@@ -80,7 +85,6 @@ export class EventTableService {
             if (answer) {
                 if (answer.success) {
                     this._popover.hidePreloader(true).then();
-                    console.log(answer);
                 }
                 else {
                     this._popover.hidePreloader(false).then();

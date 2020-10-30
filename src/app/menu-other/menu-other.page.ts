@@ -16,7 +16,12 @@ export class MenuOtherPage {
   constructor(private _tabService: TabService) {
     this._tabService.currentTab$.subscribe((newTab: string) => {
       if (this.nav) {
-        this.nav.popToRoot().then();
+        if (newTab === 'back') {
+          this.nav.pop().then();
+        }
+        else {
+          this.nav.popToRoot().then();
+        }
       }
     });
   }
