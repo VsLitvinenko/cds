@@ -23,7 +23,7 @@ import {PhotoService} from './entities/components/respect/entities/services/phot
         FormsModule,
         MenuOtherPageRoutingModule,
         NgCalendarModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
   declarations: [
       MenuOtherPage,

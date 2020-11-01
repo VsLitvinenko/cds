@@ -1,6 +1,6 @@
 import {LoadingController, AlertController, ToastController} from '@ionic/angular';
 import {Injectable} from '@angular/core';
-import {PopoverResponseInterface} from './popover-responce.interface';
+import {PopoverResponseInterface} from '../interfaces/popover-responce.interface';
 
 @Injectable()
 export class PopoverService {

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {ApiResponse} from './api-response.interface';
+import {ApiResponse} from '../interfaces/api-response.interface';
 import {PopoverService} from './popover.service';
 
 @Injectable()

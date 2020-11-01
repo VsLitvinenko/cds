@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import {PopoverService} from './common/api/popover.service';
+import {PopoverService} from './common/services/popover.service';
 
 @Component({
   selector: 'app-root',

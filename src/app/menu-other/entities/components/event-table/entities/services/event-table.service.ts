@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {EventObjectInterface} from '../interfaces/event-object.interface';
-import {ApiService} from '../../../../../../common/api/api.service';
-import {ApiResponse} from '../../../../../../common/api/api-response.interface';
+import {ApiService} from '../../../../../../common/services/api.service';
+import {ApiResponse} from '../../../../../../common/interfaces/api-response.interface';
 import {IEventInterface} from '../interfaces/ievent.interface';
 import {EventObjectAnswerInterface} from '../interfaces/event-object-answer.interface';
-import {PopoverService} from '../../../../../../common/api/popover.service';
+import {PopoverService} from '../../../../../../common/services/popover.service';
 import {TabService} from '../../../../../../tabs/entities/services/tab.service';
 
 @Injectable()

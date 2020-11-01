@@ -10,7 +10,7 @@ import { StudiosInfoPageRoutingModule } from './studios-info-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    StudiosInfoPageRoutingModule
+    StudiosInfoPageRoutingModule,
   ],
   declarations: [StudiosInfoPage]
 })

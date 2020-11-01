@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PhotoService} from './entities/services/photo.service';
-import {PopoverService} from '../../../../common/api/popover.service';
+import {PopoverService} from '../../../../common/services/popover.service';
 
 @Component({
   selector: 'app-respect',
