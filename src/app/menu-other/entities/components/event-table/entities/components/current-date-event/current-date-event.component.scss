@@ -2,13 +2,15 @@
 
 ion-content {
   h2 {
-    margin: 25px 16px;
+    margin: 20px 16px 0;
     color: var(--ion-color-step-700);
-    padding-bottom: 8px;
+    padding-bottom: 5px;
     border-bottom: 0.5px solid var(--ion-color-step-200);
   }
 
   ion-card {
+    margin-top: 15px;
+
     ion-card-header {
       border: 2px solid var(--ion-color-primary);
       border-radius: 10px;
