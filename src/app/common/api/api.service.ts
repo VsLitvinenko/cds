@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {ApiResponse} from './api-responce.interface';
+import {ApiResponse} from './api-response.interface';
 import {PopoverService} from './popover.service';
 
 @Injectable()
@@ -19,7 +19,10 @@ export class ApiService {
         return this.http.get<ApiResponse<any>>(`${this.environment}${url}`, head)
             .toPromise()
             .catch(() => {
-                this.popover.hidePreloader(false).then();
+                this.popover.hidePreloader({
+                    success: false,
+                    message: 'Нет соединения с сервером',
+                }).then();
         });
     }
 
@@ -28,7 +31,10 @@ export class ApiService {
         return this.http.post<ApiResponse<any>>(`${this.environment}${url}`, body, head)
             .toPromise()
             .catch(() => {
-                this.popover.hidePreloader(false).then();
+                this.popover.hidePreloader({
+                    success: false,
+                    message: 'Нет соединения с сервером',
+                }).then();
             });
     }
 
@@ -37,7 +43,10 @@ export class ApiService {
         return this.http.delete<ApiResponse<any>>(`${this.environment}${url}`, head)
             .toPromise()
             .catch(() => {
-                this.popover.hidePreloader(false).then();
+                this.popover.hidePreloader({
+                    success: false,
+                    message: 'Нет соединения с сервером',
+                }).then();
             });
     }
 
@@ -46,7 +55,10 @@ export class ApiService {
         return this.http.put<ApiResponse<any>>(`${this.environment}${url}`, body)
             .toPromise()
             .catch(() => {
-                this.popover.hidePreloader(false).then();
+                this.popover.hidePreloader({
+                    success: false,
+                    message: 'Нет соединения с сервером',
+                }).then();
             });
     }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {EventObjectInterface} from '../interfaces/event-object.interface';
 import {ApiService} from '../../../../../../common/api/api.service';
-import {ApiResponse} from '../../../../../../common/api/api-responce.interface';
+import {ApiResponse} from '../../../../../../common/api/api-response.interface';
 import {IEventInterface} from '../interfaces/ievent.interface';
 import {EventObjectAnswerInterface} from '../interfaces/event-object-answer.interface';
 import {PopoverService} from '../../../../../../common/api/popover.service';
@@ -19,17 +19,22 @@ export class EventTableService {
 
     constructor(private _api: ApiService,
                 private _tab: TabService,
-                private _popover: PopoverService) {
-    }
+                private _popover: PopoverService) { }
+
     public getIEvents(): void {
         this._api.get('LoadIEvents').then( (answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
-                    this._popover.hidePreloader(true).then();
+                    this._popover.hidePreloader({
+                        success: true,
+                    }).then();
                     this._iEvents$$.next(answer.data);
                 }
                 else {
-                    this._popover.hidePreloader(false).then();
+                    this._popover.hidePreloader({
+                        success: false,
+                        message: answer.reason,
+                    }).then();
                 }
             }
         });
@@ -39,11 +44,16 @@ export class EventTableService {
         this._api.get(`LoadEventObjects?date=${date}`).then( (answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
-                    this._popover.hidePreloader(true).then();
+                    this._popover.hidePreloader({
+                        success: true,
+                    }).then();
                     this._eventObjects$$.next(answer.data);
                 }
                 else {
-                    this._popover.hidePreloader(false).then();
+                    this._popover.hidePreloader({
+                        success: false,
+                        message: answer.reason,
+                    }).then();
                 }
             }
         });
@@ -53,12 +63,18 @@ export class EventTableService {
         this._api.post( 'AddNewEventObjects', item).then( (answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
-                    this._popover.hidePreloader(true).then();
+                    this._popover.hidePreloader({
+                        success: true,
+                        message: 'Мероприятие добавлено',
+                    }).then();
                     this.getIEvents();
                     this._tab.changeCurrentTab('back');
                 }
                 else {
-                    this._popover.hidePreloader(false).then();
+                    this._popover.hidePreloader({
+                        success: false,
+                        message: answer.reason,
+                    }).then();
                 }
             }
         });
@@ -68,13 +84,19 @@ export class EventTableService {
         this._api.put('UpdateEventObject', item).then( (answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
-                    this._popover.hidePreloader(true).then();
+                    this._popover.hidePreloader({
+                        success: true,
+                        message: 'Мероприятие обновлено',
+                    }).then();
                     this.getEventObjects(item.date);
                     this.getIEvents();
                     this._tab.changeCurrentTab('back');
                 }
                 else {
-                    this._popover.hidePreloader(false).then();
+                    this._popover.hidePreloader({
+                        success: false,
+                        message: answer.reason,
+                    }).then();
                 }
             }
         });
@@ -84,10 +106,16 @@ export class EventTableService {
         this._api.delete(`DeleteEventObjects?id=${id}`).then( (answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
-                    this._popover.hidePreloader(true).then();
+                    this._popover.hidePreloader({
+                        success: true,
+                        message: 'Мероприятие удалено',
+                    }).then();
                 }
                 else {
-                    this._popover.hidePreloader(false).then();
+                    this._popover.hidePreloader({
+                        success: false,
+                        message: answer.reason,
+                    }).then();
                 }
             }
         });
