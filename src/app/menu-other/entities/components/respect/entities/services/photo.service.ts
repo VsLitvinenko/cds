@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-import { PhotoInterface } from '../interfaces/photo.interface';
+import {Injectable} from '@angular/core';
+import {CameraOptions, CameraResultType, CameraSource, Plugins} from '@capacitor/core';
+import {PhotoInterface} from '../interfaces/photo.interface';
 
 const { Camera } = Plugins;
 
@@ -11,17 +11,28 @@ export class PhotoService {
 
   constructor() { }
 
-  public async addNewToGallery() {
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100
+  public async addNewToGallery(options: CameraOptions) {
+    Camera.getPhoto(options).then((imageData) => {
+        const curStr = `data:image/${imageData.format};base64,`;
+        this.photos.push( {webviewPath: curStr + imageData.base64String} );
     });
+  }
 
-    this.photos.push(
-        {
-          filepath: null,
-          webviewPath: capturedPhoto.webPath,
-        });
+  public async fromCamera() {
+      await this.addNewToGallery( {
+          resultType: CameraResultType.Base64,
+          source: CameraSource.Camera,
+          quality: 100,
+          saveToGallery: false,
+      } );
+  }
+
+  public async fromGallery() {
+      await this.addNewToGallery({
+          resultType: CameraResultType.Base64,
+          source: CameraSource.Photos,
+          quality: 100,
+          saveToGallery: false,
+      });
   }
 }

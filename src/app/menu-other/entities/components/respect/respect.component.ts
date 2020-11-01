@@ -11,8 +11,4 @@ export class RespectComponent implements OnInit {
   constructor(public photoService: PhotoService) { }
 
   ngOnInit() {}
-
-  addPhotoToGallery() {
-    this.photoService.addNewToGallery().then();
-  }
 }

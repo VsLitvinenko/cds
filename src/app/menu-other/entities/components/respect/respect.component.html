@@ -18,9 +18,17 @@
   </ion-grid>
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addPhotoToGallery()">
-      <ion-icon name="camera"></ion-icon>
+    <ion-fab-button>
+      <ion-icon name="add" size="large"></ion-icon>
     </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button (click)="photoService.fromCamera()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="photoService.fromGallery()">
+        <ion-icon name="images"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
   </ion-fab>
 
 </ion-content>
