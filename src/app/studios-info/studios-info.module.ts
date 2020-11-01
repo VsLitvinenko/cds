@@ -1,15 +1,11 @@
-import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { StudiosInfoPage } from './studios-info.page';
 import { StudiosInfoPageRoutingModule } from './studios-info-routing.module';
+import {SharedModule} from '../common/shared.module';
 
 @NgModule({
   imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
+    SharedModule,
     StudiosInfoPageRoutingModule,
   ],
   declarations: [StudiosInfoPage]

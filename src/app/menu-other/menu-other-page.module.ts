@@ -1,7 +1,5 @@
-import { IonicModule } from '@ionic/angular';
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import { MenuOtherPage } from './menu-other.page';
 import { MenuOtherPageRoutingModule } from './menu-other-routing.module';
 import {NavigationPageComponent} from './entities/components/navigation-page/navigation-page.component';
@@ -15,12 +13,11 @@ import {CurrentDateEventComponent} from './entities/components/event-table/entit
 import {EventTableService} from './entities/components/event-table/entities/services/event-table.service';
 import {SettingsComponent} from './entities/components/settings/settings.component';
 import {PhotoService} from './entities/components/respect/entities/services/photo.service';
+import {SharedModule} from '../common/shared.module';
 
 @NgModule({
     imports: [
-        IonicModule,
-        CommonModule,
-        FormsModule,
+        SharedModule,
         MenuOtherPageRoutingModule,
         NgCalendarModule,
         ReactiveFormsModule,

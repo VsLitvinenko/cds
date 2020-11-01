@@ -1,16 +1,13 @@
-import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import { StudiosEntryFormPage } from './studios-entry-form.page';
 
 import { StudiosEntryFormPageRoutingModule } from './studios-entry-form-routing.module'
+import {SharedModule} from '../common/shared.module';
 
 @NgModule({
     imports: [
-        IonicModule,
-        CommonModule,
-        FormsModule,
+        SharedModule,
         StudiosEntryFormPageRoutingModule,
         ReactiveFormsModule,
     ],
