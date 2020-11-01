@@ -12,6 +12,5 @@ export class RespectComponent implements OnInit {
   constructor(public photoService: PhotoService, private popover: PopoverService) { }
 
   ngOnInit() {
-    this.popover.showToast('dfdfdfdfdf');
   }
 }
