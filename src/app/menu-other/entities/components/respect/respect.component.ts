@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PhotoService} from './entities/services/photo.service';
 
 @Component({
   selector: 'app-respect',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RespectComponent implements OnInit {
 
-  constructor() { }
+  constructor(public photoService: PhotoService) { }
 
   ngOnInit() {}
 
+  addPhotoToGallery() {
+    this.photoService.addNewToGallery().then();
+  }
 }
