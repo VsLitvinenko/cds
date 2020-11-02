@@ -33,12 +33,12 @@ export class PopoverService {
         });
     }
 
-    private async _createToast(message: string) {
+    private async _createToast(message: string, success: boolean) {
         this._toast = await this._toastController.create({
             message,
             duration: 2000,
             position: 'top',
-            color: 'primary',
+            color: success ? 'primary' : 'danger',
         });
     }
 
@@ -48,11 +48,8 @@ export class PopoverService {
 
     public async hidePreloader(response: PopoverResponseInterface) {
         await this._preloader.dismiss();
-        if (!response.success) {
-            await this.showToast(response.message);
-        }
-        else if (response.message) {
-            await this.showToast(response.message);
+        if (response.message) {
+            await this.showToast(response.message, response.success);
         }
         this._createPreloader().then();
     }
@@ -63,8 +60,8 @@ export class PopoverService {
         });
     }
 
-    public async showToast(message: string) {
-        this._createToast(message).then(() => {
+    public async showToast(message: string, success: boolean) {
+        this._createToast(message, success).then(() => {
             this._toast.present();
         });
     }

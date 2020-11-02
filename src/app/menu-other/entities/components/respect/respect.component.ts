@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {PhotoService} from './entities/services/photo.service';
-import {PopoverService} from '../../../../common/services/popover.service';
 
 @Component({
   selector: 'app-respect',
@@ -9,7 +8,7 @@ import {PopoverService} from '../../../../common/services/popover.service';
 })
 export class RespectComponent implements OnInit {
 
-  constructor(public photoService: PhotoService, private popover: PopoverService) { }
+  constructor(public photoService: PhotoService, ) { }
 
   ngOnInit() {
   }
