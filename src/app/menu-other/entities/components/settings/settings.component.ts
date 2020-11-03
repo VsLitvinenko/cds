@@ -6,9 +6,17 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
-
+  public userPrefersDark: boolean;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (window.matchMedia) {
+      this.userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+  }
+
+  public changeToggle(): void {
+    this.userPrefersDark = !this.userPrefersDark;
+  }
 
 }

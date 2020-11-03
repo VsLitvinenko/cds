@@ -11,12 +11,12 @@ ion-list {
     ion-label {
       font-size: 20px;
       padding: 8px;
-      color: var(--ion-color-step-400);
+      color: var(--ion-color-step-500);
     }
 
     &:hover {
       ion-label {
-        color: var(--ion-color-step-700);
+        color: var(--ion-color-step-750);
       }
     }
   }
