@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { DynamicLabelInterface } from 'src/app/studios-info/entities/interfaces/dynamic-label.interface';
+import { DynamicLabelInterface } from 'src/app/common/interfaces/dynamic-label.interface';
 import { EventObjectAnswerInterface } from '../../interfaces/event-object-answer.interface';
-import { EventTableService } from '../../services/event-table.service';
 import { EventObjectInterface } from '../../interfaces/event-object.interface';
+import { EventsService } from '../../services/events.service';
 
 @Component({
   selector: 'app-add-event',
@@ -30,7 +30,7 @@ export class AddEventComponent implements OnInit {
   public currentDate: Date;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _eventService: EventTableService) { }
+  constructor(private _eventService: EventsService) { }
 
   ngOnInit() {
     if (this.editEventObject) {

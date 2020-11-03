@@ -20,7 +20,7 @@ export class NavigationPageComponent implements OnInit {
       {
         tittle: 'Карта',
         icon: 'navigate',
-        color: '#6633CC',
+        color: '#CC3333',
         component: MapComponent,
       },
       {
@@ -32,7 +32,7 @@ export class NavigationPageComponent implements OnInit {
       {
         tittle: 'Контакты',
         icon: 'people',
-        color: '#6b3d6b',
+        color: '#006699',
         component: ContactsComponent,
       },
       {

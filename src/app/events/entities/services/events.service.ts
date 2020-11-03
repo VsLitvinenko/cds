@@ -9,7 +9,7 @@ import {PopoverService} from '../../../common/services/popover.service';
 import {TabService} from '../../../tabs/entities/services/tab.service';
 
 @Injectable()
-export class EventTableService {
+export class EventsService {
     // tslint:disable:variable-name
     private _iEvents$$: BehaviorSubject<IEventInterface[]> = new BehaviorSubject(null);
     public iEvents$: Observable<IEventInterface[]> = this._iEvents$$ as Observable<IEventInterface[]>;

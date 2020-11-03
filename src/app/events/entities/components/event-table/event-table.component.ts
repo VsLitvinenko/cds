@@ -4,7 +4,7 @@ import {IEvent} from 'ionic2-calendar/calendar';
 import {IonNavLink} from '@ionic/angular';
 import { AddEventComponent } from '../add-event/add-event.component';
 import { CurrentDateEventComponent } from '../current-date-event/current-date-event.component';
-import { EventTableService } from '../../services/event-table.service';
+import { EventsService } from '../../services/events.service';
 import { IEventInterface } from '../../interfaces/ievent.interface';
 
 @Component({
@@ -24,7 +24,7 @@ export class EventTableComponent implements OnInit {
   @ViewChild('curDatNavLink', {static: false}) curDatNavLink: IonNavLink;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _eventTableService: EventTableService) { }
+  constructor(private _eventTableService: EventsService) { }
 
   ngOnInit() {
     this._eventTableService.iEvents$.subscribe( (items: IEventInterface[]) => {

@@ -7,7 +7,7 @@ import {CurrentDateEventComponent} from './entities/components/current-date-even
 import {SharedModule} from '../common/shared.module';
 import {NgCalendarModule} from 'ionic2-calendar';
 import {ReactiveFormsModule} from '@angular/forms';
-import {EventTableService} from './entities/services/event-table.service';
+import {EventsService} from './entities/services/events.service';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import {EventTableService} from './entities/services/event-table.service';
       CurrentDateEventComponent,
   ],
     providers: [
-        EventTableService,
+        EventsService,
     ],
 })
 export class EventsPageModule {}
