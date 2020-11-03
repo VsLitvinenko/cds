@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { StudiosEntryFormPage } from './studios-entry-form.page';
+import { EntryFormComponent } from './entry-form.component';
 
-describe('Tab3Page', () => {
-  let component: StudiosEntryFormPage;
-  let fixture: ComponentFixture<StudiosEntryFormPage>;
+describe('EntryFormComponent', () => {
+  let component: EntryFormComponent;
+  let fixture: ComponentFixture<EntryFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [StudiosEntryFormPage],
-      imports: [IonicModule.forRoot(), ]
+      declarations: [ EntryFormComponent ],
+      imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(StudiosEntryFormPage);
+    fixture = TestBed.createComponent(EntryFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

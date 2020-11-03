@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {DynamicLabelInterface} from './entities/interfaces/dynamic-label.interface';
 import {FormGroup, FormControl, Validators, } from '@angular/forms';
-import {TabService} from '../tabs/entities/services/tab.service';
+import { TabService } from 'src/app/tabs/entities/services/tab.service';
+import { DynamicLabelInterface } from '../../interfaces/dynamic-label.interface';
 
 @Component({
-  selector: 'app-studios-entry-form',
-  templateUrl: 'studios-entry-form.page.html',
-  styleUrls: ['studios-entry-form.page.scss']
+  selector: 'app-studios-form',
+  templateUrl: 'entry-form.component.html',
+  styleUrls: ['entry-form.component.scss']
 })
-export class StudiosEntryFormPage implements OnInit {
+export class EntryFormComponent implements OnInit {
   public dynamicLabels: DynamicLabelInterface[];
   public studioSelectOptions: string[];
   public currentFormGroup: FormGroup = new FormGroup({
@@ -18,7 +18,7 @@ export class StudiosEntryFormPage implements OnInit {
     userPatronymic: new FormControl(null, Validators.required),
     userPhone: new FormControl(),
     userVk: new FormControl(),
-});
+  });
 
   // tslint:disable-next-line:variable-name
   constructor(private _tabService: TabService) {}
@@ -57,11 +57,11 @@ export class StudiosEntryFormPage implements OnInit {
       },
     ];
     this.studioSelectOptions = [
-        'та студия',
-        'эта студия',
-        'самая лучшая студия',
-        'самая худшая студия',
-        'вижуал студия',
+      'та студия',
+      'эта студия',
+      'самая лучшая студия',
+      'самая худшая студия',
+      'вижуал студия',
     ];
   }
 

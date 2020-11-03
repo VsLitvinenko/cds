@@ -15,10 +15,10 @@ const routes: Routes = [
         path: 'studios-info',
         loadChildren: () => import('../studios-info/studios-info.module').then(m => m.StudiosInfoPageModule)
       },
-      {
-        path: 'studios-entry-form',
-        loadChildren: () => import('../studios-entry-form/studios-entry-form.module').then(m => m.StudiosEntryFormPageModule)
-      },
+      // {
+      //   path: 'studios-entry-form',
+      //   loadChildren: () => import('../studios-entry-form/studios-entry-form.module').then(m => m.StudiosEntryFormPageModule)
+      // },
       {
         path: 'menu-other',
         loadChildren: () => import('../menu-other/menu-other-page.module').then(m => m.MenuOtherPageModule)

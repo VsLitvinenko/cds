@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {DynamicLabelInterface} from '../../../../../../../studios-entry-form/entities/interfaces/dynamic-label.interface';
+import {DynamicLabelInterface} from '../../../../../../../studios-info/entities/interfaces/dynamic-label.interface';
 import {EventObjectInterface} from '../../interfaces/event-object.interface';
 import {EventTableService} from '../../services/event-table.service';
 import {EventObjectAnswerInterface} from '../../interfaces/event-object-answer.interface';
