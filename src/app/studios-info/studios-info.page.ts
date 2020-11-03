@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {IonNav} from '@ionic/angular';
-import {EntryFormComponent} from './entities/components/entry-form/entry-form.component';
 import {TabService} from '../tabs/entities/services/tab.service';
+import {StudiosListComponent} from './entities/components/studios-list/studios-list.component';
 
 @Component({
   selector: 'app-studios-info',
@@ -10,7 +10,7 @@ import {TabService} from '../tabs/entities/services/tab.service';
 })
 export class StudiosInfoPage {
   @ViewChild('nav', {static: false}) nav: IonNav;
-  public navigationRoot = EntryFormComponent;
+  public navigationRoot = StudiosListComponent;
   // tslint:disable-next-line:variable-name
   constructor(private _tabService: TabService) {
     this._tabService.currentTab$.subscribe((newTab: string) => {

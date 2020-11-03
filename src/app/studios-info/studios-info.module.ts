@@ -4,6 +4,7 @@ import { StudiosInfoPageRoutingModule } from './studios-info-routing.module';
 import {SharedModule} from '../common/shared.module';
 import {EntryFormComponent} from './entities/components/entry-form/entry-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {StudiosListComponent} from './entities/components/studios-list/studios-list.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   declarations: [
     StudiosInfoPage,
-    EntryFormComponent
+    EntryFormComponent,
+    StudiosListComponent
   ],
 })
 export class StudiosInfoPageModule {}
