@@ -40,7 +40,7 @@ export class EventTableComponent implements OnInit {
         });
       }
     });
-    // this._eventTableService.getIEvents();
+    this._eventTableService.getIEvents();
   }
 
   public onViewTittleChanged(title): void {
