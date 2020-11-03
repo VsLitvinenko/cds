@@ -6,7 +6,11 @@ export class PreferColorSchemeService {
     protected _userPrefersDark: boolean;
 
     constructor() {
-        if (window.matchMedia) {
+        const isLocalDark = localStorage.getItem('userPrefersDarkLocal');
+        if (isLocalDark) {
+            this._userPrefersDark = isLocalDark === 'true';
+        }
+        else if (window.matchMedia) {
             this._userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         }
         else {
@@ -27,6 +31,7 @@ export class PreferColorSchemeService {
 
     public toggleColorScheme(): void {
         this._userPrefersDark = !this._userPrefersDark;
+        localStorage.setItem('userPrefersDarkLocal', String(this._userPrefersDark));
         this._changeColorScheme();
     }
 
