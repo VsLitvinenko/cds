@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {NavigationItemInterface} from './interfaces/navigation-item.interface';
 import {MapComponent} from '../map/map.component';
-import {EventTableComponent} from '../event-table/event-table.component';
 import {RespectComponent} from '../respect/respect.component';
 import {ContactsComponent} from '../contacts/contacts.component';
 import {SettingsComponent} from '../settings/settings.component';
@@ -23,12 +22,6 @@ export class NavigationPageComponent implements OnInit {
         icon: 'navigate',
         color: '#6633CC',
         component: MapComponent,
-      },
-      {
-        tittle: 'Мероприятия',
-        icon: 'calendar',
-        color: '#CC3333',
-        component: EventTableComponent,
       },
       {
         tittle: 'Уважение',

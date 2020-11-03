@@ -14,7 +14,7 @@ import {PopoverService} from './common/services/popover.service';
 import {PreferColorSchemeService} from './common/services/prefer-color-scheme.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ],
   entryComponents: [],
   imports: [BrowserModule,
     HttpClientModule,
