@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {ApiService} from './common/services/api.service';
 import {PopoverService} from './common/services/popover.service';
+import {PreferColorSchemeService} from './common/services/prefer-color-scheme.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import {PopoverService} from './common/services/popover.service';
     HttpClient,
     ApiService,
     PopoverService,
+    PreferColorSchemeService,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,

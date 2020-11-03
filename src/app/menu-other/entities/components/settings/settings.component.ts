@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, } from '@angular/core';
+import {PreferColorSchemeService} from '../../../../common/services/prefer-color-scheme.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,16 +8,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
   public userPrefersDark: boolean;
-  constructor() { }
+  // tslint:disable:variable-name
+  constructor(private _preferColorScheme: PreferColorSchemeService) { }
 
   ngOnInit() {
-    if (window.matchMedia) {
-      this.userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
+    this.userPrefersDark = this._preferColorScheme.isUserPrefersDark();
   }
 
   public changeToggle(): void {
-    this.userPrefersDark = !this.userPrefersDark;
+    this._preferColorScheme.toggleColorScheme();
   }
 
 }

@@ -4,7 +4,7 @@ import {MapComponent} from '../map/map.component';
 import {EventTableComponent} from '../event-table/event-table.component';
 import {RespectComponent} from '../respect/respect.component';
 import {ContactsComponent} from '../contacts/contacts.component';
-import {SettingsComponent} from "../settings/settings.component";
+import {SettingsComponent} from '../settings/settings.component';
 
 @Component({
   selector: 'app-navigation',

@@ -14,9 +14,8 @@
       <ion-label>
         Темная тема
       </ion-label>
-      <ion-toggle [ngModel]="userPrefersDark"
+      <ion-toggle [checked]="userPrefersDark"
                   (ionChange)="changeToggle()"
-                  id="themeToggle"
                   slot="end"></ion-toggle>
     </ion-item>
 
