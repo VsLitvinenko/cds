@@ -22,6 +22,7 @@ export class PopoverService {
         this._preloader = await this._loadingController.create({
             message: 'Загрузка...',
             animated: true,
+            backdropDismiss: true,
         });
     }
 
