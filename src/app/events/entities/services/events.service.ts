@@ -68,7 +68,7 @@ export class EventsService {
                         message: 'Мероприятие добавлено',
                     }).then();
                     this.getIEvents();
-                    this._tab.changeCurrentTab('back');
+                    this._tab.changeCurrentTab();
                 }
                 else {
                     this._popover.hidePreloader({

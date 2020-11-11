@@ -10,6 +10,7 @@ import {NgCalendarModule} from 'ionic2-calendar';
 import {SettingsComponent} from './entities/components/settings/settings.component';
 import {PhotoService} from './entities/components/respect/entities/services/photo.service';
 import {SharedModule} from '../common/shared.module';
+import {CurrentRespectComponent} from './entities/components/respect/entities/components/current-respect/current-respect.component';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import {SharedModule} from '../common/shared.module';
       ContactsComponent,
       RespectComponent,
       SettingsComponent,
+      CurrentRespectComponent,
   ],
     providers: [
         PhotoService,

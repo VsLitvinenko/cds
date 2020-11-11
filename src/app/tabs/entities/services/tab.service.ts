@@ -9,7 +9,7 @@ export class TabService {
 
     constructor() {
     }
-    public changeCurrentTab(newTab: string): void {
+    public changeCurrentTab(newTab: string = ''): void {
         this._currentTab$$.next(newTab);
     }
 }

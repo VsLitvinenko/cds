@@ -8,27 +8,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6"
-               *ngFor="let photo of photoService.photos;">
-        <ion-img [src]="photo.webviewPath"></ion-img>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="add" size="large"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="end">
-      <ion-fab-button (click)="photoService.fromCamera()">
-        <ion-icon name="camera"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button (click)="photoService.fromGallery()">
-        <ion-icon name="images"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
-
+  <ion-card>
+    <ion-card-header>
+      <div class="event-titles">
+        <ion-card-subtitle>
+          23.05.2020
+        </ion-card-subtitle>
+        <ion-card-title>
+          Мероприятие
+        </ion-card-title>
+      </div>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
