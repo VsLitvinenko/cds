@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PhotoService} from '../../services/photo.service';
 import {CurrentDatePhotosInterface} from '../../interfaces/current-date-photos.interface';
+import {PopoverService} from '../../../../../../../common/services/popover.service';
+import {ShowImageComponent} from '../show-image/show-image.component';
 
 @Component({
   selector: 'app-current-respect',
@@ -10,8 +12,9 @@ import {CurrentDatePhotosInterface} from '../../interfaces/current-date-photos.i
 export class CurrentRespectComponent implements OnInit {
   public currentDates: CurrentDatePhotosInterface[];
 
-  // tslint:disable-next-line:variable-name
-  constructor(private _photoService: PhotoService, ) { }
+  // tslint:disable:variable-name
+  private  _showImage = ShowImageComponent;
+  constructor(private _photoService: PhotoService, private _popover: PopoverService) { }
 
   ngOnInit() {
     this._photoService.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
@@ -21,10 +24,14 @@ export class CurrentRespectComponent implements OnInit {
   }
 
   public async fromCamera() {
-    this._photoService.addLocalImage(true).then();
+    await this._photoService.addLocalImage(true);
   }
 
   public async fromGallery() {
-    this._photoService.addLocalImage(false).then();
+    await this._photoService.addLocalImage(false);
+  }
+
+  public async showPicture(id: number) {
+    await this._popover.showModal(this._showImage, { id });
   }
 }

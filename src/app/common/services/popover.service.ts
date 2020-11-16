@@ -1,4 +1,4 @@
-import {LoadingController, AlertController, ToastController} from '@ionic/angular';
+import {LoadingController, AlertController, ToastController, ModalController} from '@ionic/angular';
 import {Injectable} from '@angular/core';
 import {PopoverResponseInterface} from '../interfaces/popover-responce.interface';
 
@@ -8,11 +8,13 @@ export class PopoverService {
     private _preloader;
     private _alert;
     private _toast;
+    private _modal;
 
     constructor(
         private _loadingController: LoadingController,
         private _alertController: AlertController,
         private _toastController: ToastController,
+        private _modalController: ModalController,
     )
     {
         this._createPreloader().then();
@@ -43,6 +45,13 @@ export class PopoverService {
         });
     }
 
+    private async _createModal(component: any, componentProps: any) {
+        this._modal = await this._modalController.create({
+            component,
+            componentProps
+        });
+    }
+
     public async showPreloader() {
         await this._preloader.present();
     }
@@ -67,5 +76,13 @@ export class PopoverService {
         });
     }
 
+    public async showModal(component: any, componentProps: any) {
+        this._createModal(component, componentProps).then(() => {
+            this._modal.present();
+        });
+    }
 
+    public async hideModal() {
+        await this._modal.dismiss();
+    }
 }

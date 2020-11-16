@@ -11,6 +11,7 @@ import {SettingsComponent} from './entities/components/settings/settings.compone
 import {PhotoService} from './entities/components/respect/entities/services/photo.service';
 import {SharedModule} from '../common/shared.module';
 import {CurrentRespectComponent} from './entities/components/respect/entities/components/current-respect/current-respect.component';
+import {ShowImageComponent} from './entities/components/respect/entities/components/show-image/show-image.component';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import {CurrentRespectComponent} from './entities/components/respect/entities/co
       RespectComponent,
       SettingsComponent,
       CurrentRespectComponent,
+      ShowImageComponent,
   ],
     providers: [
         PhotoService,

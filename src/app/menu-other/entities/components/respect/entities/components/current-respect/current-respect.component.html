@@ -17,7 +17,9 @@
     <ion-row>
       <ion-col size="3"
                *ngFor="let photo of date.images">
-        <ion-img [src]="photo.webViewPath"></ion-img>
+        <ion-img [src]="photo.webViewPath"
+                 (click)="showPicture(photo.id)">
+        </ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
