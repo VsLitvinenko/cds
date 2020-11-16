@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CurrentRespectComponent} from './entities/components/current-respect/current-respect.component';
 
 @Component({
   selector: 'app-respect',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./respect.component.scss'],
 })
 export class RespectComponent implements OnInit {
+  public currentRespectPage = CurrentRespectComponent;
 
   constructor() { }
 

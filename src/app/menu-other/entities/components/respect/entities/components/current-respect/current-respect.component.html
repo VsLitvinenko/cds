@@ -3,16 +3,16 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title size="medium">ваплваплдовапвашпвапвапвапвап</ion-title>
+<!--    <ion-title size="medium"></ion-title>-->
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row>
-      <ion-col size="6"
-               *ngFor="let photo of photoService.photos;">
-        <ion-img [src]="photo.webviewPath"></ion-img>
+    <ion-row *ngFor="let date of currentDates">
+      <ion-col size="3"
+               *ngFor="let photo of date.images">
+        <ion-img [src]="photo.localViewPath"></ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -22,10 +22,10 @@
       <ion-icon name="add" size="large"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="end">
-      <ion-fab-button (click)="photoService.fromCamera()">
+      <ion-fab-button (click)="fromCamera()">
         <ion-icon name="camera"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button (click)="photoService.fromGallery()">
+      <ion-fab-button (click)="fromGallery()">
         <ion-icon name="images"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>

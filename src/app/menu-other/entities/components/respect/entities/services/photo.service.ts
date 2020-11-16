@@ -7,32 +7,26 @@ const { Camera } = Plugins;
 @Injectable()
 
 export class PhotoService {
-  public photos: PhotoInterface[] = [];
+  public localPhotos: PhotoInterface[] = [];
 
   constructor() { }
 
-  public async addNewToGallery(options: CameraOptions) {
+  private async _addNewToGallery(options: CameraOptions) {
     Camera.getPhoto(options).then((imageData) => {
         const curStr = `data:image/${imageData.format};base64,`;
-        this.photos.push( {webviewPath: curStr + imageData.base64String} );
+        this.localPhotos.push( {
+            id: null,
+            localViewPath: curStr + imageData.base64String,
+        });
     });
   }
 
-  public async fromCamera() {
-      await this.addNewToGallery( {
+  public async addLocalImage(fromCamera: boolean) {
+      await this._addNewToGallery( {
           resultType: CameraResultType.Base64,
-          source: CameraSource.Camera,
+          source: fromCamera ? CameraSource.Camera : CameraSource.Photos,
           quality: 100,
           saveToGallery: false,
       } );
-  }
-
-  public async fromGallery() {
-      await this.addNewToGallery({
-          resultType: CameraResultType.Base64,
-          source: CameraSource.Photos,
-          quality: 100,
-          saveToGallery: false,
-      });
   }
 }

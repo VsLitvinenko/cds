@@ -8,19 +8,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-header class="success-header">
-      <div class="event-titles">
-        <ion-card-subtitle>
-          23.05.2020
-          <ion-badge>55</ion-badge>
-        </ion-card-subtitle>
-        <ion-card-title>
-          Мероприятие хорошее
-        </ion-card-title>
-      </div>
-    </ion-card-header>
-  </ion-card>
+  <ion-nav-link [component]="currentRespectPage"
+                [componentProps]="{}">
+    <ion-card>
+      <ion-card-header class="success-header">
+        <div class="event-titles">
+          <ion-card-subtitle>
+            23.05.2020
+            <ion-badge>55</ion-badge>
+          </ion-card-subtitle>
+          <ion-card-title>
+            Мероприятие хорошее
+          </ion-card-title>
+        </div>
+      </ion-card-header>
+    </ion-card>
+  </ion-nav-link>
 
   <ion-card>
     <ion-card-header class="danger-header">
