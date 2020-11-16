@@ -1,0 +1,23 @@
+.title-text {
+  padding-top: 10px;
+  margin-left: 30px;
+  font-size: 28px;
+
+  p {
+    font-size: 15px;
+  }
+}
+
+ion-grid {
+  p {
+    margin-left: 25px;
+    color: var(--ion-color-step-750);
+    font-size: 15px;
+  }
+
+  ion-row {
+    ion-col {
+      padding: 2px;
+    }
+  }
+}

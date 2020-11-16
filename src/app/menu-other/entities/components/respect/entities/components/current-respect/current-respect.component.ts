@@ -13,7 +13,12 @@ export class CurrentRespectComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   constructor(private _photoService: PhotoService, ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._photoService.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
+      this.currentDates = dates;
+    });
+    this._photoService.getCurrentDates();
+  }
 
   public async fromCamera() {
     this._photoService.addLocalImage(true).then();

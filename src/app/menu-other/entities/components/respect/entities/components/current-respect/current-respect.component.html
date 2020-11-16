@@ -8,11 +8,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
-    <ion-row *ngFor="let date of currentDates">
+  <div class="title-text">
+    Мероприятие хорошее
+    <p> Дата проведения: 10.10.2020 </p>
+  </div>
+
+  <ion-grid *ngFor="let date of currentDates">
+    <p> {{date.date}} </p>
+    <ion-row>
       <ion-col size="3"
                *ngFor="let photo of date.images">
-        <ion-img [src]="photo.localViewPath"></ion-img>
+        <ion-img [src]="photo.webViewPath"></ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
