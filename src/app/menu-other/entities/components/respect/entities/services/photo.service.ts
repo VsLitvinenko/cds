@@ -64,7 +64,7 @@ export class PhotoService {
               ],
           },
           {
-              id: 1,
+              id: 2,
               date: '10 дек 2020',
               images: [
                   {
@@ -74,6 +74,24 @@ export class PhotoService {
                   {
                       id: null,
                       webViewPath: 'https://sun9-15.userapi.com/c840620/v840620177/7dc68/4y7Btjmm_d0.jpg',
+                  },
+              ],
+          },
+          {
+              id: 3,
+              date: '1 янв 2021',
+              images: [
+                  {
+                      id: null,
+                      webViewPath: 'https://sun9-46.userapi.com/CII0cgPu-qhIvyP4msLqr4GQ75Yt2Kqw-EPUeA/JjqtJDjUcqo.jpg',
+                  },
+                  {
+                      id: null,
+                      webViewPath: 'https://sun9-47.userapi.com/Fb915HqOGLwVH-w0goBVcXRe1qPrSixbfAG-SQ/FREV55wI1sw.jpg',
+                  },
+                  {
+                      id: null,
+                      webViewPath: 'https://sun9-64.userapi.com/c858528/v858528272/127e7e/GqbZgYXlGxQ.jpg',
                   },
               ],
           },
