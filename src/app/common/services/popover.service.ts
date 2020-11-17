@@ -28,11 +28,11 @@ export class PopoverService {
         });
     }
 
-    private async _createAlert(message: string) {
+    private async _createAlert(message: string, buttons: string[]) {
         this._alert = await this._alertController.create({
-            header: 'Ошибка',
+            header: 'Внимание',
             message,
-            buttons: ['OK']
+            buttons,
         });
     }
 
@@ -64,8 +64,8 @@ export class PopoverService {
         this._createPreloader().then();
     }
 
-    public async showAlert(message: string) {
-        this._createAlert(message).then(() => {
+    public async showAlert(message: string, buttons: string[] = ['OK']) {
+        this._createAlert(message, buttons).then(() => {
             this._alert.present();
         });
     }

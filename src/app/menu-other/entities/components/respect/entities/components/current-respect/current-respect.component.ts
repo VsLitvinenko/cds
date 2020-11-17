@@ -37,4 +37,8 @@ export class CurrentRespectComponent implements OnInit {
   public async showPicture(id: number) {
     await this._popover.showModal(this._showImage, { id });
   }
+
+  public async showInfo() {
+    await this._popover.showAlert('Организатор - Твоя мамаша. Телефон - есть у каждого. Комментарий - Ну ты и кадр)))');
+  }
 }
