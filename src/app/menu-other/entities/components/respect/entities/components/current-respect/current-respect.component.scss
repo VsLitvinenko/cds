@@ -28,3 +28,13 @@ ion-grid {
     }
   }
 }
+
+.local-photos {
+  margin-bottom: 40px;
+  .buttons {
+    float: right;
+    ion-button {
+      margin-right: 7px;
+    }
+  }
+}

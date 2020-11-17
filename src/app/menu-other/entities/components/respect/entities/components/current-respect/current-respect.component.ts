@@ -4,6 +4,7 @@ import {CurrentDatePhotosInterface} from '../../interfaces/current-date-photos.i
 import {PopoverService} from '../../../../../../../common/services/popover.service';
 import {ShowImageComponent} from '../show-image/show-image.component';
 import { RespectService } from '../../services/respect.service';
+import {PhotoInterface} from '../../interfaces/photo.interface';
 
 @Component({
   selector: 'app-current-respect',
@@ -12,6 +13,7 @@ import { RespectService } from '../../services/respect.service';
 })
 export class CurrentRespectComponent implements OnInit {
   public currentDates: CurrentDatePhotosInterface[];
+  public localPhotos: PhotoInterface[];
 
   // tslint:disable:variable-name
   private  _showImage = ShowImageComponent;
@@ -24,6 +26,10 @@ export class CurrentRespectComponent implements OnInit {
       this.currentDates = dates;
     });
     this._respect.getCurrentDates();
+
+    this._photoService.localPhotos$.subscribe((data) => {
+      this.localPhotos = data;
+    });
   }
 
   public async fromCamera() {
@@ -34,11 +40,15 @@ export class CurrentRespectComponent implements OnInit {
     await this._photoService.addLocalImage(false);
   }
 
-  public async showPicture(id: number) {
+  public async showPicture(id: number, localViewPath: string = '') {
     await this._popover.showModal(this._showImage, { id });
   }
 
   public async showInfo() {
     await this._popover.showAlert('Организатор - Твоя мамаша. Телефон - есть у каждого. Комментарий - Ну ты и кадр)))');
+  }
+
+  public deleteLocalPhotos(): void {
+    this._photoService.clearLocalPhotos();
   }
 }
