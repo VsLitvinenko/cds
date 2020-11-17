@@ -13,4 +13,8 @@ export class RespectComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  public searchBar(event): void {
+    console.log(event.detail.value);
+  }
 }

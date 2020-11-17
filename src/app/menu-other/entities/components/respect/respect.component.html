@@ -9,7 +9,9 @@
 
 <ion-content [fullscreen]="true">
   <ion-searchbar mode="ios"
-                 placeholder="Поиск">
+                 placeholder="Поиск"
+                 debounce="500"
+                 (ionChange)="searchBar($event)">
   </ion-searchbar>
 
   <ion-nav-link [component]="currentRespectPage"
