@@ -14,3 +14,23 @@ ion-buttons {
     margin: 0 10px;
   }
 }
+
+.show-header {
+  transition: all 0.5s;
+  margin-top: 0;
+}
+
+.hide-header {
+  transition: all 0.5s;
+  margin-top: -100px;
+}
+
+.show-footer {
+  transition: all 0.5s;
+  margin-bottom: 0;
+}
+
+.hide-footer {
+  transition: all 0.5s;
+  margin-bottom: -100px;
+}

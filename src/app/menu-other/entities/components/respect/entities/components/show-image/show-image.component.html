@@ -1,4 +1,4 @@
-<ion-header *ngIf="showHeadAndFoot">
+<ion-header [ngClass]="showHeadAndFoot ? 'show-header' : 'hide-header'">
   <ion-toolbar>
     <ion-buttons slot="end">
       <ion-button (click)="hideModal()">
@@ -16,7 +16,7 @@
   </div>
 </ion-content>
 
-<ion-footer *ngIf="showHeadAndFoot">
+<ion-footer [ngClass]="showHeadAndFoot ? 'show-footer' : 'hide-footer'">
   <ion-toolbar>
     <ion-buttons>
       <ion-button>
