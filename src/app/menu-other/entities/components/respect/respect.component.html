@@ -8,48 +8,25 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-searchbar mode="ios"
+                 placeholder="Поиск">
+  </ion-searchbar>
+
   <ion-nav-link [component]="currentRespectPage"
-                [componentProps]="{}">
+                [componentProps]="{}"
+                *ngFor="let item of ['success-header', 'danger-header', 'neutral-header']">
     <ion-card>
-      <ion-card-header class="success-header">
+      <ion-card-header [ngClass]="item">
         <div class="event-titles">
           <ion-card-subtitle>
             23.05.2020
             <ion-badge>55</ion-badge>
           </ion-card-subtitle>
           <ion-card-title>
-            Мероприятие хорошее
+            Мероприятие
           </ion-card-title>
         </div>
       </ion-card-header>
     </ion-card>
   </ion-nav-link>
-
-  <ion-card>
-    <ion-card-header class="danger-header">
-      <div class="event-titles">
-        <ion-card-subtitle>
-          23.05.2020
-          <ion-badge>0</ion-badge>
-        </ion-card-subtitle>
-        <ion-card-title>
-          Мероприятие плохое
-        </ion-card-title>
-      </div>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header class="neutral-header">
-      <div class="event-titles">
-        <ion-card-subtitle>
-          23.05.2025
-          <ion-badge>0</ion-badge>
-        </ion-card-subtitle>
-        <ion-card-title>
-          Мероприятие в будущем
-        </ion-card-title>
-      </div>
-    </ion-card-header>
-  </ion-card>
 </ion-content>
