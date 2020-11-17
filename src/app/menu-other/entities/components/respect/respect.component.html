@@ -14,6 +14,10 @@
                  (ionChange)="searchBar($event)">
   </ion-searchbar>
 
+  <ion-refresher slot="fixed" (ionRefresh)="updateRespects($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-nav-link [component]="currentRespectPage"
                 [componentProps]="{}"
                 *ngFor="let item of ['success-header', 'danger-header', 'neutral-header']">
@@ -21,11 +25,15 @@
       <ion-card-header [ngClass]="item">
         <div class="event-titles">
           <ion-card-subtitle>
-            23.05.2020
+            12 ноя 2020
             <ion-badge>55</ion-badge>
           </ion-card-subtitle>
           <ion-card-title>
             Мероприятие
+            <p>
+              <ion-icon name="location-outline"></ion-icon>
+              Студгородок Бутлерова
+            </p>
           </ion-card-title>
         </div>
       </ion-card-header>

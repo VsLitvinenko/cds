@@ -17,4 +17,8 @@ export class RespectComponent implements OnInit {
   public searchBar(event): void {
     console.log(event.detail.value);
   }
+
+  public updateRespects(event): void {
+    event.target.complete();
+  }
 }

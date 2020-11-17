@@ -3,7 +3,7 @@ ion-searchbar {
 }
 
 ion-card {
-  margin: 18px 15px 2px;
+  margin: 18px 15px 5px;
   border-radius: 10px;
 }
 
@@ -37,6 +37,16 @@ ion-card {
 
     ion-card-title {
       font-size: 24px;
+
+      p {
+        font-size: 15px;
+        margin: 15px 0 0;
+        font-weight: normal;
+
+        ion-icon {
+          margin-bottom: -1px;
+        }
+      }
     }
   }
 }
