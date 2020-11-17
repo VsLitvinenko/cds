@@ -12,6 +12,7 @@ import {PhotoService} from './entities/components/respect/entities/services/phot
 import {SharedModule} from '../common/shared.module';
 import {CurrentRespectComponent} from './entities/components/respect/entities/components/current-respect/current-respect.component';
 import {ShowImageComponent} from './entities/components/respect/entities/components/show-image/show-image.component';
+import {RespectService} from './entities/components/respect/entities/services/respect.service';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import {ShowImageComponent} from './entities/components/respect/entities/compone
   ],
     providers: [
         PhotoService,
+        RespectService
     ],
 })
 export class MenuOtherPageModule {}

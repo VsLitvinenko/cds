@@ -3,6 +3,7 @@ import {PhotoService} from '../../services/photo.service';
 import {CurrentDatePhotosInterface} from '../../interfaces/current-date-photos.interface';
 import {PopoverService} from '../../../../../../../common/services/popover.service';
 import {ShowImageComponent} from '../show-image/show-image.component';
+import { RespectService } from '../../services/respect.service';
 
 @Component({
   selector: 'app-current-respect',
@@ -14,13 +15,15 @@ export class CurrentRespectComponent implements OnInit {
 
   // tslint:disable:variable-name
   private  _showImage = ShowImageComponent;
-  constructor(private _photoService: PhotoService, private _popover: PopoverService) { }
+  constructor(private _photoService: PhotoService,
+              private _popover: PopoverService,
+              private _respect: RespectService) { }
 
   ngOnInit() {
-    this._photoService.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
+    this._respect.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
       this.currentDates = dates;
     });
-    this._photoService.getCurrentDates();
+    this._respect.getCurrentDates();
   }
 
   public async fromCamera() {
