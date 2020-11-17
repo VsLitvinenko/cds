@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-searchbar mode="ios"
-                 placeholder="Поиск"
+                 placeholder="Поиск по дате, месту, названию"
                  debounce="500"
                  (ionChange)="searchBar($event)">
   </ion-searchbar>
@@ -20,19 +20,19 @@
 
   <ion-nav-link [component]="currentRespectPage"
                 [componentProps]="{}"
-                *ngFor="let item of ['success-header', 'danger-header', 'neutral-header']">
+                *ngFor="let respect of filteredRespectList">
     <ion-card>
-      <ion-card-header [ngClass]="item">
+      <ion-card-header [ngClass]="chooseRespectStyle(respect)">
         <div class="event-titles">
           <ion-card-subtitle>
-            12 ноя 2020
-            <ion-badge>55</ion-badge>
+            {{respect.date}}
+            <ion-badge>{{respect.imagesCount}}</ion-badge>
           </ion-card-subtitle>
           <ion-card-title>
-            Мероприятие
+            {{respect.title}}
             <p>
               <ion-icon name="location-outline"></ion-icon>
-              Студгородок Бутлерова
+              {{respect.location}}
             </p>
           </ion-card-title>
         </div>

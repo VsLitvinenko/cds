@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {CurrentDatePhotosInterface} from '../interfaces/current-date-photos.interface';
+import {RespectInterface} from '../interfaces/respect.interface';
 
 @Injectable()
 
@@ -9,7 +10,36 @@ export class RespectService {
     private _curDates$$: BehaviorSubject<CurrentDatePhotosInterface[]> = new BehaviorSubject(null);
     public curDates$: Observable<CurrentDatePhotosInterface[]> = this._curDates$$ as Observable<CurrentDatePhotosInterface[]>;
 
+    private _respects$$: BehaviorSubject<RespectInterface[]> = new BehaviorSubject(null);
+    public respects$: Observable<RespectInterface[]> = this._respects$$ as Observable<RespectInterface[]>;
+
     constructor() { }
+
+    public getRespects(): void {
+        this._respects$$.next([
+            {
+              id: 1,
+              date: '4 сен 2020',
+              title: 'Мероприятие давнее',
+              location: 'Далеко-далеко',
+              imagesCount: 8,
+            },
+            {
+                id: 2,
+                date: '17 ноя 2020',
+                title: 'Недавнее мероприятие',
+                location: 'Студгородок Бутлерова',
+                imagesCount: 0,
+            },
+            {
+                id: 3,
+                date: '31 дек 2020',
+                title: 'Скоро новый год',
+                location: 'Рядом с семьей',
+                imagesCount: 0,
+            },
+        ]);
+    }
 
     public getCurrentDates(): void {
         this._curDates$$.next([
