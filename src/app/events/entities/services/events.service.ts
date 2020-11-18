@@ -102,7 +102,7 @@ export class EventsService {
         });
     }
 
-    public deleteEventObject(id: number) {
+    public deleteEventObject(id: number, date: string) {
         this._api.delete(`DeleteEventObjects?id=${id}`).then( (answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
@@ -110,6 +110,8 @@ export class EventsService {
                         success: true,
                         message: 'Мероприятие удалено',
                     }).then();
+                    this.getEventObjects(date);
+                    this.getIEvents();
                 }
                 else {
                     this._popover.hidePreloader({

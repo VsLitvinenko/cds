@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AddEventComponent} from '../add-event/add-event.component';
 import { EventObjectAnswerInterface } from '../../interfaces/event-object-answer.interface';
 import { EventsService } from '../../services/events.service';
+import {SharedService} from '../../../../common/services/shared.service';
 
 @Component({
   selector: 'app-current-date-event',
@@ -16,7 +17,7 @@ export class CurrentDateEventComponent implements OnInit {
   private dateString: string;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _eventTableService: EventsService) {
+  constructor(private _eventTableService: EventsService, private _shared: SharedService) {
   }
 
   ngOnInit() {
@@ -46,10 +47,15 @@ export class CurrentDateEventComponent implements OnInit {
     return `${hours > 9 ? hours : `0${hours}`}:${minutes > 9 ? minutes : `0${minutes}`}`;
   }
 
-  public deleteEventObject(id: number): void {
-    this._eventTableService.deleteEventObject(id);
+  public async deleteEventObject(item: EventObjectAnswerInterface) {
+    await this._shared.userConfirm(
+        'Вы действительно хотите удалить мероприятие?',
+        () => {
+          this._eventTableService.deleteEventObject(item.id, this.dateString);
+        },
+        `Удаление ${item.title}`);
   }
-  public updateEventObject(event): void {
+  public updateEventObjectsList(event): void {
     this._eventTableService.getEventObjects(this.dateString);
     event.target.complete();
   }

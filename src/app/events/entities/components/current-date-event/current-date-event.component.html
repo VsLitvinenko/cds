@@ -10,7 +10,7 @@
 <ion-content>
   <div class="title-text"> {{subTitle}} </div>
 
-  <ion-refresher slot="fixed" (ionRefresh)="updateEventObject($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="updateEventObjectsList($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
@@ -34,7 +34,7 @@
     </ion-card-content>
 
     <div class="event-buttons">
-      <ion-button fill="clear" (click)="deleteEventObject(eventObject.id)">
+      <ion-button fill="clear" (click)="deleteEventObject(eventObject)">
         <ion-icon name="trash-outline" size="large"></ion-icon>
       </ion-button>
 
