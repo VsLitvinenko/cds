@@ -5,6 +5,7 @@ import {PopoverService} from '../../../../../../../common/services/popover.servi
 import {ShowImageComponent} from '../show-image/show-image.component';
 import { RespectService } from '../../services/respect.service';
 import {PhotoInterface} from '../../interfaces/photo.interface';
+import {SharedService} from '../../../../../../../common/services/shared.service';
 
 @Component({
   selector: 'app-current-respect',
@@ -19,7 +20,8 @@ export class CurrentRespectComponent implements OnInit {
   private  _showImage = ShowImageComponent;
   constructor(private _photoService: PhotoService,
               private _popover: PopoverService,
-              private _respect: RespectService) { }
+              private _respect: RespectService,
+              private _shared: SharedService) { }
 
   ngOnInit() {
     this._respect.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
@@ -48,7 +50,12 @@ export class CurrentRespectComponent implements OnInit {
     await this._popover.showAlert('Организатор - Твоя мамаша. Телефон - есть у каждого. Комментарий - Ну ты и кадр)))');
   }
 
-  public deleteLocalPhotos(): void {
-    this._photoService.clearLocalPhotos();
+  public async deleteLocalPhotos() {
+    await this._shared.userConfirm(
+        'Вы уверены, что хотите отменить загрузку фотографий?',
+        () => {
+          this._photoService.clearLocalPhotos();
+        },
+        'Отмена');
   }
 }
