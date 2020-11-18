@@ -33,9 +33,11 @@
       <ion-row>
         <ion-col size="3"
                  *ngFor="let photo of localPhotos">
-          <ion-img [src]="photo.localViewPath"
-                   (click)="showPicture(null, photo.localViewPath)">
-          </ion-img>
+          <ion-thumbnail>
+            <ion-img [src]="photo.localViewPath"
+                     (click)="showPicture(null, photo.localViewPath)">
+            </ion-img>
+          </ion-thumbnail>
         </ion-col>
       </ion-row>
     </ion-grid>
