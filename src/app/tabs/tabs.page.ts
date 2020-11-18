@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {TabService} from './entities/services/tab.service';
 
 @Component({
@@ -6,6 +6,7 @@ import {TabService} from './entities/services/tab.service';
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
+
 export class TabsPage {
   public isTabsVisible = true;
   // tslint:disable-next-line:variable-name
@@ -18,6 +19,11 @@ export class TabsPage {
 
   public changeTab(newTab: string): void {
     this._tabService.changeCurrentTab(newTab);
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this._tabService.changeCurrentTab('back');
   }
 
   public onResize(event) {
