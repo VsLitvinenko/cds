@@ -15,6 +15,7 @@ import {SharedService} from '../../../../../../../common/services/shared.service
 export class CurrentRespectComponent implements OnInit {
   public currentDates: CurrentDatePhotosInterface[];
   public localPhotos: PhotoInterface[];
+  public thumbnailSize: number;
 
   // tslint:disable:variable-name
   private  _showImage = ShowImageComponent;
@@ -32,6 +33,8 @@ export class CurrentRespectComponent implements OnInit {
     this._photoService.localPhotos$.subscribe((data) => {
       this.localPhotos = data;
     });
+
+    this.thumbnailSize = (window.innerWidth - 26) / 4;
   }
 
   public async fromCamera() {

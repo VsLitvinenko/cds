@@ -33,7 +33,8 @@
       <ion-row>
         <ion-col size="3"
                  *ngFor="let photo of localPhotos">
-          <ion-thumbnail>
+          <ion-thumbnail [style.height.px]="thumbnailSize"
+                         [style.width.px]="thumbnailSize">
             <ion-img [src]="photo.localViewPath"
                      (click)="showPicture(null, photo.localViewPath)">
             </ion-img>
