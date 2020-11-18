@@ -74,11 +74,11 @@ export class RespectService {
                 date: '10 дек 2020',
                 images: [
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun6-23.userapi.com/c849120/v849120906/79f06/WZ0pm2ftECw.jpg',
                     },
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun9-15.userapi.com/c840620/v840620177/7dc68/4y7Btjmm_d0.jpg',
                     },
                 ],
@@ -88,15 +88,15 @@ export class RespectService {
                 date: '1 янв 2021',
                 images: [
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun9-46.userapi.com/CII0cgPu-qhIvyP4msLqr4GQ75Yt2Kqw-EPUeA/JjqtJDjUcqo.jpg',
                     },
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun9-47.userapi.com/Fb915HqOGLwVH-w0goBVcXRe1qPrSixbfAG-SQ/FREV55wI1sw.jpg',
                     },
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun9-64.userapi.com/c858528/v858528272/127e7e/GqbZgYXlGxQ.jpg',
                     },
                 ],
