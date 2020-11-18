@@ -49,11 +49,11 @@ export class CurrentDateEventComponent implements OnInit {
 
   public async deleteEventObject(item: EventObjectAnswerInterface) {
     await this._shared.userConfirm(
-        'Вы действительно хотите удалить мероприятие?',
+        `Вы действительно хотите удалить мероприятие ${item.title}?`,
         () => {
           this._eventTableService.deleteEventObject(item.id, this.dateString);
         },
-        `Удаление ${item.title}`);
+        'Удаление');
   }
   public updateEventObjectsList(event): void {
     this._eventTableService.getEventObjects(this.dateString);
