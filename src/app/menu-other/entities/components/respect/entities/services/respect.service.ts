@@ -48,23 +48,23 @@ export class RespectService {
                 date: '12 ноя 2020',
                 images: [
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun6-21.userapi.com/c831109/v831109249/1a9236/6FnzX59WjKw.jpg',
                     },
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun9-19.userapi.com/c851428/v851428511/dcb7/LhfeUh9E2q8.jpg',
                     },
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun9-29.userapi.com/c851428/v851428511/dcad/nzCHOSymubI.jpg',
                     },
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun9-40.userapi.com/c851428/v851428511/dccb/RRBs7avCEw0.jpg',
                     },
                     {
-                        id: null,
+                        id: 1,
                         webViewPath: 'https://sun9-76.userapi.com/c845017/v845017302/f6a61/ZgBk9vvzdeI.jpg',
                     },
                 ],

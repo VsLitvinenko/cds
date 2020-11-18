@@ -8,6 +8,8 @@ import {PopoverService} from '../../../../../../../common/services/popover.servi
 })
 export class ShowImageComponent implements OnInit {
   public showHeadAndFoot = true;
+  public id: number;
+  public localViewPath: string;
 
   // tslint:disable-next-line:variable-name
   constructor(private _popover: PopoverService) { }

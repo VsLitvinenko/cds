@@ -42,8 +42,8 @@ export class CurrentRespectComponent implements OnInit {
     await this._photoService.addLocalImage(false);
   }
 
-  public async showPicture(id: number, localViewPath: string = '') {
-    await this._popover.showModal(this._showImage, { id });
+  public async showPicture(id: number, localViewPath: string = null) {
+    await this._popover.showModal(this._showImage, { id, localViewPath });
   }
 
   public async showInfo() {
