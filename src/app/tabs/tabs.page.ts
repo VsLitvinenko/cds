@@ -23,6 +23,7 @@ export class TabsPage {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
+    console.log(event);
     this._tabService.changeCurrentTab('back');
   }
 

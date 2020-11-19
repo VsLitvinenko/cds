@@ -15,14 +15,14 @@ export class EventsPage implements OnInit {
   // tslint:disable-next-line:variable-name
   constructor(private _tabService: TabService) {
     this._tabService.currentTab$.subscribe((newTab: string) => {
-      if (this.nav) {
-        if (newTab === 'back') {
+      this.nav?.canGoBack().then((allow: boolean) => {
+        if (allow && newTab === 'back') {
           this.nav.pop().then();
         }
-        else {
+        else if (allow) {
           this.nav.popToRoot().then();
         }
-      }
+      });
     });
   }
 
