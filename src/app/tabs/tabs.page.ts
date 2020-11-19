@@ -28,11 +28,6 @@ export class TabsPage {
   }
 
   public onResize(event) {
-    if (event.target.innerHeight < this._defaultHeight) {
-      this.isTabsVisible = false;
-    }
-    else {
-      this.isTabsVisible = true;
-    }
+    this.isTabsVisible = event.target.innerHeight < this._defaultHeight;
   }
 }
