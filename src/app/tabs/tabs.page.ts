@@ -23,15 +23,11 @@ export class TabsPage {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
+    alert('здорова');
     this._tabService.changeCurrentTab('back');
   }
 
   public onResize(event) {
-    if (event.target.innerHeight < this._defaultHeight) {
-      this.isTabsVisible = false;
-    }
-    else {
-      this.isTabsVisible = true;
-    }
+    this.isTabsVisible = event.target.innerHeight < this._defaultHeight;
   }
 }

@@ -15,15 +15,14 @@ export class MenuOtherPage {
   // tslint:disable-next-line:variable-name
   constructor(private _tabService: TabService) {
     this._tabService.currentTab$.subscribe((newTab: string) => {
-      if (this.nav) {
-        if (newTab === 'back') {
-          this.nav.pop().then();
-        }
-        else {
-          this.nav.popToRoot().then();
-        }
-      }
+        this.nav?.canGoBack().then((allow: boolean) => {
+          if (allow && newTab === 'back') {
+            this.nav.pop().then();
+          }
+          else if (allow) {
+            this.nav.popToRoot().then();
+          }
+        });
     });
   }
-
 }
