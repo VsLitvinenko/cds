@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {TabService} from '../../../tabs/entities/services/tab.service';
-import {IonNav, Platform} from '@ionic/angular';
+import {IonNav} from '@ionic/angular';
 
 @Component({
   selector: 'app-cds-nav',
@@ -12,25 +12,18 @@ export class CdsNavComponent implements OnInit {
   @ViewChild('nav', {static: false}) nav: IonNav;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _tabService: TabService, private _platform: Platform) { }
+  constructor(private _tabService: TabService) { }
 
   ngOnInit() {
-    this._platform.backButton.subscribe( () => {
-      this.nav?.canGoBack().then((allow: boolean) => {
-        if (allow) {
-          this.nav.pop().then();
-        }
-        else {
-          navigator['app'].exitApp();
-        }
-      });
-    });
-
     this._tabService.currentTab$.subscribe((newTab: string) => {
       this.nav?.canGoBack().then((allow: boolean) => {
         if (allow && newTab === 'back') {
           this.nav.pop().then();
-        } else if (allow) {
+        }
+        else if (!allow && newTab === 'back') {
+          navigator['app'].exitApp();
+        }
+        else if (allow) {
           this.nav.popToRoot().then();
         }
       });

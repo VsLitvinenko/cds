@@ -4,6 +4,8 @@ import {PopoverResponseInterface} from '../interfaces/popover-responce.interface
 
 @Injectable()
 export class PopoverService {
+    public isPopoverPresented: boolean;
+
     // tslint:disable:variable-name
     private _preloader;
     private _alert;
@@ -49,7 +51,7 @@ export class PopoverService {
     private async _createModal(component: any, componentProps: any) {
         this._modal = await this._modalController.create({
             component,
-            componentProps
+            componentProps,
         });
     }
 
@@ -69,8 +71,12 @@ export class PopoverService {
                            header: string = 'Внимание',
                            buttons: any[] = ['OK'],
                            subHeader: string = '') {
+        this.isPopoverPresented = true;
         this._createAlert(message, header, subHeader, buttons).then(() => {
             this._alert.present();
+            this._alert.onDidDismiss().then(() => {
+               this.isPopoverPresented = false;
+            });
         });
     }
 
@@ -81,8 +87,12 @@ export class PopoverService {
     }
 
     public async showModal(component: any, componentProps: any) {
+        this.isPopoverPresented = true;
         this._createModal(component, componentProps).then(() => {
             this._modal.present();
+            this._modal.onDidDismiss().then(() => {
+                this.isPopoverPresented = false;
+            });
         });
     }
 

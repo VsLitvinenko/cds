@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // host: 'http://25.97.1.105:3000/',
-  host: 'http://cds-app.ru:3000/',
+  host: 'https://cds-app.ru:3000/',
 };
 
 /*
