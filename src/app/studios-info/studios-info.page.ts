@@ -1,6 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
-import {IonNav} from '@ionic/angular';
-import {TabService} from '../tabs/entities/services/tab.service';
+import {Component, } from '@angular/core';
 import {StudiosListComponent} from './entities/components/studios-list/studios-list.component';
 
 @Component({
@@ -9,20 +7,7 @@ import {StudiosListComponent} from './entities/components/studios-list/studios-l
   styleUrls: ['studios-info.page.scss']
 })
 export class StudiosInfoPage {
-  @ViewChild('nav', {static: false}) nav: IonNav;
-  public navigationRoot = StudiosListComponent;
-  // tslint:disable-next-line:variable-name
-  constructor(private _tabService: TabService) {
-    this._tabService.currentTab$.subscribe((newTab: string) => {
-      this.nav?.canGoBack().then((allow: boolean) => {
-        if (allow && newTab === 'back') {
-          this.nav.pop().then();
-        }
-        else if (allow) {
-          this.nav.popToRoot().then();
-        }
-      });
-    });
-  }
+  public studiosList = StudiosListComponent;
 
+  constructor() { }
 }
