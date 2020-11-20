@@ -9,10 +9,53 @@
 
 <ion-content [fullscreen]="true">
   <ion-searchbar mode="ios"
-                 placeholder="Поиск по дате, месту, названию"
-                 debounce="500"
+                 placeholder="Поиск"
+                 debounce="400"
                  (ionChange)="searchBar($event)">
   </ion-searchbar>
+
+  <div style="width: 100%">
+    <div class="date-pickers">
+      <p> Мероприятия с 20.12.2020 по 01.01.2021 </p>
+      <form [formGroup]="datesFormGroup">
+        <ion-item [ngClass]="isDatepickerVisible ? 'visible-picker' : 'hide-picker'">
+          <ion-datetime max="2025"
+                        displayFormat="DDD. DD MMM , YYYY"
+                        [monthShortNames]="monthShortNames"
+                        [dayShortNames]="dayShortNames"
+                        cancelText="Отмена"
+                        done-text="Ок"
+                        formControlName="startDate">
+          </ion-datetime>
+        </ion-item>
+
+        <ion-item [ngClass]="isDatepickerVisible ? 'visible-picker' : 'hide-picker'"
+                  style="margin-bottom: 15px">
+          <ion-datetime max="2025"
+                        displayFormat="DDD. DD MMM , YYYY"
+                        [monthShortNames]="monthShortNames"
+                        [dayShortNames]="dayShortNames"
+                        cancelText="Отмена"
+                        done-text="Ок"
+                        formControlName="endDate">
+          </ion-datetime>
+        </ion-item>
+      </form>
+      <ion-buttons (click)="changeDatepickerVisible()">
+        <ion-button fill="clear"
+                    *ngIf="!isDatepickerVisible">
+          Развернуть
+          <ion-icon name="chevron-down-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button fill="clear"
+                    *ngIf="isDatepickerVisible">
+          Свернуть
+          <ion-icon name="chevron-up-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </div>
 
   <ion-refresher slot="fixed" (ionRefresh)="updateRespects($event)">
     <ion-refresher-content></ion-refresher-content>

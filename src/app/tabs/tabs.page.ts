@@ -12,13 +12,13 @@ import {PopoverService} from '../common/services/popover.service';
 export class TabsPage {
   public isTabsVisible = true;
   // tslint:disable-next-line:variable-name
-  private _defaultHeight: number;
+  // private _defaultHeight: number;
 
   // tslint:disable:variable-name
   constructor(private _tabService: TabService,
               private _platform: Platform,
               private _popover: PopoverService) {
-    this._defaultHeight = window.innerHeight;
+    // this._defaultHeight = window.innerHeight;
     this._platform.backButton.subscribe( () => {
       if (!_popover.isPopoverPresented) {
         this._tabService.changeCurrentTab('back');
@@ -30,7 +30,7 @@ export class TabsPage {
     this._tabService.changeCurrentTab(newTab);
   }
 
-  public onResize(event) {
-    this.isTabsVisible = event.target.innerHeight < this._defaultHeight;
-  }
+  // public onResize(event) {
+  //   this.isTabsVisible = this._defaultHeight <= event.target.innerHeight;
+  // }
 }

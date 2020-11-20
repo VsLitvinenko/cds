@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CurrentRespectComponent} from './entities/components/current-respect/current-respect.component';
 import {RespectService} from './entities/services/respect.service';
 import {RespectInterface} from './entities/interfaces/respect.interface';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-respect',
@@ -15,12 +16,30 @@ export class RespectComponent implements OnInit {
   private _respectList: RespectInterface[];
   public filteredRespectList: RespectInterface[];
 
+  public monthShortNames = ['янв', 'фев', 'мав', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+  public dayShortNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+
+  public isDatepickerVisible = false;
+  public datesFormGroup: FormGroup = new FormGroup({
+    startDate: new FormControl(null),
+    endDate: new FormControl(null),
+  });
+
   constructor(private _respect: RespectService) { }
 
   ngOnInit() {
     this._respect.respects$.subscribe((data) => {
       this._respectList = data;
       this._filterRespects();
+    });
+    const startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - 1);
+    startDate.setDate(startDate.getDate() + 1);
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 1);
+    this.datesFormGroup.setValue({
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
     });
     this._respect.getRespects();
   }
@@ -44,6 +63,10 @@ export class RespectComponent implements OnInit {
     }
   }
 
+  public changeDatepickerVisible(): void {
+    this.isDatepickerVisible = !this.isDatepickerVisible;
+  }
+
   private _filterRespects(): void {
     if (!(this._respectList && this._respectList.length)) {
       this.filteredRespectList = [];
@@ -55,7 +78,6 @@ export class RespectComponent implements OnInit {
     }
     this.filteredRespectList = this._respectList.filter((item: RespectInterface) => {
       return  item.title.toLowerCase().includes(this._searchString.toLowerCase())
-          || item.date.toLowerCase().includes(this._searchString.toLowerCase())
           || item.location.toLowerCase().includes(this._searchString.toLowerCase());
     });
   }
