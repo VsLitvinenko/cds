@@ -1,6 +1,6 @@
-import {Component, } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {TabService} from './entities/services/tab.service';
-import {Platform} from '@ionic/angular';
+import {IonTabs, Platform} from '@ionic/angular';
 import {PopoverService} from '../common/services/popover.service';
 
 @Component({
@@ -10,6 +10,7 @@ import {PopoverService} from '../common/services/popover.service';
 })
 
 export class TabsPage {
+  @ViewChild('tabs', {static: false}) tabs: IonTabs;
   public isTabsVisible = true;
   // tslint:disable-next-line:variable-name
   // private _defaultHeight: number;
@@ -19,9 +20,15 @@ export class TabsPage {
               private _platform: Platform,
               private _popover: PopoverService) {
     // this._defaultHeight = window.innerHeight;
+    this._tabService.newTab$.subscribe((redirectTab: string) => {
+      this.tabs?.select(redirectTab).then();
+    });
     this._platform.backButton.subscribe( () => {
-      if (!_popover.isPopoverPresented) {
-        this._tabService.changeCurrentTab('back');
+      if (this.tabs.getSelected() === 'cds-info') {
+        navigator['app'].exitApp();
+      }
+      else if (!this._popover.isPopoverPresented) {
+        this._tabService.changeCurrentTab('back', this.tabs.getSelected());
       }
     });
   }

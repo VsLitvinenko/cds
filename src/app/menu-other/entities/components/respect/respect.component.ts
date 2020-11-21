@@ -33,8 +33,7 @@ export class RespectComponent implements OnInit {
       this._filterRespects();
     });
     const startDate = new Date();
-    startDate.setMonth(startDate.getMonth() - 1);
-    startDate.setDate(startDate.getDate() + 1);
+    startDate.setDate(startDate.getDate() - 13);
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + 1);
     this.datesFormGroup.setValue({

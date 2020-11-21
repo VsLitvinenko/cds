@@ -24,7 +24,7 @@ export class EntryFormComponent implements OnInit {
   constructor(private _tabService: TabService) {}
 
   ngOnInit() {
-    this._tabService.currentTab$.subscribe((newTab: string) => {
+    this._tabService.currentTab$.subscribe((answer: string[]) => {
       this.currentFormGroup.reset();
     });
     this.dynamicLabels = [
