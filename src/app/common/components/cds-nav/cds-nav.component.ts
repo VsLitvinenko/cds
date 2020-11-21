@@ -21,7 +21,8 @@ export class CdsNavComponent implements OnInit {
           this.nav.pop().then();
         }
         else if (!allow && newTab === 'back') {
-          navigator['app'].exitApp();
+          // ебучий баг
+          // navigator['app'].exitApp();
         }
         else if (allow) {
           this.nav.popToRoot().then();
