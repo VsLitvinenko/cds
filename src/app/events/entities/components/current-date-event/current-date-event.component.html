@@ -37,11 +37,13 @@
       <ion-button fill="clear" (click)="deleteEventObject(eventObject)">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
-
       <ion-nav-link [component]="addEventPage"
                     [componentProps]="{ editEventObject:eventObject }">
         <ion-button fill="clear">
-          <ion-icon name="create-outline"></ion-icon>
+          <ion-icon name="create-outline" style="margin-right: -3px"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear">
+          <ion-icon name="copy-outline"></ion-icon>
         </ion-button>
       </ion-nav-link>
     </div>
