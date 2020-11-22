@@ -24,9 +24,9 @@ export class CdsNavComponent implements OnInit {
         else if (!allow && answer[0] === 'back' && answer[1] === this.currentTabName) {
           this._tabService.redirectUserToTab('cds-info');
         }
-        // else if (allow) {
-        //   this.nav.popToRoot().then();
-        // }
+        else if (allow) {
+          this.nav.popToRoot().then();
+        }
       });
     });
   }

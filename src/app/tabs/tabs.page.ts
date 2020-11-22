@@ -33,9 +33,9 @@ export class TabsPage {
     });
   }
 
-  // public changeTab(newTab: string): void {
-  //   this._tabService.changeCurrentTab(newTab);
-  // }
+  public changeTab(newTab: string): void {
+    this._tabService.changeCurrentTab(newTab);
+  }
 
   // public onResize(event) {
   //   this.isTabsVisible = this._defaultHeight <= event.target.innerHeight;
