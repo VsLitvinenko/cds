@@ -28,8 +28,9 @@ export class AddEventComponent implements OnInit {
 
   public editEventObject: EventObjectAnswerInterface;
   public currentDate: Date;
+  // tslint:disable:variable-name
+  private _timePickersOldValues = {eventStart: null, eventEnd: null};
 
-  // tslint:disable-next-line:variable-name
   constructor(private _eventService: EventsService) { }
 
   ngOnInit() {
@@ -117,6 +118,17 @@ export class AddEventComponent implements OnInit {
       endTime: `${currentEndTime.getHours()}:${currentEndTime.getMinutes()}`,
       title: e.eventName,
     };
+  }
+
+  public clearTimePicker(formControlName: string): void {
+    this._timePickersOldValues[formControlName] = this.currentFormGroup.get(formControlName).value;
+    const date = new Date();
+    date.setHours(1, 0);
+    this.currentFormGroup.get(formControlName).setValue(date.toISOString());
+  }
+
+  public onCancelTimePicker(formControlName: string): void {
+    this.currentFormGroup.get(formControlName).setValue(this._timePickersOldValues[formControlName]);
   }
 
 }
