@@ -5,11 +5,20 @@
   border-bottom-left-radius: 35px;
   border-bottom-right-radius: 35px;
 
-  img {
-    margin-top: -99px;
-    float: right;
-    height: 160%;
-    right: 0;
+  .moving-class{
+    height: 100%;
+    animation-name: moving;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    img {
+      float: right;
+      margin-top: -99px;
+      margin-right: -67px;
+      height: 160%;
+      animation-name: rotation;
+      animation-duration: 3.5s;
+      animation-iteration-count: 1;
+    }
   }
 }
 
@@ -51,5 +60,23 @@ ion-grid {
         font-size: 10px;
       }
     }
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes moving {
+  0% {
+    transform: translateX(240px);
+  }
+  100% {
+    transform: translateX(0px);
   }
 }
