@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {PreferColorSchemeService} from '../common/services/prefer-color-scheme.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class CdsInfoPage {
 
-  constructor() {}
+  // tslint:disable-next-line:variable-name
+  constructor(private _preferColor: PreferColorSchemeService) {
+  }
+
+  public headerColor(): string {
+    return this._preferColor.isUserPrefersDark() ? 'dark' : 'light';
+  }
 
 }

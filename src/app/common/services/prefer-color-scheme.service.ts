@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class PreferColorSchemeService {
     // tslint:disable-next-line:variable-name
-    protected _userPrefersDark: boolean;
+    private _userPrefersDark: boolean;
 
     constructor() {
         const isLocalDark = localStorage.getItem('userPrefersDarkLocal');
