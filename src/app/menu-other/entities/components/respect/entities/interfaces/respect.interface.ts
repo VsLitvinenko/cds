@@ -3,5 +3,5 @@ export interface RespectInterface {
     date: string;
     title: string;
     location: string;
-    imagesCount: number;
+    count: number;
 }

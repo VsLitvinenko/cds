@@ -16,7 +16,7 @@
 
   <div style="width: 100%">
     <div class="date-pickers">
-      <p> Мероприятия с 20.12.2020 по 01.01.2021 </p>
+      <p> {{dateTitle}} </p>
       <form [formGroup]="datesFormGroup">
         <ion-item [ngClass]="isDatepickerVisible ? 'visible-picker' : 'hide-picker'">
           <ion-datetime max="2025"
@@ -69,7 +69,7 @@
         <div class="event-titles">
           <ion-card-subtitle>
             {{respect.date}}
-            <ion-badge>{{respect.imagesCount}}</ion-badge>
+            <ion-badge>{{respect.count}}</ion-badge>
           </ion-card-subtitle>
           <ion-card-title>
             {{respect.title}}

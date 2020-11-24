@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {CurrentDatePhotosInterface} from '../interfaces/current-date-photos.interface';
 import {RespectInterface} from '../interfaces/respect.interface';
+import {ApiService} from '../../../../../../common/services/api.service';
+import {ApiResponse} from '../../../../../../common/interfaces/api-response.interface';
+import {PopoverService} from '../../../../../../common/services/popover.service';
 
 @Injectable()
 
@@ -13,32 +16,25 @@ export class RespectService {
     private _respects$$: BehaviorSubject<RespectInterface[]> = new BehaviorSubject(null);
     public respects$: Observable<RespectInterface[]> = this._respects$$ as Observable<RespectInterface[]>;
 
-    constructor() { }
+    constructor(private _api: ApiService, private _popover: PopoverService) { }
 
-    public getRespects(): void {
-        this._respects$$.next([
-            {
-              id: 1,
-              date: '4 сен 2020',
-              title: 'Мероприятие давнее',
-              location: 'Далеко-далеко',
-              imagesCount: 8,
-            },
-            {
-                id: 2,
-                date: '17 ноя 2020',
-                title: 'Недавнее мероприятие',
-                location: 'Студгородок Бутлерова',
-                imagesCount: 0,
-            },
-            {
-                id: 3,
-                date: '31 дек 2020',
-                title: 'Скоро новый год',
-                location: 'Рядом с семьей',
-                imagesCount: 0,
-            },
-        ]);
+    public getRespects(dateString: string): void {
+        this._api.get(`getRespects?${dateString}`).then((answer: ApiResponse<any>) => {
+            if (answer) {
+                if (answer.success) {
+                    this._popover.hidePreloader({
+                        success: true,
+                    }).then();
+                    this._respects$$.next(answer.data);
+                }
+                else {
+                    this._popover.hidePreloader({
+                        success: false,
+                        message: answer.reason,
+                    }).then();
+                }
+            }
+        });
     }
 
     public getCurrentDates(): void {

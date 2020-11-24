@@ -16,6 +16,9 @@ export class RespectComponent implements OnInit {
   private _respectList: RespectInterface[];
   public filteredRespectList: RespectInterface[];
 
+  public dateTitle: string;
+  private _apiDateString: string;
+
   public monthShortNames = ['янв', 'фев', 'мав', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
   public dayShortNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 
@@ -32,6 +35,10 @@ export class RespectComponent implements OnInit {
       this._respectList = data;
       this._filterRespects();
     });
+    this.datesFormGroup.valueChanges.subscribe((data) => {
+      this._stringFromDate(data);
+      this._respect.getRespects(this._apiDateString);
+    });
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - 13);
     const endDate = new Date();
@@ -40,7 +47,6 @@ export class RespectComponent implements OnInit {
       startDate: startDate.toISOString(),
       endDate: endDate.toISOString(),
     });
-    this._respect.getRespects();
   }
 
   public searchBar(event): void {
@@ -49,12 +55,12 @@ export class RespectComponent implements OnInit {
   }
 
   public updateRespects(event): void {
-    this._respect.getRespects();
+    this._respect.getRespects(this._apiDateString);
     event.target.complete();
   }
 
   public chooseRespectStyle(item: RespectInterface): string {
-    if (item.imagesCount) {
+    if (item.count) {
       return 'success-header';
     }
     else {
@@ -79,5 +85,20 @@ export class RespectComponent implements OnInit {
       return  item.title.toLowerCase().includes(this._searchString.toLowerCase())
           || item.location.toLowerCase().includes(this._searchString.toLowerCase());
     });
+  }
+
+  private _stringFromDate(data): void {
+    const s = new Date(data.startDate);
+    const sDay = s.getDate();
+    const sMonth = s.getMonth() + 1;
+    const sYear = s.getFullYear();
+    const e = new Date(data.endDate);
+    const eDay = e.getDate();
+    const eMonth = e.getMonth() + 1;
+    const eYear = e.getFullYear();
+    this.dateTitle = `Мероприятия с ${sDay > 9 ? sDay : `0${sDay}`}.${sMonth > 9 ? sMonth : `0${sMonth + 1}`}.${sYear}
+                      по ${eDay > 9 ? eDay : `0${eDay}`}.${eMonth > 9 ? eMonth : `0${eMonth + 1}`}.${eYear}`;
+    this._apiDateString = `startDate=${sYear}-${sMonth}-${sDay}&endDate=${eYear}-${eMonth}-${eDay}`;
+
   }
 }
