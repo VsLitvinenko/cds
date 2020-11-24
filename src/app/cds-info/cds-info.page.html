@@ -4,13 +4,39 @@
   </div>
 
   <div class="cds-text">
-    <h1>Центр досуга студентов</h1>
-    <p>
-      Это многофункциональная площадка для реализации творческого потенциала студентов. <br> <br>
-      Арт-пространство ЦДС позволяет обучающимся свободно обмениваться информацией по различным темам и интересам,
-      а также развить у молодежи креативные навыки и коммуникабельность.<br> <br>
-      Досуговая направленность Центра имеет широкий спектр возможностей,
-      где каждый может найти клуб или творческую студию по душе.
-    </p>
+    <div class="title-text">Центр досуга студентов</div>
+    <p> Это многофункциональная площадка для реализации творческого потенциала студентов </p>
   </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Расписание на сегодня:</ion-card-subtitle>
+      <ion-card-title> Вторник - 24.11.2020 </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-icon name="caret-forward"></ion-icon>
+      12:00-14:00 - Репетиция говна <br>
+      <ion-icon name="caret-forward"></ion-icon>
+      16:00-18:00 - Еще одна
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button *ngFor="let item of barButtonsList"
+                    [style.height.px]="barButtonSize"
+                    [style.width.px]="barButtonSize"
+                    fill="outline"
+                    color="medium">
+          <div class="button-content">
+            <ion-icon [name]="item.icon"
+                      [style.fontSize.px]="barButtonSize/2">
+            </ion-icon>
+            <span>{{item.text}}</span>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

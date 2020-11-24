@@ -16,7 +16,8 @@
 .cds-text {
   padding: 0 20px;
 
-  h1 {
+  .title-text {
+    margin: 20px 0 10px;
     font-weight: normal;
     font-size: 28px;
   }
@@ -24,6 +25,32 @@
   p {
     //text-align: justify;
     font-weight: 300;
-    padding-right: 15px;
+    color: var(--ion-color-step-600);
+  }
+}
+
+ion-card {
+  margin: 30px 17px 10px;
+  border-radius: 14px;
+}
+
+ion-grid {
+  ion-button {
+    margin: 4px;
+    --border-radius: 30px;
+    .button-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      color: var(--ion-color-step-600);
+      ion-icon {
+        margin-bottom: 5px;
+      }
+      span {
+        font-size: 10px;
+      }
+    }
   }
 }
