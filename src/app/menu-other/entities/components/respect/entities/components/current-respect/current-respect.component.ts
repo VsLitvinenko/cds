@@ -14,8 +14,14 @@ import {SharedService} from '../../../../../../../common/services/shared.service
 })
 export class CurrentRespectComponent implements OnInit {
   public currentDates: CurrentDatePhotosInterface[];
-  public localPhotos: PhotoInterface[];
+  public localPhotos: string[];
   public thumbnailSize: number;
+  public respect: {
+    location: string,
+    title: string,
+    date: string,
+    id: number,
+  };
 
   // tslint:disable:variable-name
   private  _showImage = ShowImageComponent;
@@ -28,7 +34,7 @@ export class CurrentRespectComponent implements OnInit {
     this._respect.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
       this.currentDates = dates;
     });
-    this._respect.getCurrentDates();
+    this._respect.getCurrentDates(this.respect.id);
 
     this._photoService.localPhotos$.subscribe((data) => {
       this.localPhotos = data;
@@ -60,5 +66,9 @@ export class CurrentRespectComponent implements OnInit {
           this._photoService.clearLocalPhotos();
         },
         'Отмена');
+  }
+
+  public addLocalPhotos(): void {
+    this._respect.addLocalPhotos({id: this.respect.id, data: this.localPhotos});
   }
 }

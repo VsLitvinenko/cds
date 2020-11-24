@@ -1,5 +1,5 @@
 export interface PhotoInterface {
-    id: number;
+    id: string;
     webViewPath?: string;
     localViewPath?: string;
 }

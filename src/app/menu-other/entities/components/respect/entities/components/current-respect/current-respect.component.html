@@ -19,10 +19,10 @@
 
 <ion-content [fullscreen]="true">
   <div class="title-text">
-    Мероприятие хорошее
+    {{respect.title}}
     <p>
-      Дата проведения: 10.10.2020 <br>
-      Место проведения: Студгородок на Бутлерова <br>
+      Дата проведения: {{respect.date}} <br>
+      Место проведения: {{respect.location}} <br>
     </p>
   </div>
 
@@ -35,8 +35,8 @@
                  *ngFor="let photo of localPhotos">
           <ion-thumbnail [style.height.px]="thumbnailSize"
                          [style.width.px]="thumbnailSize">
-            <ion-img [src]="photo.localViewPath"
-                     (click)="showPicture(null, photo.localViewPath)">
+            <ion-img [src]="photo"
+                     (click)="showPicture(null, photo)">
             </ion-img>
           </ion-thumbnail>
         </ion-col>
@@ -47,7 +47,7 @@
                   (click)="deleteLocalPhotos()">
         Отмена
       </ion-button>
-      <ion-button>
+      <ion-button (click)="addLocalPhotos()">
         Загрузить
       </ion-button>
     </div>
@@ -58,25 +58,13 @@
     <ion-row>
       <ion-col size="3"
                *ngFor="let photo of date.images">
-        <ion-img [src]="photo.webViewPath"
-                 (click)="showPicture(photo.id)">
-        </ion-img>
+        <ion-thumbnail [style.height.px]="thumbnailSize"
+                       [style.width.px]="thumbnailSize">
+          <ion-img [src]="photo.webViewPath"
+                   (click)="showPicture(photo.id)">
+          </ion-img>
+        </ion-thumbnail>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-<!--  <ion-fab vertical="bottom" horizontal="center" slot="fixed">-->
-<!--    <ion-fab-button>-->
-<!--      <ion-icon name="add" size="large"></ion-icon>-->
-<!--    </ion-fab-button>-->
-<!--    <ion-fab-list side="end">-->
-<!--      <ion-fab-button (click)="fromCamera()">-->
-<!--        <ion-icon name="camera"></ion-icon>-->
-<!--      </ion-fab-button>-->
-<!--      <ion-fab-button (click)="fromGallery()">-->
-<!--        <ion-icon name="images"></ion-icon>-->
-<!--      </ion-fab-button>-->
-<!--    </ion-fab-list>-->
-<!--  </ion-fab>-->
-
 </ion-content>

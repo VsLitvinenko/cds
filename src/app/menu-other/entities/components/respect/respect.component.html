@@ -61,9 +61,9 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-nav-link [component]="currentRespectPage"
-                [componentProps]="{}"
-                *ngFor="let respect of filteredRespectList">
+  <ion-nav-link *ngFor="let respect of filteredRespectList"
+                [component]="currentRespectPage"
+                [componentProps]="{ respect: respect }">
     <ion-card>
       <ion-card-header [ngClass]="chooseRespectStyle(respect)">
         <div class="event-titles">

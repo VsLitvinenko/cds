@@ -9,19 +9,16 @@ const { Camera } = Plugins;
 
 export class PhotoService {
     // tslint:disable:variable-name
-    private _localPhotos: PhotoInterface[] = [];
-    private _localPhotos$$: BehaviorSubject<PhotoInterface[]> = new BehaviorSubject(null);
-    public localPhotos$: Observable<PhotoInterface[]> = this._localPhotos$$ as Observable<PhotoInterface[]>;
+    private _localPhotos: string[] = [];
+    private _localPhotos$$: BehaviorSubject<string[]> = new BehaviorSubject(null);
+    public localPhotos$: Observable<string[]> = this._localPhotos$$ as Observable<string[]>;
 
   constructor() { }
 
   private async _addNewToGallery(options: CameraOptions) {
     Camera.getPhoto(options).then((imageData) => {
         const curStr = `data:image/${imageData.format};base64,`;
-        this._localPhotos.push( {
-            id: null,
-            localViewPath: curStr + imageData.base64String,
-        });
+        this._localPhotos.push(curStr + imageData.base64String);
         this._localPhotos$$.next(this._localPhotos);
     });
   }
