@@ -25,14 +25,6 @@ export class CdsInfoPage {
         text: 'О приложении',
       },
       {
-        icon: 'people',
-        text: 'Контакты',
-      },
-      {
-        icon: 'logo-vk',
-        text: 'Наш паблик',
-      },
-      {
         icon: 'logo-chrome',
         text: 'Наш сайт',
       },
