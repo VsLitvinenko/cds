@@ -9,7 +9,7 @@ const { Clipboard } = Plugins;
 
 @Injectable()
 export class SharedService {
-    public isUserAdmin = false;
+    public isUserAdmin = true;
     public image$$: BehaviorSubject<string> = new BehaviorSubject(null);
     // tslint:disable:variable-name
     constructor(private _popover: PopoverService,
@@ -22,7 +22,7 @@ export class SharedService {
             [{ text: 'Отмена' }, { text: 'ОК', handler }] );
     }
 
-    public async checkUserRights() {
+    public async checkAdminRules() {
         const pas = localStorage.getItem('secretPas');
         if (!pas) {
             return;
@@ -59,7 +59,7 @@ export class SharedService {
 
     public copyToClipboard(data: string): void {
         Clipboard.write({
-            string: data,
+            string: `${data}\nСкопировано из официального приложения ЦДС`,
         }).then(() => {
             this._popover.showToast('Скопировано в буфер обмена', true).then();
         });

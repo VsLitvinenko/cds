@@ -28,7 +28,7 @@ export class CurrentRespectComponent implements OnInit {
   constructor(private _photoService: PhotoService,
               private _popover: PopoverService,
               private _respect: RespectService,
-              private _shared: SharedService) { }
+              public shared: SharedService) { }
 
   ngOnInit() {
     this._respect.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
@@ -60,7 +60,7 @@ export class CurrentRespectComponent implements OnInit {
   }
 
   public async deleteLocalPhotos() {
-    await this._shared.userConfirm(
+    await this.shared.userConfirm(
         'Вы уверены, что хотите отменить загрузку фотографий?',
         () => {
           this._photoService.clearLocalPhotos();
@@ -69,7 +69,6 @@ export class CurrentRespectComponent implements OnInit {
   }
 
   public addLocalPhotos(): void {
-    console.log(this.localPhotos);
     this._respect.addLocalPhotos({id: this.respect.id, data: this.localPhotos});
   }
 }

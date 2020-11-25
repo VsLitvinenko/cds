@@ -7,10 +7,12 @@
       <ion-button (click)="showInfo()">
         <ion-icon name="information-circle"></ion-icon>
       </ion-button>
-      <ion-button (click)="fromCamera()">
+      <ion-button *ngIf="shared.isUserAdmin"
+                  (click)="fromCamera()">
         <ion-icon name="camera"></ion-icon>
       </ion-button>
-      <ion-button (click)="fromGallery()">
+      <ion-button *ngIf="shared.isUserAdmin"
+                  (click)="fromGallery()">
         <ion-icon name="images"></ion-icon>
       </ion-button>
     </ion-buttons>

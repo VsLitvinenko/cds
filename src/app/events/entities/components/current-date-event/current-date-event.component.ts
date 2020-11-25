@@ -17,7 +17,7 @@ export class CurrentDateEventComponent implements OnInit {
   private dateString: string;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _eventTableService: EventsService, private _shared: SharedService) {
+  constructor(private _eventTableService: EventsService, public shared: SharedService) {
   }
 
   ngOnInit() {
@@ -33,22 +33,17 @@ export class CurrentDateEventComponent implements OnInit {
     this._eventTableService.getEventObjects(this.dateString);
   }
 
-  public getTimeFromEventObject(e: EventObjectAnswerInterface, isItStartTime: boolean): string {
-    let hours: number;
-    let minutes: number;
-    if (isItStartTime) {
-      hours = e.startTime.hours;
-      minutes = e.startTime.minutes;
-    }
-    else {
-      hours = e.endTime.hours;
-      minutes = e.endTime.minutes;
-    }
-    return `${hours > 9 ? hours : `0${hours}`}:${minutes > 9 ? minutes : `0${minutes}`}`;
+  public getTimeFromEventObject(e: EventObjectAnswerInterface): string {
+    const sHours = e.startTime.hours;
+    const sMinutes = e.startTime.minutes;
+    const eHours = e.endTime.hours;
+    const eMinutes = e.endTime.minutes;
+    return `${sHours > 9 ? sHours : `0${sHours}`}:${sMinutes > 9 ? sMinutes : `0${sMinutes}`} - ` +
+           `${eHours > 9 ? eHours : `0${eHours}`}:${eMinutes > 9 ? eMinutes : `0${eMinutes}`}`;
   }
 
   public async deleteEventObject(item: EventObjectAnswerInterface) {
-    await this._shared.userConfirm(
+    await this.shared.userConfirm(
         `Вы действительно хотите удалить мероприятие ${item.title}?`,
         () => {
           this._eventTableService.deleteEventObject(item.id, this.dateString);
@@ -58,5 +53,11 @@ export class CurrentDateEventComponent implements OnInit {
   public updateEventObjectsList(event): void {
     this._eventTableService.getEventObjects(this.dateString);
     event.target.complete();
+  }
+
+  public copyEventToClipboard(item: EventObjectAnswerInterface): void {
+    this.shared.copyToClipboard(`${item.title} пройдет ${this.getTimeFromEventObject(item)}, ` +
+    `место проведения - ${item.location}.\nОрганизатор - ${item.organizer} (тел. ${item.phone}).\n` +
+    `Комментарий: ${item.notes}`);
   }
 }

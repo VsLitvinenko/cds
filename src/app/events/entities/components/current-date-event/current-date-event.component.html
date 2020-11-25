@@ -18,7 +18,7 @@
     <ion-card-header>
       <div class="event-titles">
         <ion-card-subtitle>
-          {{getTimeFromEventObject(eventObject, true)}} : {{getTimeFromEventObject(eventObject, false)}}
+          {{getTimeFromEventObject(eventObject)}}
         </ion-card-subtitle>
         <ion-card-title>
           {{eventObject.title}}
@@ -34,16 +34,20 @@
     </ion-card-content>
 
     <div class="event-buttons">
-      <ion-button fill="clear" (click)="deleteEventObject(eventObject)">
+      <ion-button *ngIf="shared.isUserAdmin"
+                  (click)="deleteEventObject(eventObject)"
+                  fill="clear">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
-      <ion-nav-link [component]="addEventPage"
+      <ion-nav-link *ngIf="shared.isUserAdmin"
+                    [component]="addEventPage"
                     [componentProps]="{ editEventObject:eventObject }">
         <ion-button fill="clear">
           <ion-icon name="create-outline" style="margin-right: -3px"></ion-icon>
         </ion-button>
       </ion-nav-link>
-      <ion-button fill="clear">
+      <ion-button fill="clear" (click)="copyEventToClipboard(eventObject)">
+        <ion-label *ngIf="!shared.isUserAdmin"> Копировать </ion-label>
         <ion-icon name="copy-outline"></ion-icon>
       </ion-button>
     </div>
