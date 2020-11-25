@@ -15,7 +15,7 @@ import {CdsNavComponent} from './components/cds-nav/cds-nav.component';
         CdsNavComponent,
     ],
     providers: [
-        SharedService
+        SharedService,
     ],
     declarations: [CdsNavComponent]
 })

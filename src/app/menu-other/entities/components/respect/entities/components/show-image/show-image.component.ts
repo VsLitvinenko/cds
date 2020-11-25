@@ -30,6 +30,10 @@ export class ShowImageComponent implements OnInit {
     await this._popover.hideModal();
   }
 
+  public copyImageUrl(): void {
+    this._shared.copyToClipboard(this.localViewPath);
+  }
+
   public hideShowHeadAndFoot() {
     this.showHeadAndFoot = !this.showHeadAndFoot;
   }

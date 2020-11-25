@@ -3,13 +3,17 @@ import {PopoverService} from './popover.service';
 import {ApiService} from './api.service';
 import {ApiResponse} from '../interfaces/api-response.interface';
 import {BehaviorSubject} from 'rxjs';
+import { Plugins } from '@capacitor/core';
+
+const { Clipboard } = Plugins;
 
 @Injectable()
 export class SharedService {
     public isUserAdmin = false;
     public image$$: BehaviorSubject<string> = new BehaviorSubject(null);
-    // tslint:disable-next-line:variable-name
-    constructor(private _popover: PopoverService, private _api: ApiService) {
+    // tslint:disable:variable-name
+    constructor(private _popover: PopoverService,
+                private _api: ApiService) {
     }
 
     public async userConfirm(message: string, handler, header = 'Подтвердите действие') {
@@ -50,6 +54,14 @@ export class SharedService {
                     }).then();
                 }
             }
+        });
+    }
+
+    public copyToClipboard(data: string): void {
+        Clipboard.write({
+            string: data,
+        }).then(() => {
+            this._popover.showToast('Скопировано в буфер обмена', true).then();
         });
     }
 }
