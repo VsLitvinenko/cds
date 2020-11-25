@@ -69,6 +69,7 @@ export class CurrentRespectComponent implements OnInit {
   }
 
   public addLocalPhotos(): void {
+    console.log(this.localPhotos);
     this._respect.addLocalPhotos({id: this.respect.id, data: this.localPhotos});
   }
 }

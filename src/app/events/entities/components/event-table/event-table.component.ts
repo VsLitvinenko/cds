@@ -6,6 +6,7 @@ import { AddEventComponent } from '../add-event/add-event.component';
 import { CurrentDateEventComponent } from '../current-date-event/current-date-event.component';
 import { EventsService } from '../../services/events.service';
 import { IEventInterface } from '../../interfaces/ievent.interface';
+import {SharedService} from '../../../../common/services/shared.service';
 
 @Component({
   selector: 'app-event-table',
@@ -24,7 +25,7 @@ export class EventTableComponent implements OnInit {
   @ViewChild('curDatNavLink', {static: false}) curDatNavLink: IonNavLink;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _eventTableService: EventsService) { }
+  constructor(private _eventTableService: EventsService, public shared: SharedService) { }
 
   ngOnInit() {
     this._eventTableService.iEvents$.subscribe( (items: IEventInterface[]) => {

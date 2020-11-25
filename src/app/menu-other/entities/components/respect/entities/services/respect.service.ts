@@ -25,9 +25,7 @@ export class RespectService {
         this._api.get(`getRespects?${dateString}`).then((answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
-                    this._popover.hidePreloader({
-                        success: true,
-                    }).then();
+                    this._popover.hidePreloader({ success: true }).then();
                     this._respects$$.next(answer.data);
                 }
                 else {
@@ -44,9 +42,7 @@ export class RespectService {
         this._api.get(`getImages?id=${id}`).then((answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
-                    this._popover.hidePreloader({
-                        success: true,
-                    }).then();
+                    this._popover.hidePreloader({ success: true }).then();
                     this._curDates$$.next(answer.data);
                 }
                 else {

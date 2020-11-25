@@ -12,6 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {ApiService} from './common/services/api.service';
 import {PopoverService} from './common/services/popover.service';
 import {PreferColorSchemeService} from './common/services/prefer-color-scheme.service';
+import {SharedModule} from './common/shared.module';
 
 @NgModule({
   declarations: [AppComponent, ],
@@ -19,7 +20,8 @@ import {PreferColorSchemeService} from './common/services/prefer-color-scheme.se
   imports: [BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),
-    AppRoutingModule],
+    AppRoutingModule,
+    SharedModule],
   providers: [
     StatusBar,
     SplashScreen,
