@@ -65,6 +65,7 @@ export class RespectService {
                 if (answer.success) {
                     this._popover.hidePreloader({
                         success: true,
+                        message: 'Фотографии загружены',
                     }).then();
                     this.getCurrentDates(data.id);
                     this._photo.clearLocalPhotos();
