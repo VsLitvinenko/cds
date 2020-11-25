@@ -1,7 +1,8 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TabService} from './entities/services/tab.service';
 import {IonTabs, Platform} from '@ionic/angular';
 import {PopoverService} from '../common/services/popover.service';
+import {SharedService} from '../common/services/shared.service';
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +10,7 @@ import {PopoverService} from '../common/services/popover.service';
   styleUrls: ['tabs.page.scss']
 })
 
-export class TabsPage {
+export class TabsPage implements OnInit {
   @ViewChild('tabs', {static: false}) tabs: IonTabs;
   public isTabsVisible = true;
   // tslint:disable-next-line:variable-name
@@ -18,7 +19,8 @@ export class TabsPage {
   // tslint:disable:variable-name
   constructor(private _tabService: TabService,
               private _platform: Platform,
-              private _popover: PopoverService) {
+              private _popover: PopoverService,
+              private _shared: SharedService) {
     // this._defaultHeight = window.innerHeight;
     this._tabService.newTab$.subscribe((redirectTab: string) => {
       this.tabs?.select(redirectTab).then();
@@ -31,6 +33,12 @@ export class TabsPage {
         this._tabService.changeCurrentTab('back', this.tabs.getSelected());
       }
     });
+  }
+
+  ngOnInit() {
+    setTimeout(() => {
+      this._shared.checkAdminRules().then();
+    }, 1000);
   }
 
   public changeTab(newTab: string): void {

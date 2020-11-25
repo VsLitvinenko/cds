@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title size="medium">Подтверждение</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <div>
+      <div class="text">
+        <ion-label> К кому обратиться для получения пароля Вы можете узнать в Контактах приложения. </ion-label>
+        <p> Если Вы не понимаете, о чем идет речь - этот пункт меню не для Вас :) </p>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Введите пароль:</ion-label>
+        <ion-input type="text" [formControl]="passFormControl"></ion-input>
+      </ion-item>
+    </div>
+    <ion-button fill="outline"
+                shape="round"
+                size="large"
+                [disabled]="!passFormControl.valid"
+                (click)="bigBlueButton()">
+      Отправить
+    </ion-button>
+  </div>
+</ion-content>

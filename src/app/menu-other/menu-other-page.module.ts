@@ -13,6 +13,7 @@ import {SharedModule} from '../common/shared.module';
 import {CurrentRespectComponent} from './entities/components/respect/entities/components/current-respect/current-respect.component';
 import {ShowImageComponent} from './entities/components/respect/entities/components/show-image/show-image.component';
 import {RespectService} from './entities/components/respect/entities/services/respect.service';
+import {CheckAdminRulesComponent} from './entities/components/settings/components/check-admin-rules/check-admin-rules.component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import {RespectService} from './entities/components/respect/entities/services/re
       SettingsComponent,
       CurrentRespectComponent,
       ShowImageComponent,
+      CheckAdminRulesComponent,
   ],
     providers: [
         PhotoService,

@@ -9,7 +9,7 @@ const { Clipboard } = Plugins;
 
 @Injectable()
 export class SharedService {
-    public isUserAdmin = true;
+    public isUserAdmin = false;
     public image$$: BehaviorSubject<string> = new BehaviorSubject(null);
     // tslint:disable:variable-name
     constructor(private _popover: PopoverService,
@@ -22,20 +22,21 @@ export class SharedService {
             [{ text: 'Отмена' }, { text: 'ОК', handler }] );
     }
 
-    public async checkAdminRules() {
+    public async checkAdminRules(showSuccessToast: boolean = false) {
         const pas = localStorage.getItem('secretPas');
         if (!pas) {
             return;
         }
-        this._api.post(``, { password: pas }).then((answer: ApiResponse<any>) => {
+        this._api.post('checkAdminRules', { password: pas }).then((answer: ApiResponse<any>) => {
             if (answer && answer.success) {
                 this.isUserAdmin = answer.data;
                 if (answer.data) {
                     localStorage.setItem('secretPas', pas);
-                    this._popover.hidePreloader( { success: true });
+                    this._popover.hidePreloader( { success: true, message: showSuccessToast ? 'Ваш пароль подтвержден' : null });
                 }
                 else {
-                    this._popover.hidePreloader( { success: false, message: 'Возможно, Ваш пароль устарел' });
+                    this._popover.hidePreloader( { success: false, message: 'Неверный пароль (возможно, он устарел)' });
+                    localStorage.setItem('secretPas', '');
                 }
             }
         });
