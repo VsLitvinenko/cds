@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {CameraOptions, CameraResultType, CameraSource, Plugins} from '@capacitor/core';
-import {PhotoInterface} from '../interfaces/photo.interface';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 const { Camera } = Plugins;
@@ -33,6 +32,7 @@ export class PhotoService {
   }
 
   public clearLocalPhotos(): void {
+      debugger;
       this._localPhotos = [];
       this._localPhotos$$.next(null);
   }

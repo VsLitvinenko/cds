@@ -13,6 +13,8 @@ import {ApiService} from './common/services/api.service';
 import {PopoverService} from './common/services/popover.service';
 import {PreferColorSchemeService} from './common/services/prefer-color-scheme.service';
 import {SharedModule} from './common/shared.module';
+import {RespectService} from './menu-other/entities/components/respect/entities/services/respect.service';
+import {PhotoService} from './menu-other/entities/components/respect/entities/services/photo.service';
 
 @NgModule({
   declarations: [AppComponent, ],
@@ -29,6 +31,8 @@ import {SharedModule} from './common/shared.module';
     ApiService,
     PopoverService,
     PreferColorSchemeService,
+    RespectService,
+    PhotoService,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,

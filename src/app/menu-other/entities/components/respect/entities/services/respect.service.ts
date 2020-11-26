@@ -17,6 +17,9 @@ export class RespectService {
     private _respects$$: BehaviorSubject<RespectInterface[]> = new BehaviorSubject(null);
     public respects$: Observable<RespectInterface[]> = this._respects$$ as Observable<RespectInterface[]>;
 
+    private _deleteImage$$: BehaviorSubject<string> = new BehaviorSubject(null);
+    public deleteImage$: Observable<string> = this._deleteImage$$ as Observable<string>;
+
     constructor(private _api: ApiService,
                 private _popover: PopoverService,
                 private _photo: PhotoService) { }
@@ -67,6 +70,26 @@ export class RespectService {
                     this._photo.clearLocalPhotos();
                 }
                 else {
+                    this._popover.hidePreloader({
+                        success: false,
+                        message: answer.reason,
+                    }).then();
+                }
+            }
+        });
+    }
+
+    public deleteRespectImage(id: string, respectId: number): void {
+        this._api.delete(`deleteImage?id=${id}&resId=${respectId}`).then((answer: ApiResponse<any>) => {
+            if (answer) {
+                if (answer.success) {
+                    this._popover.hidePreloader({
+                        success: true,
+                        message: 'Изображение удалено',
+                    }).then();
+                    this._popover.hideModal().then();
+                    this._deleteImage$$.next(id);
+                } else {
                     this._popover.hidePreloader({
                         success: false,
                         message: answer.reason,

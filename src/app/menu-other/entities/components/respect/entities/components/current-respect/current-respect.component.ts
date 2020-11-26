@@ -31,10 +31,19 @@ export class CurrentRespectComponent implements OnInit {
       this.currentDates = dates;
     });
     this._photoService.localPhotos$.subscribe((data) => {
+      debugger
       this.localPhotos = data;
     });
     this._shared.isUserAdmin$$.subscribe((data) => {
       this.isUserAdmin = data;
+    });
+    this._respect.deleteImage$.subscribe((imageId) => {
+      this.currentDates?.forEach((item) => {
+        const index = item.images.findIndex((image) => image.id === imageId);
+        if (index !== -1) {
+          item.images.splice(index, 1);
+        }
+      });
     });
 
     this._respect.getCurrentDates(this.respect.id);
@@ -51,7 +60,9 @@ export class CurrentRespectComponent implements OnInit {
   }
 
   public async showPicture(id: string, localViewPath: string = null) {
-    await this._popover.showModal(this._showImage, { id, localViewPath, isUserAdmin: this.isUserAdmin });
+    await this._popover.showModal(this._showImage, {
+      id, localViewPath, isUserAdmin: this.isUserAdmin, respectId: this.respect.id,
+    });
   }
 
   public async showInfo() {
