@@ -9,14 +9,20 @@ import {SharedService} from '../../../../../../common/services/shared.service';
 })
 export class CheckAdminRulesComponent implements OnInit {
   public passFormControl = new FormControl(null, Validators.required);
+  public isUserAdmin: boolean;
 
   // tslint:disable-next-line:variable-name
   constructor(private _shared: SharedService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._shared.isUserAdmin$$.subscribe((data) => {
+      this.isUserAdmin = data;
+    });
+    this._shared.checkAdminRules();
+  }
 
   public bigBlueButton(): void {
     localStorage.setItem('secretPas', this.passFormControl.value);
-    this._shared.checkAdminRules(true).then();
+    this._shared.checkAdminRules(true);
   }
 }

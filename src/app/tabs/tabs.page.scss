@@ -1,3 +1,7 @@
 ion-tab-bar {
   padding: 2px;
+
+  .selected-tab-button {
+    --color: var(--ion-color-primary);
+  }
 }

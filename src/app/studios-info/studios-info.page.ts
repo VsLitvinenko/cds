@@ -1,5 +1,5 @@
 import {Component, } from '@angular/core';
-import {StudiosListComponent} from './entities/components/studios-list/studios-list.component';
+import {EntryFormComponent} from './entities/components/entry-form/entry-form.component';
 
 @Component({
   selector: 'app-studios-info',
@@ -7,7 +7,7 @@ import {StudiosListComponent} from './entities/components/studios-list/studios-l
   styleUrls: ['studios-info.page.scss']
 })
 export class StudiosInfoPage {
-  public studiosList = StudiosListComponent;
+  public entryForm = EntryFormComponent;
 
   constructor() { }
 }

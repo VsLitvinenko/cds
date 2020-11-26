@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TabService} from './entities/services/tab.service';
-import {IonTabs, Platform} from '@ionic/angular';
+import {Platform} from '@ionic/angular';
 import {PopoverService} from '../common/services/popover.service';
 import {SharedService} from '../common/services/shared.service';
 
@@ -11,41 +11,40 @@ import {SharedService} from '../common/services/shared.service';
 })
 
 export class TabsPage implements OnInit {
-  @ViewChild('tabs', {static: false}) tabs: IonTabs;
-  public isTabsVisible = true;
-  // tslint:disable-next-line:variable-name
-  // private _defaultHeight: number;
+  public tabs: { id: string, selected: boolean, name: string, icon: string }[];
 
   // tslint:disable:variable-name
   constructor(private _tabService: TabService,
               private _platform: Platform,
               private _popover: PopoverService,
-              private _shared: SharedService) {
-    // this._defaultHeight = window.innerHeight;
-    this._tabService.newTab$.subscribe((redirectTab: string) => {
-      this.tabs?.select(redirectTab).then();
-    });
-    this._platform.backButton.subscribe( () => {
-      if (this.tabs.getSelected() === 'cds-info') {
-        navigator['app'].exitApp();
-      }
-      else if (!this._popover.isPopoverPresented) {
-        this._tabService.changeCurrentTab('back', this.tabs.getSelected());
-      }
-    });
+              private _shared: SharedService)
+  {
+    this.tabs = [
+      { id: '1', selected: true, name: 'ЦДС', icon: 'game-controller-outline' },
+      { id: '2', selected: false, name: 'Студии', icon: 'flame-outline' },
+      { id: '3', selected: false, name: 'Мероприятия', icon: 'calendar-outline' },
+      { id: '4', selected: false, name: 'Прочее', icon: 'grid-outline' },
+    ];
   }
 
   ngOnInit() {
     setTimeout(() => {
-      this._shared.checkAdminRules().then();
+      this._shared.checkAdminRules();
     }, 1000);
+    this._platform.backButton.subscribe( () => {
+      if (this.tabs[0].selected) {
+        navigator['app'].exitApp();
+      }
+      else if (!this._popover.isPopoverPresented) {
+        this.changeTab('1');
+      }
+    });
   }
 
-  public changeTab(newTab: string): void {
-    this._tabService.changeCurrentTab(newTab);
+  public changeTab(tabId: string): void {
+    this.tabs.forEach((tab) => {
+      tab.selected = tab.id === tabId;
+    });
+    this._tabService.changeCurrentTab(tabId);
   }
-
-  // public onResize(event) {
-  //   this.isTabsVisible = this._defaultHeight <= event.target.innerHeight;
-  // }
 }

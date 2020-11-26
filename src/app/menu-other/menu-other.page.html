@@ -1,3 +1,24 @@
-<app-cds-nav [navigationRoot]="navigationPage"
-             [currentTabName]="'menu-other'">
-</app-cds-nav>
+<ion-header>
+    <ion-toolbar>
+        <ion-title size="medium">
+            Прочее
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-list>
+        <ion-nav-link
+                *ngFor="let listItem of listItems"
+                [component]="listItem.component">
+            <ion-item button>
+                <ion-icon
+                        [name]="listItem.icon"
+                        size="medium"
+                        style="color:{{listItem.color}};">
+                </ion-icon>
+                <ion-label>{{listItem.tittle}}</ion-label>
+            </ion-item>
+        </ion-nav-link>
+    </ion-list>
+</ion-content>

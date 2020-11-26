@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CdsInfoPage } from './cds-info.page';
+import {CdsNavComponent} from './cds-nav.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CdsInfoPage,
+    component: CdsNavComponent,
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CdsInfoPageRoutingModule {}
+export class CdsNavRoutingModule {}

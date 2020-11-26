@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="content">
+  <div class="content" *ngIf="!isUserAdmin">
     <div>
       <div class="text">
         <ion-label> К кому обратиться для получения пароля Вы можете узнать в Контактах приложения. </ion-label>
@@ -26,5 +26,8 @@
                 (click)="bigBlueButton()">
       Отправить
     </ion-button>
+  </div>
+  <div class="admin-text" *ngIf="isUserAdmin">
+    <ion-label> У Вас уже есть расширенные права. Поздравляем! </ion-label>
   </div>
 </ion-content>

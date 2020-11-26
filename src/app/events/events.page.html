@@ -1,3 +1,60 @@
-<app-cds-nav [navigationRoot]="eventTable"
-             [currentTabName]="'events'">
-</app-cds-nav>
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title size="medium">Мероприятия</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="content">
+
+        <ion-refresher slot="fixed" (ionRefresh)="updateIEvents($event)">
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+
+        <div>
+            <div class="tittle-calendar">
+                <ion-button fill="outline"
+                            (click)="prevMonth()">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </ion-button>
+
+                <h2>{{calendarTitle}}</h2>
+
+                <ion-button fill="outline"
+                            (click)="nextMonth()">
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </ion-button>
+            </div>
+            <calendar [eventSource]="currentEvents"
+                      [currentDate]="currentDate"
+                      (onTitleChanged)="onViewTittleChanged($event)"
+                      (onCurrentDateChanged)="changeCurrentDate()"
+                      calendarMode="month"
+                      noEventsLabel="Нет мероприятий">
+            </calendar>
+        </div>
+
+        <div class="footer-buttons">
+            <ion-nav-link *ngIf="isUserAdmin"
+                          [component]="addEventPage"
+                          [componentProps]="{ currentDate: currentDate }">
+                <ion-button fill="outline"
+                            expand="block">
+                    Добавить
+                </ion-button>
+            </ion-nav-link>
+            <ion-nav-link #curDatNavLink
+                          [componentProps]="{ currentDate: currentDate }">
+                <ion-button fill="outline"
+                            expand="block"
+                            [disabled]="!isCurrentDayButtonEnabled()">
+                    Посмотреть день
+                </ion-button>
+            </ion-nav-link>
+        </div>
+    </div>
+</ion-content>
+

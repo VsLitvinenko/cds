@@ -99,6 +99,5 @@ export class RespectComponent implements OnInit {
     this.dateTitle = `Мероприятия с ${sDay > 9 ? sDay : `0${sDay}`}.${sMonth > 9 ? sMonth : `0${sMonth + 1}`}.${sYear}
                       по ${eDay > 9 ? eDay : `0${eDay}`}.${eMonth > 9 ? eMonth : `0${eMonth + 1}`}.${eYear}`;
     this._apiDateString = `startDate=${sYear}-${sMonth}-${sDay}&endDate=${eYear}-${eMonth}-${eDay}`;
-
   }
 }
