@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {PreferColorSchemeService} from '../common/services/prefer-color-scheme.service';
-import {BarButtonInterface} from './entities/interfaces/bar-button.interface';
+import {PopoverService} from '../common/services/popover.service';
 
 @Component({
   selector: 'app-tab1',
@@ -9,29 +9,31 @@ import {BarButtonInterface} from './entities/interfaces/bar-button.interface';
 })
 export class CdsInfoPage {
   public barButtonSize: number;
-  public barButtonsList: BarButtonInterface[];
 
-  // tslint:disable-next-line:variable-name
-  constructor(private _preferColor: PreferColorSchemeService) {
+  // tslint:disable:variable-name
+  constructor(private _preferColor: PreferColorSchemeService,
+              private _popover: PopoverService) {
     this.barButtonSize = (window.innerWidth - 44) / 3;
-
-    this.barButtonsList = [
-      {
-        icon: 'information',
-        text: 'О нас',
-      },
-      {
-        icon: 'help',
-        text: 'О приложении',
-      },
-      {
-        icon: 'logo-chrome',
-        text: 'Наш сайт',
-      },
-    ];
   }
 
   public headerColor(): string {
     return this._preferColor.isUserPrefersDark() ? 'dark' : 'light';
+  }
+
+  public aboutUs(): void {
+    const message = 'Арт-пространство ЦДС позволяет обучающимся свободно обмениваться информацией по различным темам и интересам,' +
+        'а также развить у молодежи креативные навыки и коммуникабельность.' +
+        'Досуговая направленность Центра имеет широкий спектр возможностей, где каждый может найти клуб или творческую студию по душе.';
+    this._popover.showAlert(message, 'О нас').then();
+  }
+
+  public aboutApp(): void {
+    const message = 'С официальным приложением ЦДС вы будете всегда в курсе всех событий! Здесь Вы можете узнать актуальное расписание мероприятий ЦДС, ' +
+        'их организаторов, проверить сданные после мероприятий помещения и объекты, а также узнать главную информацию о любой студии, и записаться в нее';
+    this._popover.showAlert(message, 'О приложении').then();
+  }
+
+  public redirectToWebsite(): void {
+    window.open('https://vk.com/id129934720');
   }
 }

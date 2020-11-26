@@ -26,16 +26,42 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button *ngFor="let item of barButtonsList"
+        <ion-button (click)="aboutUs()"
                     [style.height.px]="barButtonSize"
                     [style.width.px]="barButtonSize"
                     fill="outline"
                     color="medium">
           <div class="button-content">
-            <ion-icon [name]="item.icon"
+            <ion-icon name="information"
                       [style.fontSize.px]="barButtonSize/2">
             </ion-icon>
-            <span>{{item.text}}</span>
+            <span>О нас</span>
+          </div>
+        </ion-button>
+
+        <ion-button (click)="aboutApp()"
+                    [style.height.px]="barButtonSize"
+                    [style.width.px]="barButtonSize"
+                    fill="outline"
+                    color="medium">
+          <div class="button-content">
+            <ion-icon name="help"
+                      [style.fontSize.px]="barButtonSize/2">
+            </ion-icon>
+            <span>О приложении</span>
+          </div>
+        </ion-button>
+
+        <ion-button (click)="redirectToWebsite()"
+                    [style.height.px]="barButtonSize"
+                    [style.width.px]="barButtonSize"
+                    fill="outline"
+                    color="medium">
+          <div class="button-content">
+            <ion-icon name="logo-chrome"
+                      [style.fontSize.px]="barButtonSize/2">
+            </ion-icon>
+            <span>Наш сайт</span>
           </div>
         </ion-button>
       </ion-col>
