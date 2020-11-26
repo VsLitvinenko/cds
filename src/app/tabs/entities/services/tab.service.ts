@@ -11,13 +11,12 @@ export class TabService {
     public nextTab$: Observable<string> = this._nextTab$$ as Observable<string>;
 
     constructor() { }
-    // при непосредственном нажатии на tab
-    public changeCurrentTabManually(action: string = ''): void {
+    public changeCurrentTab(action: string = ''): void {
         this._currentTab$$.next(action);
     }
 
-    // в любой другой ситуации
-    public changeCurrentTabAuto(tabId: string) {
+    // изменение ТАБА без нажатия
+    public selectNewTab(tabId: string) {
         this._nextTab$$.next(tabId);
     }
 }

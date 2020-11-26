@@ -40,6 +40,9 @@ export class TabsPage implements OnInit {
       }
     });
     this._tabService.nextTab$.subscribe((newTabId: string) => {
+      if (!newTabId) {
+        newTabId = '1';
+      }
       this.changeTab(newTabId);
     });
   }
@@ -53,7 +56,7 @@ export class TabsPage implements OnInit {
       tab.selected = tab.id === tabId;
     });
     if (!alreadySelected) {
-      this._tabService.changeCurrentTabManually(tabId);
+      this._tabService.changeCurrentTab(tabId);
     }
   }
 }
