@@ -5,7 +5,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-nav-link [component]="entryForm">
-        <ion-button>форма записи</ion-button>
-    </ion-nav-link>
+    <div class="studio-item" *ngFor="let item of studiosList">
+        <div class="item-content">
+            <ion-img [src]="item.img"></ion-img>
+            <div class="studio-text">
+                <ion-label> {{item.title}} </ion-label> <br>
+                <ion-text> {{item.body}} </ion-text>
+            </div>
+        </div>
+        <ion-buttons>
+            <ion-button fill="clear">Подробнее</ion-button>
+            <ion-button fill="solid">Записаться</ion-button>
+        </ion-buttons>
+    </div>
 </ion-content>
