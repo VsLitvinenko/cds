@@ -1,6 +1,7 @@
 import {Component, OnInit, } from '@angular/core';
 import {PreferColorSchemeService} from '../../../../common/services/prefer-color-scheme.service';
 import {CheckAdminRulesComponent} from './components/check-admin-rules/check-admin-rules.component';
+import {ReportBugComponent} from './components/report-bug/report-bug.component';
 
 @Component({
   selector: 'app-settings',
@@ -10,6 +11,7 @@ import {CheckAdminRulesComponent} from './components/check-admin-rules/check-adm
 export class SettingsComponent implements OnInit {
   public userPrefersDark: boolean;
   public PasswordComponent = CheckAdminRulesComponent;
+  public ReportComponent =  ReportBugComponent;
   // tslint:disable:variable-name
   constructor(private _preferColorScheme: PreferColorSchemeService) { }
 

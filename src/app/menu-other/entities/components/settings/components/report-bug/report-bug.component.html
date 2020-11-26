@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title size="medium">Сообщить об ошибке</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <form [formGroup]="bugFormGroup">
+      <ion-item>
+        <ion-label position="floating"> Краткое описание ошибки: </ion-label>
+        <ion-input type="text" formControlName="header"></ion-input>
+      </ion-item>
+
+      <ion-item class="text-area">
+        <ion-label position="floating"> Опишите проблему более подробно: </ion-label>
+        <ion-textarea formControlName="body">
+        </ion-textarea>
+      </ion-item>
+
+      <div class="label">
+        <ion-label>
+          Пример краткого описания: <br> "Ошибка добавления мероприятия"
+        </ion-label>
+      </div>
+    </form>
+
+    <ion-button fill="outline"
+                shape="round"
+                size="large"
+                [disabled]="!bugFormGroup.valid">
+      Отправить
+    </ion-button>
+  </div>
+</ion-content>

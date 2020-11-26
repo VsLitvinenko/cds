@@ -28,12 +28,14 @@
       </ion-item>
     </ion-nav-link>
 
-    <ion-item button="">
-      <ion-icon slot="start" name="chatbox-ellipses"></ion-icon>
-      <ion-label>
-        Сообщить об ошибке
-      </ion-label>
-    </ion-item>
+    <ion-nav-link [component]="ReportComponent">
+      <ion-item button="">
+        <ion-icon slot="start" name="chatbox-ellipses"></ion-icon>
+        <ion-label>
+          Сообщить об ошибке
+        </ion-label>
+      </ion-item>
+    </ion-nav-link>
   </ion-list>
 
 </ion-content>

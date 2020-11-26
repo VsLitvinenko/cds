@@ -12,6 +12,7 @@ import {RespectService} from './entities/components/respect/entities/services/re
 import {CheckAdminRulesComponent} from './entities/components/settings/components/check-admin-rules/check-admin-rules.component';
 import {SharedModule} from '../common/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {ReportBugComponent} from "./entities/components/settings/components/report-bug/report-bug.component";
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import {ReactiveFormsModule} from '@angular/forms';
       CurrentRespectComponent,
       ShowImageComponent,
       CheckAdminRulesComponent,
+      ReportBugComponent,
   ],
     providers: [
         PhotoService,
