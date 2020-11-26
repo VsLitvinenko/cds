@@ -36,8 +36,11 @@ export class TabsPage implements OnInit {
         navigator['app'].exitApp();
       }
       else if (!this._popover.isPopoverPresented) {
-        this.changeTab('1');
+        this.changeTab('back');
       }
+    });
+    this._tabService.nextTab$.subscribe((newTabId: string) => {
+      this.changeTab(newTabId);
     });
   }
 
@@ -50,7 +53,7 @@ export class TabsPage implements OnInit {
       tab.selected = tab.id === tabId;
     });
     if (!alreadySelected) {
-      this._tabService.changeCurrentTab(tabId);
+      this._tabService.changeCurrentTabManually(tabId);
     }
   }
 }

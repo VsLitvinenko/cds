@@ -7,9 +7,17 @@ export class TabService {
     private _currentTab$$: BehaviorSubject<string> = new BehaviorSubject(null);
     public currentTab$: Observable<string> = this._currentTab$$ as Observable<string>;
 
-    constructor() {
-    }
-    public changeCurrentTab(action: string = ''): void {
+    private _nextTab$$: BehaviorSubject<string> = new BehaviorSubject(null);
+    public nextTab$: Observable<string> = this._nextTab$$ as Observable<string>;
+
+    constructor() { }
+    // при непосредственном нажатии на tab
+    public changeCurrentTabManually(action: string = ''): void {
         this._currentTab$$.next(action);
+    }
+
+    // в любой другой ситуации
+    public changeCurrentTabAuto(tabId: string) {
+        this._nextTab$$.next(tabId);
     }
 }

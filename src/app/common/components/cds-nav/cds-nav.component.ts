@@ -25,7 +25,10 @@ export class CdsNavComponent implements OnInit {
         return;
       }
       this.nav?.canGoBack().then((allow: boolean) => {
-        if (answer === 'back' && allow) {
+        if (answer === 'back' && !allow) {
+          this._tabService.changeCurrentTabAuto('1');
+        }
+        else if (answer === 'back' && allow) {
           this.nav.pop().then();
         }
         else if (allow) {
