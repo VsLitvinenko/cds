@@ -42,9 +42,15 @@ export class TabsPage implements OnInit {
   }
 
   public changeTab(tabId: string): void {
+    let alreadySelected: boolean;
     this.tabs.forEach((tab) => {
+      if (tab.selected && tab.id === tabId) {
+        alreadySelected = true;
+      }
       tab.selected = tab.id === tabId;
     });
-    this._tabService.changeCurrentTab(tabId);
+    if (!alreadySelected) {
+      this._tabService.changeCurrentTab(tabId);
+    }
   }
 }

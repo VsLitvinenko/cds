@@ -4,8 +4,8 @@ import {CurrentDatePhotosInterface} from '../../interfaces/current-date-photos.i
 import {PopoverService} from '../../../../../../../common/services/popover.service';
 import {ShowImageComponent} from '../show-image/show-image.component';
 import { RespectService } from '../../services/respect.service';
-import {PhotoInterface} from '../../interfaces/photo.interface';
 import {SharedService} from '../../../../../../../common/services/shared.service';
+import {RespectInterface} from '../../interfaces/respect.interface';
 
 @Component({
   selector: 'app-current-respect',
@@ -16,30 +16,29 @@ export class CurrentRespectComponent implements OnInit {
   public currentDates: CurrentDatePhotosInterface[];
   public localPhotos: string[];
   public thumbnailSize: number;
-  public respect: {
-    location: string,
-    title: string,
-    date: string,
-    id: number,
-  };
+  public respect: RespectInterface;
+  public isUserAdmin: boolean;
 
   // tslint:disable:variable-name
   private  _showImage = ShowImageComponent;
   constructor(private _photoService: PhotoService,
               private _popover: PopoverService,
               private _respect: RespectService,
-              public shared: SharedService) { }
+              private _shared: SharedService) { }
 
   ngOnInit() {
     this._respect.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
       this.currentDates = dates;
     });
-    this._respect.getCurrentDates(this.respect.id);
-
     this._photoService.localPhotos$.subscribe((data) => {
       this.localPhotos = data;
     });
+    this._shared.isUserAdmin$$.subscribe((data) => {
+      this.isUserAdmin = data;
+    });
 
+    this._respect.getCurrentDates(this.respect.id);
+    this._shared.checkAdminRules();
     this.thumbnailSize = (window.innerWidth - 26) / 4;
   }
 
@@ -51,16 +50,16 @@ export class CurrentRespectComponent implements OnInit {
     await this._photoService.addLocalImage(false);
   }
 
-  public async showPicture(id: number, localViewPath: string = null) {
-    await this._popover.showModal(this._showImage, { id, localViewPath });
+  public async showPicture(id: string, localViewPath: string = null) {
+    await this._popover.showModal(this._showImage, { id, localViewPath, isUserAdmin: this.isUserAdmin });
   }
 
   public async showInfo() {
-    await this._popover.showAlert('Организатор - Твоя мамаша. Телефон - есть у каждого. Комментарий - Ну ты и кадр)))');
+    await this._popover.showAlert(`Организатор - ${this.respect.organizer} (тел. - ${this.respect.phone})`);
   }
 
   public async deleteLocalPhotos() {
-    await this.shared.userConfirm(
+    await this._shared.userConfirm(
         'Вы уверены, что хотите отменить загрузку фотографий?',
         () => {
           this._photoService.clearLocalPhotos();

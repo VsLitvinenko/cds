@@ -44,10 +44,10 @@ export class EventsPage implements OnInit {
         });
       }
     });
-    this._eventTableService.getIEvents();
     this._shared.isUserAdmin$$.subscribe((data) => {
       this.isUserAdmin = data;
     });
+    this._eventTableService.getIEvents();
     this._shared.checkAdminRules();
   }
 
@@ -104,6 +104,7 @@ export class EventsPage implements OnInit {
 
   public updateIEvents(event): void {
     this._eventTableService.getIEvents();
+    this._shared.checkAdminRules();
     event.target.complete();
   }
 

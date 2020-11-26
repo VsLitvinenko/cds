@@ -15,9 +15,10 @@ export class CurrentDateEventComponent implements OnInit {
   public eventObjects: EventObjectAnswerInterface[];
   public addEventPage = AddEventComponent;
   private dateString: string;
+  public isUserAdmin: boolean;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _eventTableService: EventsService, public shared: SharedService) {
+  constructor(private _eventTableService: EventsService, private _shared: SharedService) {
   }
 
   ngOnInit() {
@@ -25,12 +26,16 @@ export class CurrentDateEventComponent implements OnInit {
     const month = this.currentDate.getMonth() + 1;
     const year = this.currentDate.getFullYear();
     this.subTitle = `Мероприятия ${day > 9 ? day : `0${day}`}.${month > 9 ? month : `0${month + 1}`}.${year}`;
+    this.dateString = `${year}-${month}-${day}`;
 
     this._eventTableService.eventObjects$.subscribe( (items: EventObjectAnswerInterface[]) => {
       this.eventObjects = items;
     });
-    this.dateString = `${year}-${month}-${day}`;
+    this._shared.isUserAdmin$$.subscribe((data) => {
+      this.isUserAdmin = data;
+    });
     this._eventTableService.getEventObjects(this.dateString);
+    this._shared.checkAdminRules();
   }
 
   public getTimeFromEventObject(e: EventObjectAnswerInterface): string {
@@ -43,7 +48,7 @@ export class CurrentDateEventComponent implements OnInit {
   }
 
   public async deleteEventObject(item: EventObjectAnswerInterface) {
-    await this.shared.userConfirm(
+    await this._shared.userConfirm(
         `Вы действительно хотите удалить мероприятие ${item.title}?`,
         () => {
           this._eventTableService.deleteEventObject(item.id, this.dateString);
@@ -52,11 +57,12 @@ export class CurrentDateEventComponent implements OnInit {
   }
   public updateEventObjectsList(event): void {
     this._eventTableService.getEventObjects(this.dateString);
+    this._shared.checkAdminRules();
     event.target.complete();
   }
 
   public copyEventToClipboard(item: EventObjectAnswerInterface): void {
-    this.shared.copyToClipboard(`${item.title} пройдет ${this.getTimeFromEventObject(item)}, ` +
+    this._shared.copyToClipboard(`${item.title} пройдет ${this.getTimeFromEventObject(item)}, ` +
     `место проведения - ${item.location}.\nОрганизатор - ${item.organizer} (тел. ${item.phone}).\n` +
     `Комментарий: ${item.notes}`);
   }

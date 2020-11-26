@@ -11,18 +11,19 @@ export class ShowImageComponent implements OnInit {
   public showHeadAndFoot = true;
   public id: string;
   public localViewPath: string;
+  public isUserAdmin: boolean;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _popover: PopoverService, public shared: SharedService) { }
+  constructor(private _popover: PopoverService, private _shared: SharedService) { }
 
   ngOnInit() {
-    this.shared.image$$.subscribe((data) => {
+    this._shared.image$$.subscribe((data) => {
       if (data) {
         this.localViewPath = data;
       }
     });
     if (this.id) {
-      this.shared.getCurrentImage(this.id);
+      this._shared.getCurrentImage(this.id);
     }
   }
 
@@ -31,7 +32,7 @@ export class ShowImageComponent implements OnInit {
   }
 
   public copyImageUrl(): void {
-    this.shared.copyToClipboard(this.localViewPath);
+    this._shared.copyToClipboard(this.localViewPath);
   }
 
   public hideShowHeadAndFoot() {

@@ -19,7 +19,7 @@
 <ion-footer [ngClass]="showHeadAndFoot ? 'show-footer' : 'hide-footer'">
   <ion-toolbar>
     <ion-buttons>
-      <ion-button *ngIf="shared.isUserAdmin">
+      <ion-button *ngIf="isUserAdmin">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
       <ion-button *ngIf="id"

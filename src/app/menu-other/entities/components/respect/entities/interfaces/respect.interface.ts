@@ -4,4 +4,6 @@ export interface RespectInterface {
     title: string;
     location: string;
     count: number;
+    phone: string;
+    organizer: string;
 }

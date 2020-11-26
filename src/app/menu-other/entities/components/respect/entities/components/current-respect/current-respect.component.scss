@@ -18,7 +18,7 @@ ion-header {
 ion-grid {
   p {
     margin-left: 20px;
-    color: var(--ion-color-step-750);
+    color: var(--ion-color-step-600);
     font-size: 15px;
   }
 
@@ -44,4 +44,12 @@ ion-grid {
       height: 40px;
     }
   }
+}
+
+ion-label {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: var(--ion-color-step-600);
 }

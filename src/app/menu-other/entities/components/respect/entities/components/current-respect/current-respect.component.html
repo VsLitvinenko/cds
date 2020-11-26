@@ -7,11 +7,11 @@
       <ion-button (click)="showInfo()">
         <ion-icon name="information-circle"></ion-icon>
       </ion-button>
-      <ion-button *ngIf="shared.isUserAdmin"
+      <ion-button *ngIf="isUserAdmin"
                   (click)="fromCamera()">
         <ion-icon name="camera"></ion-icon>
       </ion-button>
-      <ion-button *ngIf="shared.isUserAdmin"
+      <ion-button *ngIf="isUserAdmin"
                   (click)="fromGallery()">
         <ion-icon name="images"></ion-icon>
       </ion-button>
@@ -69,4 +69,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-label *ngIf="!(currentDates?.length || this.localPhotos?.length)"> Здесь еще ничего нет </ion-label>
 </ion-content>
