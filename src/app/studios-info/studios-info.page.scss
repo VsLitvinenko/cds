@@ -12,12 +12,12 @@
     ion-img {
       border-radius: 10px !important;
       overflow: hidden;
-      max-height: 90px;
-      max-width: 90px;
+      max-height: 85px;
+      max-width: 85px;
     }
 
     .studio-text {
-      margin-left: 10px;
+      margin-left: 12px;
       margin-right: 5px;
 
       ion-label {
@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: row;
     justify-content: stretch;
-    margin: 10px 0;
+    margin: 10px 0 15px 0;
     ion-button {
       flex: 1;
       font-size: 12px;
