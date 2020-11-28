@@ -31,7 +31,6 @@ export class CurrentRespectComponent implements OnInit {
       this.currentDates = dates;
     });
     this._photoService.localPhotos$.subscribe((data) => {
-      debugger
       this.localPhotos = data;
     });
     this._shared.isUserAdmin$$.subscribe((data) => {

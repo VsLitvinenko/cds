@@ -47,8 +47,6 @@ export class EventsPage implements OnInit {
     this._shared.isUserAdmin$$.subscribe((data) => {
       this.isUserAdmin = data;
     });
-    this._eventTableService.getIEvents();
-    this._shared.checkAdminRules();
   }
 
   public onViewTittleChanged(title): void {

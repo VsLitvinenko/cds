@@ -14,7 +14,6 @@ export class StudiosInfoPage {
 
   // tslint:disable-next-line:variable-name
   constructor(private _studiosService: StudiosInfoService) {
-    this._studiosService.getStudioItems();
     this._studiosService.studioItems$.subscribe((data: StudioItemInterface[]) => {
       this.studiosList = data;
     });

@@ -7,6 +7,7 @@ import {IEventInterface} from '../interfaces/ievent.interface';
 import {EventObjectAnswerInterface} from '../interfaces/event-object-answer.interface';
 import {PopoverService} from '../../../common/services/popover.service';
 import {TabService} from '../../../tabs/entities/services/tab.service';
+import {SharedService} from '../../../common/services/shared.service';
 
 @Injectable()
 export class EventsService {
@@ -19,7 +20,11 @@ export class EventsService {
 
     constructor(private _api: ApiService,
                 private _tab: TabService,
-                private _popover: PopoverService) { }
+                private _popover: PopoverService,
+                private _shared: SharedService) {
+        this.getIEvents();
+        this._shared.checkAdminRules();
+    }
 
     public getIEvents(): void {
         this._api.get('LoadIEvents').then( (answer: ApiResponse<any>) => {
