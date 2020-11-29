@@ -17,5 +17,8 @@ export class StudiosInfoPage {
     this._studiosService.studioItems$.subscribe((data: StudioItemInterface[]) => {
       this.studiosList = data;
     });
+    if (!this.studiosList?.length) {
+      this._studiosService.getStudioItems();
+    }
   }
 }

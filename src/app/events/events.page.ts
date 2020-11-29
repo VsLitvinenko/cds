@@ -47,6 +47,12 @@ export class EventsPage implements OnInit {
     this._shared.isUserAdmin$$.subscribe((data) => {
       this.isUserAdmin = data;
     });
+
+    // если до этого не было соединения с интернетом
+    if (!this.currentEvents?.length) {
+      this._eventTableService.getIEvents();
+      this._shared.checkAdminRules();
+    }
   }
 
   public onViewTittleChanged(title): void {

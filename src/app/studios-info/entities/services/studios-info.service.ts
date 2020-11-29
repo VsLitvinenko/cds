@@ -12,7 +12,6 @@ export class StudiosInfoService {
     public studioItems$: Observable<StudioItemInterface[]> = this._studioItems$$ as Observable<StudioItemInterface[]>;
 
     constructor(private _api: ApiService, private _popover: PopoverService) {
-        this.getStudioItems();
     }
 
     public getStudioItems(): void {

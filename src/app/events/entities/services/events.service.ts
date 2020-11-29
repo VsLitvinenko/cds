@@ -20,10 +20,7 @@ export class EventsService {
 
     constructor(private _api: ApiService,
                 private _tab: TabService,
-                private _popover: PopoverService,
-                private _shared: SharedService) {
-        this.getIEvents();
-        this._shared.checkAdminRules();
+                private _popover: PopoverService) {
     }
 
     public getIEvents(): void {
