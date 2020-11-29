@@ -32,8 +32,15 @@ export class PhotoService {
   }
 
   public clearLocalPhotos(): void {
-      debugger;
       this._localPhotos = [];
       this._localPhotos$$.next(null);
+  }
+
+  public deleteCurrentLocalPhoto(currentSrc: string): void {
+      const i = this._localPhotos.indexOf(currentSrc);
+      if (i !== -1) {
+          this._localPhotos.splice(i, 1);
+          this._localPhotos$$.next(this._localPhotos);
+      }
   }
 }

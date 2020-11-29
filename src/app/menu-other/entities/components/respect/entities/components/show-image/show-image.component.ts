@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PopoverService} from '../../../../../../../common/services/popover.service';
 import {SharedService} from '../../../../../../../common/services/shared.service';
 import {RespectService} from '../../services/respect.service';
+import {PhotoService} from "../../services/photo.service";
 
 @Component({
   selector: 'app-show-image',
@@ -18,11 +19,12 @@ export class ShowImageComponent implements OnInit {
   // tslint:disable:variable-name
   constructor(private _popover: PopoverService,
               private _shared: SharedService,
-              private _respect: RespectService) { }
+              private _respect: RespectService,
+              private _photo: PhotoService) { }
 
   ngOnInit() {
     this._shared.image$$.subscribe((data) => {
-      if (data) {
+      if (data && this.id) {
         this.localViewPath = data;
       }
     });
@@ -43,9 +45,15 @@ export class ShowImageComponent implements OnInit {
     this.showHeadAndFoot = !this.showHeadAndFoot;
   }
 
+  private _deleteLocalImage(): void {
+    this._photo.deleteCurrentLocalPhoto(this.localViewPath);
+    this._popover.hideModal().then();
+    this._popover.showToast('Изображение удалено', true).then();
+  }
+
   public deleteImage(): void {
     this._shared.userConfirm('Вы уверены, что хотите удалить изображение?', () => {
-      this._respect.deleteRespectImage(this.id, this.respectId);
+      this.id ? this._respect.deleteRespectImage(this.id, this.respectId) : this._deleteLocalImage();
     }).then();
   }
 }
