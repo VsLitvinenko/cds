@@ -38,9 +38,12 @@
     flex-direction: row;
     justify-content: stretch;
     margin: 10px 0 15px 0;
-    ion-button {
+    ion-nav-link {
       flex: 1;
-      font-size: 12px;
+      ion-button {
+        font-size: 12px;
+        width: 100%;
+      }
     }
   }
 }

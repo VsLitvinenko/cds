@@ -14,8 +14,12 @@
             </div>
         </div>
         <ion-buttons>
-            <ion-button fill="clear">Подробнее</ion-button>
-            <ion-button fill="solid">Записаться</ion-button>
+            <ion-nav-link>
+                <ion-button fill="clear">Подробнее</ion-button>
+            </ion-nav-link>
+            <ion-nav-link [component]="studiosList">
+                <ion-button fill="solid">Записаться</ion-button>
+            </ion-nav-link>
         </ion-buttons>
     </div>
 </ion-content>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators, } from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { TabService } from 'src/app/tabs/entities/services/tab.service';
 import { DynamicLabelInterface } from '../../../../common/interfaces/dynamic-label.interface';
 

@@ -16,6 +16,7 @@ import {SharedModule} from './common/shared.module';
 import {RespectService} from './menu-other/entities/components/respect/entities/services/respect.service';
 import {PhotoService} from './menu-other/entities/components/respect/entities/services/photo.service';
 import {SharedService} from "./common/services/shared.service";
+import {TabService} from "./tabs/entities/services/tab.service";
 
 @NgModule({
   declarations: [AppComponent, ],
@@ -35,6 +36,7 @@ import {SharedService} from "./common/services/shared.service";
     PreferColorSchemeService,
     RespectService,
     PhotoService,
+      TabService,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,

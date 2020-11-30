@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { TabsPageRoutingModule } from './tabs-routing.module';
 import { TabsPage } from './tabs.page';
-import {TabService} from './entities/services/tab.service';
 import {SharedModule} from '../common/shared.module';
 
 @NgModule({
@@ -9,9 +8,7 @@ import {SharedModule} from '../common/shared.module';
       SharedModule,
       TabsPageRoutingModule
   ],
-  providers: [
-      TabService,
-  ],
+  providers: [],
   declarations: [TabsPage]
 })
 export class TabsPageModule {}

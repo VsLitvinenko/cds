@@ -26,8 +26,8 @@ export class PhotoService {
       await this._addNewToGallery( {
           resultType: CameraResultType.Base64,
           source: fromCamera ? CameraSource.Camera : CameraSource.Photos,
-          quality: 100,
-          saveToGallery: false,
+          quality: 70,
+          saveToGallery: fromCamera,
       } );
   }
 
