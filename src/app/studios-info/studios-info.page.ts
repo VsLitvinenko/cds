@@ -2,6 +2,7 @@ import {Component, } from '@angular/core';
 import {EntryFormComponent} from './entities/components/entry-form/entry-form.component';
 import {StudioItemInterface} from './entities/interfaces/studio-item.interface';
 import {StudiosInfoService} from './entities/services/studios-info.service';
+import {FullStudioInfoComponent} from './entities/components/full-studio-info/full-studio-info.component';
 
 @Component({
   selector: 'app-studios-info',
@@ -10,6 +11,7 @@ import {StudiosInfoService} from './entities/services/studios-info.service';
 })
 export class StudiosInfoPage {
   public entryForm = EntryFormComponent;
+  public fullInfo = FullStudioInfoComponent;
   public studiosList: StudioItemInterface[];
 
   // tslint:disable-next-line:variable-name
