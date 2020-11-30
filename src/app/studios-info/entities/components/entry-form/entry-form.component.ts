@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { TabService } from 'src/app/tabs/entities/services/tab.service';
 import { DynamicLabelInterface } from '../../../../common/interfaces/dynamic-label.interface';
+import {StudiosInfoService} from "../../services/studios-info.service";
 
 @Component({
   selector: 'app-studios-form',
@@ -12,48 +13,45 @@ export class EntryFormComponent implements OnInit {
   public dynamicLabels: DynamicLabelInterface[];
   public studioSelectOptions: string[];
   public currentFormGroup: FormGroup = new FormGroup({
-    userStudio: new FormControl(null, Validators.required),
-    userSurname: new FormControl(null, Validators.required),
-    userName: new FormControl(null, Validators.required),
-    userPatronymic: new FormControl(null, Validators.required),
-    userPhone: new FormControl(),
-    userVk: new FormControl(),
+    studio: new FormControl(null, Validators.required),
+    surname: new FormControl(null, Validators.required),
+    name: new FormControl(null, Validators.required),
+    patronymic: new FormControl(null, Validators.required),
+    phone: new FormControl(),
+    vk: new FormControl(),
   });
 
   // tslint:disable-next-line:variable-name
-  constructor(private _tabService: TabService) {}
+  constructor(private _studiosService: StudiosInfoService) {}
 
   ngOnInit() {
-    this._tabService.currentTab$.subscribe((answer: string) => {
-      this.currentFormGroup.reset();
-    });
     this.dynamicLabels = [
       {
         title: 'Фамилия:',
         type: 'text',
-        formControlName: 'userSurname',
+        formControlName: 'surname',
       },
       {
         title: 'Имя:',
         type: 'text',
-        formControlName: 'userName',
+        formControlName: 'name',
       },
       {
         title: 'Отчество:',
         type: 'text',
-        formControlName: 'userPatronymic',
+        formControlName: 'patronymic',
       },
       {
         title: 'Телефон:',
         icon: 'call',
         type: 'tel',
-        formControlName: 'userPhone',
+        formControlName: 'phone',
       },
       {
         title: 'Ссылка на страницу VK:',
         icon: 'logo-vk',
         type: 'text',
-        formControlName: 'userVk',
+        formControlName: 'vk',
       },
     ];
     this.studioSelectOptions = [
@@ -66,7 +64,6 @@ export class EntryFormComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.currentFormGroup.value);
-    this.currentFormGroup.reset();
+    this._studiosService.sendStudioEntryForm(this.currentFormGroup.value);
   }
 }

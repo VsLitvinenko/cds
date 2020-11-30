@@ -17,7 +17,7 @@
         <ion-select interface="action-sheet"
                     [interfaceOptions]="{header: 'Выберите студию:'}"
                     cancelText="Отмена"
-                    formControlName="userStudio">
+                    formControlName="studio">
           <ion-select-option *ngFor="let selectOption of studioSelectOptions">
             {{selectOption}}
           </ion-select-option>
@@ -42,7 +42,7 @@
                 shape="round"
                 size="large"
                 (click)="submit()"
-                [disabled]="currentFormGroup.invalid">
+                [disabled]="!currentFormGroup.valid">
       Отправить заявку
     </ion-button>
   </div>
