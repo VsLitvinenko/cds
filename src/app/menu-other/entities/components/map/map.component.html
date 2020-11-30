@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <div class="map-info-container" *ngIf="currentMapItem">
     <div class="map-info">
-      <ion-label> {{currentMapItem.name}} </ion-label>
+      <span> {{currentMapItem.name}} </span>
       <div class="side">
         <p [style.marginRight.px]="10"> {{currentMapItem.address}} </p>
         <p> {{currentMapItem.phone}} <br> {{currentMapItem.mail}} </p>
