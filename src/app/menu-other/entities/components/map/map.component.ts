@@ -23,7 +23,6 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.iframeHeight = window.innerHeight - 100;
     this._mapService.mapList$.subscribe((data: MapInterface[]) => {
-      data = null;
       if (data && data.length) {
         this.mapItemsList = data;
         this.chooseMapItem(data[0]);

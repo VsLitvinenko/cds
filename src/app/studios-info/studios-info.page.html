@@ -9,7 +9,7 @@
         <div class="item-content">
             <ion-img [src]="item.img"></ion-img>
             <div class="studio-text">
-                <ion-label> {{item.title}} </ion-label> <br>
+                <span> {{item.title}} </span> <br>
                 <ion-text> {{item.body}} </ion-text>
             </div>
         </div>
@@ -22,4 +22,6 @@
             </ion-nav-link>
         </ion-buttons>
     </div>
+
+    <ion-label *ngIf="!(studiosList && studiosList.length)"> Приложению необходимо соединение с интернетом </ion-label>
 </ion-content>
