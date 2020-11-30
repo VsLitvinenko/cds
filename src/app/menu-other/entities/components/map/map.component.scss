@@ -6,21 +6,67 @@ iframe {
   border-bottom-right-radius: 20px;
 }
 
+.map-info-container {
+  width: 100%;
+  height: 120px;
+  position: fixed;
+  display: flex;
+  justify-content: stretch;
+  .map-info {
+    flex: 1;
+    margin: 9px;
+    border-radius: 5px;
+    background-color: var(--ion-color-step-100);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    ion-label {
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    .side {
+      display: flex;
+      flex-direction: row;
+      justify-content: stretch;
+      p {
+        margin: 0;
+        flex: 1;
+        font-size: 13px;
+        color: var(--ion-color-step-550)
+      }
+    }
+  }
+}
+
 ion-slides {
   margin-top: 2%;
   height: 13%;
 
-  .location {
+  %map-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 5px;
+    margin: 0 5px 5px;
     width: 180px;
     height: 100%;
-    border: 2px solid var(--ion-color-medium);
     border-radius: 15px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 300;
+  }
+
+  .selected-map-item {
+    @extend %map-item;
+    color: var(--ion-color-step-50);
+    background-color: var(--ion-color-step-400);
+  }
+
+  .unselected-map-item {
+    @extend %map-item;
+    color: var(--ion-color-step-950);
+    background-color: var(--ion-color-step-100);
   }
 }

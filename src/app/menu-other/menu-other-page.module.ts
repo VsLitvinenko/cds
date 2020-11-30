@@ -11,6 +11,7 @@ import {CheckAdminRulesComponent} from './entities/components/settings/component
 import {SharedModule} from '../common/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ReportBugComponent} from './entities/components/settings/components/report-bug/report-bug.component';
+import {MapService} from './entities/components/map/entities/services/map.service';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import {ReportBugComponent} from './entities/components/settings/components/repo
       ReportBugComponent,
   ],
     providers: [
+        MapService,
     ],
 })
 export class MenuOtherPageModule {}

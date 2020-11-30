@@ -8,11 +8,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <iframe [src]="iframeSrc"></iframe>
-  <ion-slides [options]="sliderConfig">
-    <ion-slide *ngFor="let loc of currentLocations">
-      <div class="location">
-        {{loc}}
+  <div class="map-info-container" *ngIf="currentMapItem">
+    <div class="map-info">
+      <ion-label> {{currentMapItem.name}} </ion-label>
+      <div class="side">
+        <p [style.marginRight.px]="10"> {{currentMapItem.address}} </p>
+        <p> {{currentMapItem.phone}} <br> {{currentMapItem.mail}} </p>
+      </div>
+    </div>
+  </div>
+
+  <iframe *ngIf="currentMapItem" [src]="iframeSrc"></iframe>
+
+  <ion-slides [options]="{ slidesPerView: 2.7 }">
+    <ion-slide *ngFor="let item of mapItemsList">
+      <div [ngClass]="item.selected ? 'selected-map-item' : 'unselected-map-item'"
+           (click)="chooseMapItem(item)">
+        {{item.shortName}}
       </div>
     </ion-slide>
   </ion-slides>
