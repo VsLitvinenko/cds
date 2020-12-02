@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FullStudioInfoComponent implements OnInit {
   public id: number;
+  public isLeaderInfoShows = false;
 
   constructor() { }
 
   ngOnInit() {}
+
+  public showOrHideLeaderInfo() {
+    this.isLeaderInfoShows = !this.isLeaderInfoShows;
+  }
 
 }
