@@ -7,7 +7,6 @@ import {IEventInterface} from '../interfaces/ievent.interface';
 import {EventObjectAnswerInterface} from '../interfaces/event-object-answer.interface';
 import {PopoverService} from '../../../common/services/popover.service';
 import {TabService} from '../../../tabs/entities/services/tab.service';
-import {SharedService} from '../../../common/services/shared.service';
 
 @Injectable()
 export class EventsService {

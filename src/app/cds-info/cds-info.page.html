@@ -13,13 +13,21 @@
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle>Расписание на сегодня:</ion-card-subtitle>
-      <ion-card-title> Вторник - 24.11.2020 </ion-card-title>
+      <ion-card-title>
+        {{tEvents?.title}}
+        <ion-skeleton-text *ngIf="!tEvents" animated></ion-skeleton-text>
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-icon name="caret-forward"></ion-icon>
-      12:00-14:00 | Репетиция номер один <br>
-      <ion-icon name="caret-forward"></ion-icon>
-      16:00-18:00 | Еще одна
+      <div *ngFor="let item of tEvents?.content">
+        <ion-icon name="caret-forward"></ion-icon>
+        {{item}}
+      </div>
+      <div *ngIf="!tEvents">
+        <ion-skeleton-text style="width: 80%" animated></ion-skeleton-text>
+        <ion-skeleton-text style="width: 58%" animated></ion-skeleton-text>
+        <ion-skeleton-text style="width: 32%" animated></ion-skeleton-text>
+      </div>
     </ion-card-content>
   </ion-card>
 

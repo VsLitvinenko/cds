@@ -40,6 +40,20 @@
 ion-card {
   margin: 30px 17px 10px;
   border-radius: 14px;
+
+  ion-card-title {
+    ion-skeleton-text {
+      height: 28px;
+      width: 90%;
+    }
+  }
+
+  ion-card-content {
+    ion-skeleton-text {
+      height: 15px;
+      padding-bottom: 2px;
+    }
+  }
 }
 
 ion-grid {

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {PreferColorSchemeService} from '../common/services/prefer-color-scheme.service';
 import {PopoverService} from '../common/services/popover.service';
+import {CdsInfoService} from './entities/services/cds-info.service';
+import {TodayEventsInterface} from './entities/interfaces/today-events.interface';
 
 @Component({
   selector: 'app-tab1',
@@ -9,14 +11,21 @@ import {PopoverService} from '../common/services/popover.service';
 })
 export class CdsInfoPage {
   public barButtonSize: number;
+  public tEvents: TodayEventsInterface;
 
   // tslint:disable:variable-name
   constructor(private _preferColor: PreferColorSchemeService,
-              private _popover: PopoverService) {
+              private _popover: PopoverService,
+              private _cdsService: CdsInfoService) {
     this.barButtonSize = (window.innerWidth - 44) / 3;
     if (this.barButtonSize > 200) {
       this.barButtonSize = 200;
     }
+
+    this._cdsService.getTEvents();
+    this._cdsService.tEvents$.subscribe((data: TodayEventsInterface) => {
+      this.tEvents = data;
+    });
   }
 
   public headerColor(): string {

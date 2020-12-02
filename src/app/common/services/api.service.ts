@@ -21,10 +21,12 @@ export class ApiService {
         return this.http.get<ApiResponse<any>>(`${this.environment}${url}`, head)
             .toPromise()
             .catch(() => {
-                this.popover.hidePreloader({
-                    success: false,
-                    message: 'Нет соединения с сервером',
-                }).then();
+                if (usePreloader) {
+                    this.popover.hidePreloader({
+                        success: false,
+                        message: 'Нет соединения с сервером',
+                    }).then();
+                }
         });
     }
 
