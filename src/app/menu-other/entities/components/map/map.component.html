@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="map-info-container" *ngIf="currentMapItem">
+  <div class="map-info-container" *ngIf="netConnection">
     <div class="map-info">
       <span> {{currentMapItem.name}} </span>
       <div class="side">
@@ -29,5 +29,5 @@
     </ion-slide>
   </ion-slides>
 
-  <ion-label *ngIf="!currentMapItem"> Картам необходимо постоянное соединение с интернетом </ion-label>
+  <ion-label *ngIf="!netConnection"> Картам необходимо постоянное соединение с интернетом </ion-label>
 </ion-content>

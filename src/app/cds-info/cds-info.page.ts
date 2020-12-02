@@ -14,6 +14,9 @@ export class CdsInfoPage {
   constructor(private _preferColor: PreferColorSchemeService,
               private _popover: PopoverService) {
     this.barButtonSize = (window.innerWidth - 44) / 3;
+    if (this.barButtonSize > 200) {
+      this.barButtonSize = 200;
+    }
   }
 
   public headerColor(): string {

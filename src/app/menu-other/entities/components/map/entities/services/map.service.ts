@@ -32,4 +32,8 @@ export class MapService {
             }
         });
     }
+
+    public async isUserHasInternetConnection() {
+        return this._api.get('isInternetConnection', false);
+    }
 }

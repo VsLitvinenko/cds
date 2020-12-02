@@ -15,6 +15,8 @@ export class MapComponent implements OnInit {
     this.iframeSrc = this._domSanitizer.bypassSecurityTrustResourceUrl('');
   }
 
+  public netConnection = false;
+
   public currentMapItem: MapInterface;
   public iframeSrc: SafeResourceUrl;
   public iframeHeight: number;
@@ -29,12 +31,18 @@ export class MapComponent implements OnInit {
       }
     });
     this._mapService.getMapList();
+    if (this.mapItemsList?.length) {
+      this.chooseMapItem(this.mapItemsList[0]);
+    }
   }
 
   public chooseMapItem(mapItem: MapInterface) {
     if (mapItem.selected) {
       return;
     }
+    this._mapService.isUserHasInternetConnection().then((answer) => {
+      this.netConnection = answer?.success;
+    });
     this.currentMapItem = mapItem;
     this.iframeSrc = this._domSanitizer.bypassSecurityTrustResourceUrl(mapItem.iframe);
     this.mapItemsList.forEach((item: MapInterface) => {

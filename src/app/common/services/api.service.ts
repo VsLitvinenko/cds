@@ -14,8 +14,10 @@ export class ApiService {
         private popover: PopoverService,
     ) { }
 
-    public get<T>(url: string, head: any = {}): Promise<any> {
-        this.popover.showPreloader().then();
+    public get<T>(url: string, usePreloader: boolean = true, head: any = {}): Promise<any> {
+        if (usePreloader) {
+            this.popover.showPreloader().then();
+        }
         return this.http.get<ApiResponse<any>>(`${this.environment}${url}`, head)
             .toPromise()
             .catch(() => {
