@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import {PopoverService} from './popover.service';
 import {ApiService} from './api.service';
 import {ApiResponse} from '../interfaces/api-response.interface';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { Plugins } from '@capacitor/core';
 
 const { Clipboard } = Plugins;
 
 @Injectable()
 export class SharedService {
-    public isUserAdmin$$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-    public image$$: BehaviorSubject<string> = new BehaviorSubject(null);
     // tslint:disable:variable-name
+    public isUserAdmin$$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    private _image$$: BehaviorSubject<string> = new BehaviorSubject(null);
+    public image$: Observable<string> = this._image$$ as Observable<string>;
     constructor(private _popover: PopoverService,
                 private _api: ApiService) {
     }
@@ -47,7 +48,7 @@ export class SharedService {
             if (answer) {
                 if (answer.success) {
                     this._popover.hidePreloader({ success: true }).then();
-                    this.image$$.next(answer.data);
+                    this._image$$.next(answer.data);
                 } else {
                     this._popover.hidePreloader({
                         success: false,
@@ -56,6 +57,10 @@ export class SharedService {
                 }
             }
         });
+    }
+
+    public clearCurrentImage(): void {
+        this._image$$.next(null);
     }
 
     public copyToClipboard(data: string): void {

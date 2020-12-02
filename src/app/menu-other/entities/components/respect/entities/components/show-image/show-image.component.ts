@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PopoverService} from '../../../../../../../common/services/popover.service';
 import {SharedService} from '../../../../../../../common/services/shared.service';
 import {RespectService} from '../../services/respect.service';
-import {PhotoService} from "../../services/photo.service";
+import {PhotoService} from '../../services/photo.service';
 
 @Component({
   selector: 'app-show-image',
@@ -23,7 +23,7 @@ export class ShowImageComponent implements OnInit {
               private _photo: PhotoService) { }
 
   ngOnInit() {
-    this._shared.image$$.subscribe((data) => {
+    this._shared.image$.subscribe((data) => {
       if (data && this.id) {
         this.localViewPath = data;
       }
