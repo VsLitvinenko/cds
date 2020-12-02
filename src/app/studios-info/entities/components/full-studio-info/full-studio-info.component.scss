@@ -56,3 +56,38 @@
     }
   }
 }
+
+ion-slides {
+  margin: 20px 0;
+}
+
+.text-info-container {
+  padding: 5px 20px 10px;
+  h1 {
+    margin: 0 0 0 20px;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  .body-text {
+    margin: 10px 0;
+    color: var(--ion-color-step-600);
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+
+
+    ion-icon {
+      margin: 1px 5px 0 0;
+      min-width: 20px;
+    }
+  }
+}
+
+ion-label {
+  position: absolute;
+  top: 47%;
+  left: 5%;
+  width: 90%;
+  text-align: center;
+  color: var(--ion-color-step-600);
+}

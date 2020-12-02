@@ -3,24 +3,26 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title size="medium">Какая-то студия</ion-title>
+    <ion-title size="medium">
+      {{currentFullInfo ? currentFullInfo.studioName : 'Подробная информация'}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *ngIf="currentFullInfo">
   <div class="leader-content">
     <div class="main-content">
-      <ion-img [src]="'https://sun9-43.userapi.com/impf/c848628/v848628255/11c737/zm3_epqYBwc.jpg?size=694x694&quality=96&proxy=1&sign=585f9181d1b66e1c37b0b4630378b68f'"></ion-img>
+      <ion-img [src]="currentFullInfo.leader.image"></ion-img>
       <div class="leader-text">
-        <span> Сосницкая Мария </span> <br>
-        <ion-text> Выпускница РГУ нефти и газа им. Губкина. Один из основателей коллектива. </ion-text>
+        <span> {{currentFullInfo.leader.name}} </span> <br>
+        <ion-text> {{currentFullInfo.leader.mainInfo}} </ion-text>
       </div>
     </div>
     <div *ngIf="isLeaderInfoShows" class="additional-content">
-      Сертифицированный тренер по чирлидингу. Прошла многочисленные курсы
-      по повышению квалификации. Имеет 2ой спортивный разряд по чир-спорту.
+      {{currentFullInfo.leader.fullInfo}}
     </div>
-    <ion-buttons (click)="showOrHideLeaderInfo()">
+
+    <ion-buttons *ngIf="currentFullInfo.leader.fullInfo" (click)="showOrHideLeaderInfo()">
       <ion-button fill="clear"
                   *ngIf="!isLeaderInfoShows">
         Развернуть
@@ -34,4 +36,26 @@
       </ion-button>
     </ion-buttons>
   </div>
+
+  <ion-slides [options]="{ slidesPerView: 2.7 }">
+    <ion-slide *ngFor="let item of currentFullInfo.imgList">
+      <ion-thumbnail style="--size: {{imageSize}}px;">
+        <ion-img [src]="item.view"></ion-img>
+      </ion-thumbnail>
+    </ion-slide>
+  </ion-slides>
+
+  <div class="text-info-container" *ngFor="let i of currentFullInfo.content">
+    <h1> {{i.header}} </h1>
+    <div class="body-text" *ngFor="let j of i.body">
+      <ion-icon *ngIf="i.body.length > 1" name="ellipse"></ion-icon>
+      <span> {{j}} </span>
+    </div>
+<!--    <p *ngFor="let j of i.body">-->
+<!--      <ion-icon *ngIf="i.body.length > 1" name="ellipse"></ion-icon>-->
+<!--      {{j}}-->
+<!--    </p>-->
+  </div>
 </ion-content>
+
+<ion-label *ngIf="!currentFullInfo"> Приложению необходимо соединение с интернетом </ion-label>

@@ -1,4 +1,5 @@
 export interface FullStudioInfoInterface {
+    studioName: string;
     leader: {
         name: string;
         mainInfo: string;
@@ -9,6 +10,9 @@ export interface FullStudioInfoInterface {
         header: string;
         body: string[];
     }[];
-    imgList: string[];
+    imgList: {
+        id: string;
+        view: string;
+    }[];
     contacts: any;
 }
