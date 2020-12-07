@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <iframe *ngIf="netConnection" [src]="iframeSrc"></iframe>
+  <iframe *ngIf="netConnection" [src]="iframeSrc" loading="lazy"></iframe>
 
   <ion-slides [options]="{ slidesPerView: 2.7 }">
     <ion-slide *ngFor="let item of mapItemsList">
