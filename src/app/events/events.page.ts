@@ -7,6 +7,7 @@ import {IonNavLink} from '@ionic/angular';
 import {EventsService} from './entities/services/events.service';
 import {SharedService} from '../common/services/shared.service';
 import {IEventInterface} from './entities/interfaces/ievent.interface';
+import {CdsComponentClass} from '../common/classes/cds-component-class';
 
 
 @Component({
@@ -14,7 +15,7 @@ import {IEventInterface} from './entities/interfaces/ievent.interface';
   templateUrl: './events.page.html',
   styleUrls: ['./events.page.scss'],
 })
-export class EventsPage implements OnInit {
+export class EventsPage extends CdsComponentClass implements OnInit {
   public currentEvents: IEvent[] = [];
   public calendarTitle: string;
   public currentDate = new Date();
@@ -27,11 +28,14 @@ export class EventsPage implements OnInit {
 
   public isUserAdmin: boolean;
 
-  // tslint:disable-next-line:variable-name
-  constructor(private _eventTableService: EventsService, private _shared: SharedService) { }
+  // tslint:disable:variable-name
+  constructor(private _eventTableService: EventsService,
+              private _shared: SharedService) {
+    super();
+  }
 
   ngOnInit() {
-    this._eventTableService.iEvents$.subscribe( (items: IEventInterface[]) => {
+    this._observeSafe(this._eventTableService.iEvents$).subscribe( (items: IEventInterface[]) => {
       this.currentEvents = [];
       if (items && items.length) {
         items.forEach((item: IEventInterface) => {
@@ -44,7 +48,7 @@ export class EventsPage implements OnInit {
         });
       }
     });
-    this._shared.isUserAdmin$$.subscribe((data) => {
+    this._observeSafe(this._shared.isUserAdmin$$).subscribe((data) => {
       this.isUserAdmin = data;
     });
 

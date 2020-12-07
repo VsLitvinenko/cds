@@ -3,13 +3,14 @@ import {AddEventComponent} from '../add-event/add-event.component';
 import { EventObjectAnswerInterface } from '../../interfaces/event-object-answer.interface';
 import { EventsService } from '../../services/events.service';
 import {SharedService} from '../../../../common/services/shared.service';
+import {CdsComponentClass} from '../../../../common/classes/cds-component-class';
 
 @Component({
   selector: 'app-current-date-event',
   templateUrl: './current-date-event.component.html',
   styleUrls: ['./current-date-event.component.scss'],
 })
-export class CurrentDateEventComponent implements OnInit {
+export class CurrentDateEventComponent extends CdsComponentClass implements OnInit {
   public currentDate: Date;
   public subTitle: string;
   public eventObjects: EventObjectAnswerInterface[];
@@ -17,8 +18,10 @@ export class CurrentDateEventComponent implements OnInit {
   private dateString: string;
   public isUserAdmin: boolean;
 
-  // tslint:disable-next-line:variable-name
-  constructor(private _eventTableService: EventsService, private _shared: SharedService) {
+  // tslint:disable:variable-name
+  constructor(private _eventTableService: EventsService,
+              private _shared: SharedService) {
+    super();
   }
 
   ngOnInit() {
@@ -28,10 +31,12 @@ export class CurrentDateEventComponent implements OnInit {
     this.subTitle = `Мероприятия ${day > 9 ? day : `0${day}`}.${month > 9 ? month : `0${month + 1}`}.${year}`;
     this.dateString = `${year}-${month}-${day}`;
 
-    this._eventTableService.eventObjects$.subscribe( (items: EventObjectAnswerInterface[]) => {
+    this._observeSafe(this._eventTableService.eventObjects$)
+        .subscribe( (items: EventObjectAnswerInterface[]) => {
       this.eventObjects = items;
     });
-    this._shared.isUserAdmin$$.subscribe((data) => {
+    this._observeSafe(this._shared.isUserAdmin$$)
+        .subscribe((data) => {
       this.isUserAdmin = data;
     });
     this._eventTableService.getEventObjects(this.dateString);

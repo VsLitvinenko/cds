@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {MapInterface} from './entities/interfaces/map.interface';
 import {MapService} from './entities/services/map.service';
+import {CdsComponentClass} from '../../../../common/classes/cds-component-class';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit {
+export class MapComponent extends CdsComponentClass implements OnInit {
 
   // tslint:disable-next-line:variable-name
   constructor(private _domSanitizer: DomSanitizer, private _mapService: MapService ) {
+    super();
     this.iframeSrc = this._domSanitizer.bypassSecurityTrustResourceUrl('');
   }
 
@@ -24,7 +26,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.iframeHeight = window.innerHeight - 100;
-    this._mapService.mapList$.subscribe((data: MapInterface[]) => {
+    this._observeSafe(this._mapService.mapList$).subscribe((data: MapInterface[]) => {
       if (data && data.length) {
         this.mapItemsList = data;
         this.chooseMapItem(data[0]);

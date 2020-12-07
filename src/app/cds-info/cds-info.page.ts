@@ -3,13 +3,14 @@ import {PreferColorSchemeService} from '../common/services/prefer-color-scheme.s
 import {PopoverService} from '../common/services/popover.service';
 import {CdsInfoService} from './entities/services/cds-info.service';
 import {TodayEventsInterface} from './entities/interfaces/today-events.interface';
+import {CdsComponentClass} from '../common/classes/cds-component-class';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'cds-info.page.html',
   styleUrls: ['cds-info.page.scss']
 })
-export class CdsInfoPage {
+export class CdsInfoPage extends CdsComponentClass {
   public barButtonSize: number;
   public tEvents: TodayEventsInterface;
 
@@ -17,14 +18,16 @@ export class CdsInfoPage {
   constructor(private _preferColor: PreferColorSchemeService,
               private _popover: PopoverService,
               private _cdsService: CdsInfoService) {
+    super();
     this.barButtonSize = (window.innerWidth - 44) / 3;
     if (this.barButtonSize > 200) {
       this.barButtonSize = 200;
     }
 
     this._cdsService.getTEvents();
-    this._cdsService.tEvents$.subscribe((data: TodayEventsInterface) => {
-      this.tEvents = data;
+    this._observeSafe(this._cdsService.tEvents$)
+        .subscribe((data: TodayEventsInterface) => {
+          this.tEvents = data;
     });
   }
 
