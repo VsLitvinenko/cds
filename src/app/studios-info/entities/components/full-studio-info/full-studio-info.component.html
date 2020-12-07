@@ -18,7 +18,7 @@
         <ion-text> {{currentFullInfo.leader.mainInfo}} </ion-text>
       </div>
     </div>
-    <div *ngIf="isLeaderInfoShows" class="additional-content">
+    <div [ngClass]="isLeaderInfoShows ? 'add-visible' : 'add-hidden'">
       {{currentFullInfo.leader.fullInfo}}
     </div>
 

@@ -35,11 +35,29 @@
     }
   }
 
-  .additional-content {
+  %additional-content {
     padding-left: 112px;
     margin-top: 10px;
     font-size: 14px;
     font-weight: 300;
+  }
+
+  .add-visible {
+    @extend %additional-content;
+    overflow: hidden;
+    transition: all .3s, opacity .5s;;
+    line-height: 1.4;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .add-hidden {
+    @extend %additional-content;
+    transition: all .3s, opacity .2s;
+    line-height: 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
   }
 
   ion-buttons {
