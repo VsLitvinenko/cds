@@ -43,8 +43,9 @@ export class SharedService {
         });
     }
 
-    public getCurrentImage(id: string): void  {
-        this._api.get(`getFullImage?id=${id}`).then((answer: ApiResponse<any>) => {
+    public getCurrentImage(id: string, studioId: number = null): void  {
+        const url = studioId ? `fullStudioImg?id=${id}&studioId=${studioId}` : `getFullImage?id=${id}`;
+        this._api.get(url).then((answer: ApiResponse<any>) => {
             if (answer) {
                 if (answer.success) {
                     this._popover.hidePreloader({ success: true }).then();

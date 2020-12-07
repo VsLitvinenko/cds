@@ -39,7 +39,8 @@
 
   <ion-slides [options]="{ slidesPerView: 2.7 }">
     <ion-slide *ngFor="let item of currentFullInfo.imgList">
-      <ion-thumbnail style="--size: {{imageSize}}px;">
+      <ion-thumbnail (click)="showPicture(item.id)"
+                     style="--size: {{imageSize}}px;">
         <ion-img [src]="item.view"></ion-img>
       </ion-thumbnail>
     </ion-slide>
@@ -51,10 +52,6 @@
       <ion-icon *ngIf="i.body.length > 1" name="ellipse"></ion-icon>
       <span> {{j}} </span>
     </div>
-<!--    <p *ngFor="let j of i.body">-->
-<!--      <ion-icon *ngIf="i.body.length > 1" name="ellipse"></ion-icon>-->
-<!--      {{j}}-->
-<!--    </p>-->
   </div>
 </ion-content>
 

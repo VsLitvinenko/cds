@@ -16,6 +16,7 @@ export class ShowImageComponent extends CdsComponentClass implements OnInit {
   public localViewPath: string;
   public isUserAdmin: boolean;
   public respectId: number;
+  public studioId: number;
 
   // tslint:disable:variable-name
   constructor(private _popover: PopoverService,
@@ -32,7 +33,7 @@ export class ShowImageComponent extends CdsComponentClass implements OnInit {
       }
     });
     if (this.id) {
-      this._shared.getCurrentImage(this.id);
+      this._shared.getCurrentImage(this.id, this.studioId);
     }
   }
 
