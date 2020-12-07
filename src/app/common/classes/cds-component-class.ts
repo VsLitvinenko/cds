@@ -3,7 +3,7 @@ import {Observable, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 
-export abstract class PreparatoryComponentClass implements OnDestroy {
+export abstract class CdsComponentClass implements OnDestroy {
     // tslint:disable-next-line:variable-name
     protected _destroy$$: Subject<void> = new Subject();
 

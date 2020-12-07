@@ -3,13 +3,14 @@ import {CurrentRespectComponent} from './entities/components/current-respect/cur
 import {RespectService} from './entities/services/respect.service';
 import {RespectInterface} from './entities/interfaces/respect.interface';
 import {FormControl, FormGroup} from '@angular/forms';
+import {CdsComponentClass} from '../../../../common/classes/cds-component-class';
 
 @Component({
   selector: 'app-respect',
   templateUrl: './respect.component.html',
   styleUrls: ['./respect.component.scss'],
 })
-export class RespectComponent implements OnInit {
+export class RespectComponent extends CdsComponentClass implements OnInit {
   public currentRespectPage = CurrentRespectComponent;
   // tslint:disable:variable-name
   private _searchString: string;
@@ -28,10 +29,12 @@ export class RespectComponent implements OnInit {
     endDate: new FormControl(null),
   });
 
-  constructor(private _respect: RespectService) { }
+  constructor(private _respect: RespectService) {
+    super();
+  }
 
   ngOnInit() {
-    this._respect.respects$.subscribe((data) => {
+    this._observeSafe(this._respect.respects$).subscribe((data) => {
       this._respectList = data;
       this._filterRespects();
     });

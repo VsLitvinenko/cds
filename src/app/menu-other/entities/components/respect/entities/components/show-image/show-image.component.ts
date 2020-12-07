@@ -3,13 +3,14 @@ import {PopoverService} from '../../../../../../../common/services/popover.servi
 import {SharedService} from '../../../../../../../common/services/shared.service';
 import {RespectService} from '../../services/respect.service';
 import {PhotoService} from '../../services/photo.service';
+import {CdsComponentClass} from '../../../../../../../common/classes/cds-component-class';
 
 @Component({
   selector: 'app-show-image',
   templateUrl: './show-image.component.html',
   styleUrls: ['./show-image.component.scss'],
 })
-export class ShowImageComponent implements OnInit {
+export class ShowImageComponent extends CdsComponentClass implements OnInit {
   public showHeadAndFoot = true;
   public id: string;
   public localViewPath: string;
@@ -20,10 +21,12 @@ export class ShowImageComponent implements OnInit {
   constructor(private _popover: PopoverService,
               private _shared: SharedService,
               private _respect: RespectService,
-              private _photo: PhotoService) { }
+              private _photo: PhotoService) {
+    super();
+  }
 
   ngOnInit() {
-    this._shared.image$.subscribe((data) => {
+    this._observeSafe(this._shared.image$).subscribe((data) => {
       if (data && this.id) {
         this.localViewPath = data;
       }

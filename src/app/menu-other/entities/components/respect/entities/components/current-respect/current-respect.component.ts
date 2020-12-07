@@ -6,13 +6,14 @@ import {ShowImageComponent} from '../show-image/show-image.component';
 import { RespectService } from '../../services/respect.service';
 import {SharedService} from '../../../../../../../common/services/shared.service';
 import {RespectInterface} from '../../interfaces/respect.interface';
+import {CdsComponentClass} from '../../../../../../../common/classes/cds-component-class';
 
 @Component({
   selector: 'app-current-respect',
   templateUrl: './current-respect.component.html',
   styleUrls: ['./current-respect.component.scss'],
 })
-export class CurrentRespectComponent implements OnInit {
+export class CurrentRespectComponent extends CdsComponentClass implements OnInit {
   public currentDates: CurrentDatePhotosInterface[];
   public localPhotos: string[];
   public thumbnailSize: number;
@@ -24,19 +25,21 @@ export class CurrentRespectComponent implements OnInit {
   constructor(private _photoService: PhotoService,
               private _popover: PopoverService,
               private _respect: RespectService,
-              private _shared: SharedService) { }
+              private _shared: SharedService) {
+    super();
+  }
 
   ngOnInit() {
-    this._respect.curDates$.subscribe((dates: CurrentDatePhotosInterface[]) => {
+    this._observeSafe(this._respect.curDates$).subscribe((dates: CurrentDatePhotosInterface[]) => {
       this.currentDates = dates;
     });
-    this._photoService.localPhotos$.subscribe((data) => {
+    this._observeSafe(this._photoService.localPhotos$).subscribe((data) => {
       this.localPhotos = data;
     });
-    this._shared.isUserAdmin$$.subscribe((data) => {
+    this._observeSafe(this._shared.isUserAdmin$$).subscribe((data) => {
       this.isUserAdmin = data;
     });
-    this._respect.deleteImage$.subscribe((imageId) => {
+    this._observeSafe(this._respect.deleteImage$).subscribe((imageId) => {
       this.currentDates?.forEach((item) => {
         const index = item.images.findIndex((image) => image.id === imageId);
         if (index !== -1) {
