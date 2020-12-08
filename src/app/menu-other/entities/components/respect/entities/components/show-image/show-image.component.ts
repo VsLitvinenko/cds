@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PopoverService} from '../../../../../../../common/services/popover.service';
 import {SharedService} from '../../../../../../../common/services/shared.service';
 import {RespectService} from '../../services/respect.service';
@@ -10,7 +10,7 @@ import {CdsComponentClass} from '../../../../../../../common/classes/cds-compone
   templateUrl: './show-image.component.html',
   styleUrls: ['./show-image.component.scss'],
 })
-export class ShowImageComponent extends CdsComponentClass implements OnInit {
+export class ShowImageComponent extends CdsComponentClass implements OnInit, OnDestroy {
   public showHeadAndFoot = true;
   public id: string;
   public localViewPath: string;
@@ -27,14 +27,14 @@ export class ShowImageComponent extends CdsComponentClass implements OnInit {
   }
 
   ngOnInit() {
+    if (this.id) {
+      this._shared.getCurrentImage(this.id, this.studioId);
+    }
     this._observeSafe(this._shared.image$).subscribe((data) => {
       if (data && this.id) {
         this.localViewPath = data;
       }
     });
-    if (this.id) {
-      this._shared.getCurrentImage(this.id, this.studioId);
-    }
   }
 
   public async hideModal() {
@@ -59,5 +59,10 @@ export class ShowImageComponent extends CdsComponentClass implements OnInit {
     this._shared.userConfirm('Вы уверены, что хотите удалить изображение?', () => {
       this.id ? this._respect.deleteRespectImage(this.id, this.respectId) : this._deleteLocalImage();
     }).then();
+  }
+
+  ngOnDestroy() {
+    this._shared.clearCurrentImage();
+    super.ngOnDestroy();
   }
 }
