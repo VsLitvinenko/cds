@@ -11,8 +11,7 @@
 
 <ion-content [fullscreen]="true">
   <div class="content" (click)="hideShowHeadAndFoot()">
-    <ion-img *ngIf="!id" [src]="localViewPath"></ion-img>
-    <img *ngIf="id" [src]="localViewPath" loading="lazy" />
+    <ion-img [src]="localViewPath"></ion-img>
   </div>
 </ion-content>
 
