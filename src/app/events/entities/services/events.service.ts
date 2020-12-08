@@ -48,6 +48,9 @@ export class EventsService {
                     this._popover.hidePreloader({
                         success: true,
                     }).then();
+                    if (!answer.data?.length) {
+                        this._tab.changeCurrentTab('back');
+                    }
                     this._eventObjects$$.next(answer.data);
                 }
                 else {
