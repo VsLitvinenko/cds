@@ -39,14 +39,6 @@ export class CurrentRespectComponent extends CdsComponentClass implements OnInit
     this._observeSafe(this._shared.isUserAdmin$$).subscribe((data) => {
       this.isUserAdmin = data;
     });
-    this._observeSafe(this._respect.deleteImage$).subscribe((imageId) => {
-      this.currentDates?.forEach((item) => {
-        const index = item.images.findIndex((image) => image.id === imageId);
-        if (index !== -1) {
-          item.images.splice(index, 1);
-        }
-      });
-    });
 
     this._respect.getCurrentDates(this.respect.id);
     this._shared.checkAdminRules();

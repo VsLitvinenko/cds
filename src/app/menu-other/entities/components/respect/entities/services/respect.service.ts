@@ -17,8 +17,7 @@ export class RespectService {
     private _respects$$: BehaviorSubject<RespectInterface[]> = new BehaviorSubject(null);
     public respects$: Observable<RespectInterface[]> = this._respects$$ as Observable<RespectInterface[]>;
 
-    private _deleteImage$$: BehaviorSubject<string> = new BehaviorSubject(null);
-    public deleteImage$: Observable<string> = this._deleteImage$$ as Observable<string>;
+    private _lastRespectDateString: string;
 
     constructor(private _api: ApiService,
                 private _popover: PopoverService,
@@ -29,6 +28,7 @@ export class RespectService {
             if (answer) {
                 if (answer.success) {
                     this._popover.hidePreloader({ success: true }).then();
+                    this._lastRespectDateString = dateString;
                     this._respects$$.next(answer.data);
                 }
                 else {
@@ -67,6 +67,7 @@ export class RespectService {
                         message: 'Фотографии загружены',
                     }).then();
                     this.getCurrentDates(data.id);
+                    this.getRespects(this._lastRespectDateString);
                     this._photo.clearLocalPhotos();
                 }
                 else {
@@ -88,7 +89,8 @@ export class RespectService {
                         message: 'Изображение удалено',
                     }).then();
                     this._popover.hideModal().then();
-                    this._deleteImage$$.next(id);
+                    this.getCurrentDates(respectId);
+                    this.getRespects(this._lastRespectDateString);
                 } else {
                     this._popover.hidePreloader({
                         success: false,
