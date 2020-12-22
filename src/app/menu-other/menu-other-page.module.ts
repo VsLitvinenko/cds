@@ -12,6 +12,7 @@ import {SharedModule} from '../common/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ReportBugComponent} from './entities/components/settings/components/report-bug/report-bug.component';
 import {MapService} from './entities/components/map/entities/services/map.service';
+import {ContactsService} from './entities/components/contacts/services/contacts.service';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import {MapService} from './entities/components/map/entities/services/map.servic
   ],
     providers: [
         MapService,
+        ContactsService,
     ],
 })
 export class MenuOtherPageModule {}

@@ -8,5 +8,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <h1> Центр досуга студентов </h1>
 
+  <div *ngFor="let i of contactsList"
+       class="contacts">
+    <h2> {{i.name}} </h2>
+    <p *ngFor="let j of i.body">
+      <ion-icon [name]="j.logo"></ion-icon>
+      <span *ngIf="!j.url"> {{j.text}} </span>
+      <a *ngIf="j.url" [href]="j.url" target="_blank"> {{j.text}} </a>
+    </p>
+  </div>
+
+  <ion-label *ngIf="!(contactsList && contactsList.length)"> Приложению необходимо соединение с интернетом </ion-label>
 </ion-content>

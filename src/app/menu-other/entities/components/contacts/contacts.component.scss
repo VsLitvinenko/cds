@@ -1,0 +1,41 @@
+h1 {
+  margin-left: 40px;
+  font-weight: 300;
+  font-size: 25px;
+}
+
+.contacts {
+  padding: 10px 20px;
+  h2 {
+    margin: 0 0 0 20px;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  p {
+    margin: 10px 0;
+    color: var(--ion-color-step-600);
+    ion-icon {
+      font-size: 16px;
+      margin: 0 5px -3px 0;
+      min-width: 20px;
+    }
+    a {
+      color: var(--ion-color-step-350);
+      font-weight: bolder;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    span {
+      font-size: 14px;
+    }
+  }
+}
+
+ion-label {
+  position: absolute;
+  top: 47%;
+  left: 5%;
+  width: 90%;
+  text-align: center;
+  color: var(--ion-color-step-600);
+}
