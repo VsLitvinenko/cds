@@ -14,5 +14,5 @@ export interface FullStudioInfoInterface {
         id: string;
         view: string;
     }[];
-    contacts: any;
+    contacts: {text: string, logo: string, url?: string }[];
 }
