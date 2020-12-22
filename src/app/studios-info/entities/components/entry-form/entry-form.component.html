@@ -38,12 +38,17 @@
         </ion-input>
       </ion-item>
     </form>
-    <ion-button fill="outline"
-                shape="round"
-                size="large"
-                (click)="submit()"
-                [disabled]="!currentFormGroup.valid">
-      Отправить заявку
-    </ion-button>
+    <div class="foot">
+      <div [style.margin.px]="10">
+        <span> Нажимая кнопку «Отправить заявку», Вы даете согласие на обработку персональных данных </span>
+      </div>
+      <ion-button fill="outline"
+                  shape="round"
+                  size="large"
+                  (click)="submit()"
+                  [disabled]="!currentFormGroup.valid">
+        Отправить заявку
+      </ion-button>
+    </div>
   </div>
 </ion-content>

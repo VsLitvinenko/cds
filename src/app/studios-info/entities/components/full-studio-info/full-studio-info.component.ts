@@ -4,6 +4,7 @@ import {FullStudioInfoInterface} from '../../interfaces/full-studio-info.interfa
 import {CdsComponentClass} from '../../../../common/classes/cds-component-class';
 import {PopoverService} from '../../../../common/services/popover.service';
 import {ShowImageComponent} from '../../../../menu-other/entities/components/respect/entities/components/show-image/show-image.component';
+import {EntryFormComponent} from '../entry-form/entry-form.component';
 
 @Component({
   selector: 'app-full-studio-info',
@@ -11,6 +12,7 @@ import {ShowImageComponent} from '../../../../menu-other/entities/components/res
   styleUrls: ['./full-studio-info.component.scss'],
 })
 export class FullStudioInfoComponent extends CdsComponentClass implements OnInit {
+  public entryForm = EntryFormComponent;
   public id: number;
   public isLeaderInfoShows = false;
   public currentFullInfo: FullStudioInfoInterface;

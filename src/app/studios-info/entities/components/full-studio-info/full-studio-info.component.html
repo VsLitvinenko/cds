@@ -62,6 +62,14 @@
       <a *ngIf="i.url" [href]="i.url" target="_blank"> {{i.text}} </a>
     </p>
   </div>
+
+  <ion-nav-link [component]="entryForm" [componentProps]="{ id: id }">
+    <ion-button fill="outline"
+                shape="round"
+                size="large">
+      Записаться в студию
+    </ion-button>
+  </ion-nav-link>
 </ion-content>
 
 <ion-label *ngIf="!currentFullInfo"> Приложению необходимо соединение с интернетом </ion-label>

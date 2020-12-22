@@ -8,7 +8,15 @@
     margin-bottom: 40px;
   }
 
-  ion-button {
-    margin: 10px;
+  .foot {
+    padding: 8px;
+    text-align: center;
+    span {
+      font-size: 12px;
+      color: var(--ion-color-step-600);
+    }
+    ion-button {
+      width: 100%;
+    }
   }
 }
