@@ -59,7 +59,7 @@
     <p *ngFor="let i of currentFullInfo.contacts">
       <ion-icon [name]="i.logo"></ion-icon>
       <span *ngIf="!i.url"> {{i.text}} </span>
-      <a *ngIf="i.url" [href]="i.url"> {{i.text}} </a>
+      <a *ngIf="i.url" [href]="i.url" target="_blank"> {{i.text}} </a>
     </p>
   </div>
 </ion-content>

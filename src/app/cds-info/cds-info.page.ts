@@ -49,6 +49,6 @@ export class CdsInfoPage extends CdsComponentClass {
   }
 
   public redirectToWebsite(): void {
-    window.open('https://vk.com/id129934720');
+    window.open('http://dk.gubkin.ru/cds-main');
   }
 }
