@@ -44,6 +44,9 @@ export class MapComponent extends CdsComponentClass implements OnInit {
     }
     this._mapService.isUserHasInternetConnection().then((answer) => {
       this.netConnection = answer?.success;
+      if (!this.netConnection) {
+        this._mapService.clearMapList();
+      }
     });
     this.currentMapItem = mapItem;
     this.iframeSrc = this._domSanitizer.bypassSecurityTrustResourceUrl(mapItem.iframe);

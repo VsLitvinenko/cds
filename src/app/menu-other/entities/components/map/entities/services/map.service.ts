@@ -33,6 +33,10 @@ export class MapService {
         });
     }
 
+    public clearMapList(): void {
+        this._mapList$$.next(null);
+    }
+
     public async isUserHasInternetConnection() {
         return this._api.get('isInternetConnection', false);
     }
