@@ -2,13 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { DynamicLabelInterface } from '../../../../common/interfaces/dynamic-label.interface';
 import { StudiosInfoService } from '../../services/studios-info.service';
+import {CdsComponentClass} from '../../../../common/classes/cds-component-class';
 
 @Component({
   selector: 'app-studios-form',
   templateUrl: 'entry-form.component.html',
   styleUrls: ['entry-form.component.scss']
 })
-export class EntryFormComponent implements OnInit {
+export class EntryFormComponent extends CdsComponentClass implements OnInit {
+  public currentStudioId: number;
+  public defaultSelect = '';
   public dynamicLabels: DynamicLabelInterface[];
   public studioSelectOptions: string[];
   public currentFormGroup: FormGroup = new FormGroup({
@@ -21,9 +24,16 @@ export class EntryFormComponent implements OnInit {
   });
 
   // tslint:disable-next-line:variable-name
-  constructor(private _studiosService: StudiosInfoService) {}
+  constructor(private _studiosService: StudiosInfoService) {
+    super();
+  }
 
   ngOnInit() {
+    this._observeSafe(this._studiosService.selectOptions$).subscribe((data: string[]) => {
+      this.studioSelectOptions = data;
+      this.defaultSelect = this.studioSelectOptions[this.currentStudioId - 1];
+      this.currentFormGroup.get('studio').setValue(this.defaultSelect);
+    });
     this.dynamicLabels = [
       {
         title: 'Фамилия:',
@@ -52,13 +62,6 @@ export class EntryFormComponent implements OnInit {
         type: 'text',
         formControlName: 'vk',
       },
-    ];
-    this.studioSelectOptions = [
-      'та студия',
-      'эта студия',
-      'самая лучшая студия',
-      'самая худшая студия',
-      'вижуал студия',
     ];
   }
 

@@ -17,6 +17,7 @@
         <ion-select interface="action-sheet"
                     [interfaceOptions]="{header: 'Выберите студию:'}"
                     cancelText="Отмена"
+                    [placeholder]="defaultSelect"
                     formControlName="studio">
           <ion-select-option *ngFor="let selectOption of studioSelectOptions">
             {{selectOption}}

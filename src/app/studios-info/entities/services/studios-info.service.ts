@@ -16,9 +16,13 @@ export class StudiosInfoService {
     private _fullInfo$$: BehaviorSubject<FullStudioInfoInterface> = new BehaviorSubject(null);
     public fullInfo$: Observable<FullStudioInfoInterface> = this._fullInfo$$ as Observable<FullStudioInfoInterface>;
 
+    private _selectOptions$$: BehaviorSubject<string[]> = new BehaviorSubject(null);
+    public selectOptions$: Observable<string[]> = this._selectOptions$$ as Observable<string[]>;
+
     constructor(private _api: ApiService,
                 private _popover: PopoverService,
                 private _tabs: TabService) {
+        this._getStudioSelectOptions();
     }
 
     public getStudioItems(): void {
@@ -57,6 +61,17 @@ export class StudiosInfoService {
                     success: false,
                     message: answer.reason,
                 }).then();
+            }
+        });
+    }
+
+    private _getStudioSelectOptions(): void {
+        this._api.get('getSortedStudios', false).then( (answer: ApiResponse<any>) => {
+            if (!answer) {
+                return;
+            }
+            if (answer.success) {
+                this._selectOptions$$.next(answer.data);
             }
         });
     }

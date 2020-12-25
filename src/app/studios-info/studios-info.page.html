@@ -17,7 +17,7 @@
             <ion-nav-link [component]="fullInfo" [componentProps]="{ id: item.id }">
                 <ion-button fill="clear">Подробнее</ion-button>
             </ion-nav-link>
-            <ion-nav-link [component]="entryForm" [componentProps]="{ id: item.id }">
+            <ion-nav-link [component]="entryForm" [componentProps]="{ currentStudioId: item.id }">
                 <ion-button fill="solid">Записаться</ion-button>
             </ion-nav-link>
         </ion-buttons>
@@ -36,7 +36,7 @@
             <ion-nav-link [component]="fullInfo" [componentProps]="{ id: item.id }">
                 <ion-button fill="clear">Подробнее</ion-button>
             </ion-nav-link>
-            <ion-nav-link [component]="entryForm" [componentProps]="{ id: item.id }">
+            <ion-nav-link [component]="entryForm" [componentProps]="{ currentStudioId: item.id }">
                 <ion-button fill="solid">Записаться</ion-button>
             </ion-nav-link>
         </ion-buttons>
