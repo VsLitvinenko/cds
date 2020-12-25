@@ -4,8 +4,8 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    <div class="studio-item" *ngFor="let item of studiosList">
+<ion-content [fullscreen]="true" *ngIf="studiosList && studiosList.length">
+    <div class="studio-item" *ngFor="let item of studiosList[0]">
         <div class="item-content">
             <ion-img [src]="item.img"></ion-img>
             <div class="studio-text">
@@ -22,6 +22,26 @@
             </ion-nav-link>
         </ion-buttons>
     </div>
+
+    <h1> Организации </h1>
+    <div class="studio-item" *ngFor="let item of studiosList[1]">
+        <div class="item-content">
+            <ion-img [src]="item.img"></ion-img>
+            <div class="studio-text">
+                <span> {{item.title}} </span> <br>
+                <ion-text> {{item.body}} </ion-text>
+            </div>
+        </div>
+        <ion-buttons>
+            <ion-nav-link [component]="fullInfo" [componentProps]="{ id: item.id }">
+                <ion-button fill="clear">Подробнее</ion-button>
+            </ion-nav-link>
+            <ion-nav-link [component]="entryForm" [componentProps]="{ id: item.id }">
+                <ion-button fill="solid">Записаться</ion-button>
+            </ion-nav-link>
+        </ion-buttons>
+    </div>
+
 
     <ion-label *ngIf="!(studiosList && studiosList.length)"> Приложению необходимо соединение с интернетом </ion-label>
 </ion-content>

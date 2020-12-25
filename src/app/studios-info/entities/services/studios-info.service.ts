@@ -10,8 +10,8 @@ import {FullStudioInfoInterface} from '../interfaces/full-studio-info.interface'
 @Injectable()
 export class StudiosInfoService {
     // tslint:disable:variable-name
-    private _studioItems$$: BehaviorSubject<StudioItemInterface[]> = new BehaviorSubject(null);
-    public studioItems$: Observable<StudioItemInterface[]> = this._studioItems$$ as Observable<StudioItemInterface[]>;
+    private _studioItems$$: BehaviorSubject<StudioItemInterface[][]> = new BehaviorSubject(null);
+    public studioItems$: Observable<StudioItemInterface[][]> = this._studioItems$$ as Observable<StudioItemInterface[][]>;
 
     private _fullInfo$$: BehaviorSubject<FullStudioInfoInterface> = new BehaviorSubject(null);
     public fullInfo$: Observable<FullStudioInfoInterface> = this._fullInfo$$ as Observable<FullStudioInfoInterface>;

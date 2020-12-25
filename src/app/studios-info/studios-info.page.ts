@@ -13,13 +13,13 @@ import {CdsComponentClass} from '../common/classes/cds-component-class';
 export class StudiosInfoPage extends CdsComponentClass {
   public entryForm = EntryFormComponent;
   public fullInfo = FullStudioInfoComponent;
-  public studiosList: StudioItemInterface[];
+  public studiosList: StudioItemInterface[][];
 
   // tslint:disable-next-line:variable-name
   constructor(private _studiosService: StudiosInfoService) {
     super();
     this._observeSafe(this._studiosService.studioItems$)
-        .subscribe((data: StudioItemInterface[]) => {
+        .subscribe((data: StudioItemInterface[][]) => {
           this.studiosList = data;
     });
     if (!this.studiosList?.length) {
