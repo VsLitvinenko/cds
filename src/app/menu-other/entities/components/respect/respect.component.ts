@@ -43,9 +43,12 @@ export class RespectComponent extends CdsComponentClass implements OnInit {
       this._respect.getRespects(this._apiDateString);
     });
     const startDate = new Date();
-    startDate.setDate(startDate.getDate() - 13);
     const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 1);
+    const curDate = startDate.getDate() + 1;
+    startDate.setMonth(startDate.getMonth() - 1);
+    startDate.setDate(curDate);
+    endDate.setDate(curDate);
+
     this.datesFormGroup.setValue({
       startDate: startDate.toISOString(),
       endDate: endDate.toISOString(),
