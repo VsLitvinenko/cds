@@ -19,8 +19,8 @@ export class EntryFormComponent extends CdsComponentClass implements OnInit {
     surname: new FormControl(null, Validators.required),
     name: new FormControl(null, Validators.required),
     patronymic: new FormControl(null, Validators.required),
-    phone: new FormControl(),
-    vk: new FormControl(),
+    phone: new FormControl(null, Validators.required),
+    vk: new FormControl(null),
   });
 
   // tslint:disable-next-line:variable-name

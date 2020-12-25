@@ -20,11 +20,12 @@ export class ApiService {
         }
         return this.http.get<ApiResponse<any>>(`${this.environment}${url}`, head)
             .toPromise()
-            .catch(() => {
+            .catch((er) => {
                 if (usePreloader) {
+                    const message = er.error?.reason ? er.error.reason : 'Нет соединения с сервером';
                     this.popover.hidePreloader({
                         success: false,
-                        message: 'Нет соединения с сервером',
+                        message,
                     }).then();
                 }
         });
@@ -34,10 +35,11 @@ export class ApiService {
         this.popover.showPreloader().then();
         return this.http.post<ApiResponse<any>>(`${this.environment}${url}`, body, head)
             .toPromise()
-            .catch(() => {
+            .catch((er) => {
+                const message = er.error?.reason ? er.error.reason : 'Нет соединения с сервером';
                 this.popover.hidePreloader({
                     success: false,
-                    message: 'Нет соединения с сервером',
+                    message,
                 }).then();
             });
     }
@@ -46,10 +48,11 @@ export class ApiService {
         this.popover.showPreloader().then();
         return this.http.delete<ApiResponse<any>>(`${this.environment}${url}`, head)
             .toPromise()
-            .catch(() => {
+            .catch((er) => {
+                const message = er.error?.reason ? er.error.reason : 'Нет соединения с сервером';
                 this.popover.hidePreloader({
                     success: false,
-                    message: 'Нет соединения с сервером',
+                    message,
                 }).then();
             });
     }
@@ -58,10 +61,11 @@ export class ApiService {
         this.popover.showPreloader().then();
         return this.http.put<ApiResponse<any>>(`${this.environment}${url}`, body)
             .toPromise()
-            .catch(() => {
+            .catch((er) => {
+                const message = er.error?.reason ? er.error.reason : 'Нет соединения с сервером';
                 this.popover.hidePreloader({
                     success: false,
-                    message: 'Нет соединения с сервером',
+                    message,
                 }).then();
             });
     }
