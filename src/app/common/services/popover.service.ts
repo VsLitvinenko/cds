@@ -52,6 +52,7 @@ export class PopoverService {
         this._modal = await this._modalController.create({
             component,
             componentProps,
+            swipeToClose: true,
         });
     }
 
