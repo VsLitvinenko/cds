@@ -5,6 +5,12 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+    <ion-refresher slot="fixed"
+                   (ionRefresh)="updateStudios($event)"
+                   *ngIf="!(studiosList && studiosList.length)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
     <div class="container-content" *ngIf="studiosList && studiosList.length">
         <div class="studio-item" *ngFor="let item of studiosList[0]">
             <div class="item-content">
@@ -44,5 +50,20 @@
         </div>
     </div>
 
-    <ion-label *ngIf="!(studiosList && studiosList.length)"> Приложению необходимо соединение с интернетом </ion-label>
+<!--    <ion-label *ngIf="!(studiosList && studiosList.length)"> Приложению необходимо соединение с интернетом </ion-label>-->
+    <div class="container-content" *ngIf="!(studiosList && studiosList.length)">
+        <div class="studio-item" *ngFor="let item of [1, 2, 3]">
+            <div class="item-content">
+                <ion-skeleton-text animated class="loading-img"></ion-skeleton-text>
+                <div class="studio-text">
+                    <span> <ion-skeleton-text style="height: 18px" animated></ion-skeleton-text> </span> <br>
+                    <ion-text> <ion-skeleton-text style="height: 36px" animated></ion-skeleton-text> </ion-text>
+                </div>
+            </div>
+            <ion-buttons>
+                <ion-nav-link> <ion-button fill="clear" [disabled]="true">Подробнее</ion-button> </ion-nav-link>
+                <ion-nav-link> <ion-button fill="solid" [disabled]="true">Записаться</ion-button> </ion-nav-link>
+            </ion-buttons>
+        </div>
+    </div>
 </ion-content>

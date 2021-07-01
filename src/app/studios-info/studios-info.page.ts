@@ -26,4 +26,9 @@ export class StudiosInfoPage extends CdsComponentClass {
       this._studiosService.getStudioItems();
     }
   }
+
+  public updateStudios(event): void {
+    this._studiosService.getStudioItems();
+    event.target.complete();
+  }
 }
