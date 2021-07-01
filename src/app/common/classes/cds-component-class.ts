@@ -1,8 +1,10 @@
-import {OnDestroy} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
-
+@Component({
+    template: ''
+})
 export abstract class CdsComponentClass implements OnDestroy {
     // tslint:disable-next-line:variable-name
     protected _destroy$$: Subject<void> = new Subject();
