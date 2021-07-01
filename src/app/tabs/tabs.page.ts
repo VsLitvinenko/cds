@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TabService} from './entities/services/tab.service';
 import {PopoverService} from '../common/services/popover.service';
 import {SharedService} from '../common/services/shared.service';
+import {Platform} from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -15,7 +16,8 @@ export class TabsPage implements OnInit {
   // tslint:disable:variable-name
   constructor(private _tabService: TabService,
               private _popover: PopoverService,
-              private _shared: SharedService)
+              private _shared: SharedService,
+              private _platform: Platform)
   {
     this.tabs = [
       { id: '1', selected: true, name: 'ЦДС', icon: 'game-controller-outline' },
@@ -34,6 +36,15 @@ export class TabsPage implements OnInit {
         newTabId = '1';
       }
       this.changeTab(newTabId);
+    });
+
+    this._platform.backButton.subscribe( () => {
+      if (this.tabs[0].selected) {
+        navigator['app'].exitApp();
+      }
+      else if (!this._popover.isPopoverPresented) {
+        this.changeTab('back');
+      }
     });
   }
 
