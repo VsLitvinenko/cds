@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" (window:resize)="onWindowResize()">
   <div class="main-header">
     <div class="moving-class">
       <img src="././assets/{{headerColor()}}-header.png" alt="">

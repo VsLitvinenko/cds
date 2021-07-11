@@ -19,16 +19,16 @@ export class CdsInfoPage extends CdsComponentClass {
               private _popover: PopoverService,
               private _cdsService: CdsInfoService) {
     super();
-    this.barButtonSize = (window.innerWidth - 44) / 3;
-    if (this.barButtonSize > 200) {
-      this.barButtonSize = 200;
-    }
-
+    this._calculateButtonsSize();
     this._cdsService.getTEvents();
     this._observeSafe(this._cdsService.tEvents$)
         .subscribe((data: TodayEventsInterface) => {
           this.tEvents = data;
     });
+  }
+
+  public onWindowResize(): void {
+    this._calculateButtonsSize();
   }
 
   public headerColor(): string {
@@ -51,5 +51,12 @@ export class CdsInfoPage extends CdsComponentClass {
 
   public redirectToWebsite(): void {
     window.open('http://dk.gubkin.ru/cds-main');
+  }
+
+  private _calculateButtonsSize(): void {
+    this.barButtonSize = (window.innerWidth - 44) / 3;
+    if (this.barButtonSize > 200) {
+      this.barButtonSize = 200;
+    }
   }
 }
