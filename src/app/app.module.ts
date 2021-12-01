@@ -15,8 +15,10 @@ import {PreferColorSchemeService} from './common/services/prefer-color-scheme.se
 import {SharedModule} from './common/shared.module';
 import {RespectService} from './menu-other/entities/components/respect/entities/services/respect.service';
 import {PhotoService} from './menu-other/entities/components/respect/entities/services/photo.service';
-import {SharedService} from "./common/services/shared.service";
-import {TabService} from "./tabs/entities/services/tab.service";
+import {SharedService} from './common/services/shared.service';
+import {TabService} from './tabs/entities/services/tab.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, ],
@@ -25,7 +27,8 @@ import {TabService} from "./tabs/entities/services/tab.service";
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    SharedModule],
+    SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [
     StatusBar,
     SplashScreen,
